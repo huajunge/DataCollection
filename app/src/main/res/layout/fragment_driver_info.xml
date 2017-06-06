@@ -1,0 +1,45 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tr.datacollection.DriverInfo">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        >
+    <LinearLayout style="@style/layoutstyle">
+        <Button
+            android:id="@+id/add"
+            android:onClick="addPeopel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="新增人员"
+            android:drawablePadding="5dp"
+            android:drawableLeft="@drawable/icon_add"
+            />
+        <TextView
+            style="@style/textstyle"
+            android:layout_marginLeft="5dp"
+            android:text="已添加人员:0 "
+            />
+    </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="已添加涉及人员"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            />
+         <include layout="@layout/tableitem"></include>
+        <ListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+    </LinearLayout>
+</FrameLayout>

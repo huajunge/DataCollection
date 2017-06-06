@@ -1,0 +1,246 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tr.datacollection.CarInfo">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <!-- 时间信息-->
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="机动车辆识别码（VIN）:" />
+
+                <EditText
+                    android:id="@+id/vin"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+
+                    style="@style/textstyle"
+                    android:text="国别:" />
+
+                <Spinner
+                    android:id="@+id/sp_guobie"
+                    style="@style/stylespanner"
+                    android:layout_width="135dp">
+
+                </Spinner>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    android:id="@+id/textView"
+                    style="@style/textstyle"
+                    android:text="年份:" />
+
+                <Spinner
+                    android:id="@+id/sp_nianfen"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+
+                    style="@style/textstyle"
+                    android:text="车牌号:" />
+
+                <EditText
+                    android:id="@+id/chepaihao"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:layout_marginLeft="15dp"
+                    android:text="品牌:" />
+
+                <Spinner
+                    android:id="@+id/sp_pingpai"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="车辆类型:" />
+
+                <Spinner
+                    android:id="@+id/sp_leixing"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="车内人数:" />
+
+                <Spinner
+                    android:id="@+id/sp_cnrenshu"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="特殊作用:" />
+
+                <Spinner
+                    android:id="@+id/sp_teshuzy"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="紧急机动车辆使用:" />
+
+                <Spinner
+                    android:id="@+id/sp_jinjishiyong"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="机动车辆法定限速:" />
+
+                <Spinner
+                    android:id="@+id/sp_xiansu"
+                    style="@style/stylespanner"
+                    android:layout_width="125dp">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="事故前行驶方向:" />
+
+                <Spinner
+                    android:id="@+id/sp_xsfangxiang"
+                    style="@style/stylespanner"
+                    android:layout_width="120dp">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="机动车辆操控/行为:" />
+
+                <Spinner
+                    android:id="@+id/sp_caozuo"
+                    style="@style/stylespanner"
+                    android:layout_width="115dp">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            style="@style/textstyle"
+            android:layout_marginBottom="5dp"
+            android:text="车辆损坏" />
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    android:id="@+id/textView5"
+                    style="@style/textstyle"
+                    android:text="初接触点:" />
+
+                <Spinner
+                    android:id="@+id/sp_jiechudian"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="损坏部位:" />
+
+                <Spinner
+                    android:id="@+id/sp_shbuwei"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="损坏程度:" />
+
+                <Spinner
+                    android:id="@+id/sp_shchengdu"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

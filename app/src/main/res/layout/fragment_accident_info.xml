@@ -1,0 +1,220 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tr.datacollection.AccidentInfo">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="星期:" />
+
+                <Spinner
+                    android:id="@+id/sp_xingqi"
+                    style="@style/stylespanner"
+                    android:layout_width="180dp"></Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="严重程度:" />
+
+                <Spinner
+
+                    android:id="@+id/sp_shiguchengdu"
+                    style="@style/stylespanner"
+                    android:layout_width="140dp"></Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="涉及机动车数:" />
+
+                <EditText
+                    android:id="@+id/jidongcheshu"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="驾乘人员数量:" />
+
+                <EditText
+                    android:id="@+id/renshu"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="驾乘人员以外人员数量:" />
+
+                <EditText
+                    android:id="@+id/outrenshu"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="受伤数量:" />
+
+                <EditText
+                    android:id="@+id/ssrenshu"
+                    android:layout_width="145dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="死亡人数:" />
+
+                <EditText
+                    android:id="@+id/swrenshu"
+                    android:layout_width="218dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+        <!-- 时间信息-->
+        <LinearLayout style="@style/layoutstyle">
+
+            <Button
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/icon_add"
+                android:drawablePadding="5dp"
+                android:text="添加事件" />
+
+            <TextView
+                style="@style/textstyle"
+                android:layout_marginLeft="5dp"
+                android:text="已添加事件:0 件" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="非碰撞:" />
+
+                <Spinner
+                    android:id="@+id/sp_feipengz"
+                    style="@style/stylespanner"></Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="碰撞固定物:" />
+
+                <Spinner
+                    android:id="@+id/sp_zhuangwu"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="撞人、撞机动车等非固定物: " />
+
+                <Spinner
+                    android:id="@+id/sp_zhuangren"
+                    style="@style/stylespanner"
+                    android:layout_width="125dp"></Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="公共汽车属性(巴士使用):" />
+
+                <Spinner
+                    android:id="@+id/sp_busshuxing"
+                    style="@style/stylespanner"
+                    android:layout_width="155dp">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="肇事逃逸:" />
+
+                <Spinner
+                    android:id="@+id/sp_run"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="危险有害物**:" />
+
+                <Spinner
+                    android:id="@+id/sp_dangers"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
