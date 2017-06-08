@@ -49,10 +49,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         frg4.setOnClickListener(this);
         vp_main = (ViewPager) findViewById(R.id.vpmain);
         mFrags = new ArrayList<>();
+        mFrags.add(new AccidentInfo());
         mFrags.add(new EmInfo());
         mFrags.add(new CarInfo());
-        mFrags.add(new AccidentInfo());
+
         mFrags.add(new DriverInfo());
+        selectFragment(0);
         fAdapter=new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
@@ -86,26 +88,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void selectFragment(int position){
         switch (position){
-            case 0:
+            case 1:
                 frg1.setBackground(getResources().getDrawable(R.drawable.icon_em_on));
                 frg2.setBackground(getResources().getDrawable(R.drawable.icon_car_off));
                 frg3.setBackground(getResources().getDrawable(R.drawable.icon_accident_off));
                 frg4.setBackground(getResources().getDrawable(R.drawable.icon_driver_off));
                 tile.setText("环境信息");
                 break;
-            case 1:
+            case 2:
                 frg1.setBackground(getResources().getDrawable(R.drawable.icon_em));
                 frg2.setBackground(getResources().getDrawable(R.drawable.icon_car_on));
                 frg3.setBackground(getResources().getDrawable(R.drawable.icon_accident_off));
                 frg4.setBackground(getResources().getDrawable(R.drawable.icon_driver_off));
                 tile.setText("车辆信息");
                 break;
-            case 2:
+            case 0:
                 frg1.setBackground(getResources().getDrawable(R.drawable.icon_em));
                 frg2.setBackground(getResources().getDrawable(R.drawable.icon_car_off));
                 frg3.setBackground(getResources().getDrawable(R.drawable.icon_accident_on));
                 frg4.setBackground(getResources().getDrawable(R.drawable.icon_driver_off));
-                tile.setText("事件信息");
+                tile.setText("事故信息");
                 break;
             case 3:
                 frg1.setBackground(getResources().getDrawable(R.drawable.icon_em));

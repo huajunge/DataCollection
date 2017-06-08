@@ -1,6 +1,7 @@
 package com.example.tr.datacollection;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,8 +12,11 @@ import android.view.View;
 import android.view.animation.BounceInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -35,7 +39,6 @@ import com.amap.api.services.poisearch.PoiSearch;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +59,13 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
     public AMapLocationClient mapLocationClient;
     private  int TYPE = 0;
     private boolean LOCATION_KO=false;
+    private TextView textViewCity;
+    private TextView textViewXingzhengqu;
+    private TextView textViewShangquan;
+    private Spinner spPlaceName;
+    private EditText editTextPlaceBeizhu;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +80,14 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
     }
 
     private void init() {
+        //初始化控件
+          textViewCity = (TextView) findViewById(R.id.city);
+          textViewXingzhengqu = (TextView) findViewById(R.id.xingzhengqu);
+          textViewShangquan = (TextView) findViewById(R.id.shangquan);
+          spPlaceName = (Spinner) findViewById(R.id.place_name);
+          editTextPlaceBeizhu = (EditText) findViewById(R.id.place_beizhu);
+
+
         mapView = (MapView) findViewById(R.id.mapView);
         aMap = mapView.getMap();
         mapLocationClient = new AMapLocationClient(MarkerPosition.this);
@@ -90,6 +108,9 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
         aMap.setOnCameraChangeListener(this);
 
         //Poi
+//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//        imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+
         setPoi("",position);
         poiList = (ListView) findViewById(R.id.pois);
         poiList.setOnItemClickListener(this);
@@ -101,8 +122,8 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
     }
 
     private void setPoi(String keyWord,LatLng lc) {
-        query = new PoiSearch.Query(keyWord,"地名地址信息|交通地名|道路名|路口名|街道级地名","成都");
-        query.setPageSize(10);
+        query = new PoiSearch.Query(keyWord,"地名地址信息|交通地名|道路名|路口名|街道级地名|交叉口","成都");
+        query.setPageSize(20);
         query.setPageNum(1);
         poiSearch = new PoiSearch(MarkerPosition.this,query);
         poiSearch.setOnPoiSearchListener(this);
@@ -123,7 +144,7 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
     @Override
     public void onMarkerDragEnd(Marker marker) {
         position = new LatLng(marker.getPosition().latitude,marker.getPosition().longitude);
-        setPoi("路|道|道路|站",new LatLng(marker.getPosition().latitude,marker.getPosition().longitude));
+        setPoi("路|道|道路|站|口",new LatLng(marker.getPosition().latitude,marker.getPosition().longitude));
         moveToLocation(marker.getPosition().latitude,marker.getPosition().longitude);
     }
 
@@ -132,26 +153,25 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
         if (!poiResult.getPois().isEmpty()){
             dataList.clear();
             int icon = R.drawable.point_my;
+            if( !poiResult.getPois().isEmpty()){
+                PoiItem pi = poiResult.getPois().get(0);
+                //pi.getBusinessArea()+"   "+ pi.getAdName()+" "+pi.getCityName()+pi.getTitle();
+                textViewCity.setText(pi.getCityName());
+                textViewShangquan.setText(pi.getBusinessArea());
+                textViewXingzhengqu.setText(pi.getAdName());
+            }
+            String ss ="";
             for(PoiItem pi : poiResult.getPois()){
-                Map<String,Object>map=new HashMap<String,Object>();
-                map.put("item_src",R.drawable.point_my);
-               // map.put("item_text", pi.toString());
-                map.put("item_text",pi.getBusinessArea()+"   "+ pi.getAdName()+" "+pi.getCityName()+pi.getTitle());
-                dataList.add(map);
+                String p = pi.getTitle();
+                if(p.contains("路")||p.contains("口")||p.contains("道")||p.contains("街")||p.contains("交")){
+                    ss+=pi.getTitle()+"---";
+                }
+
+                if(!(pi.getBusinessArea().equals("")||pi.getBusinessArea()==null)){
+                    textViewShangquan.setText(pi.getBusinessArea());
+                }
             }
-            if(TYPE ==0){
-                simpleAdapter = new SimpleAdapter(this,dataList,R.layout.list_poi_orgin,new String[]{"item_src","item_text"},
-                        new int[]{R.id.item_src,R.id.item_text});
-            }else if(TYPE == 1){
-                simpleAdapter = new SimpleAdapter(this,dataList,R.layout.list_poi,new String[]{"item_src","item_text"},
-                        new int[]{R.id.item_src,R.id.item_text});
-            }else {
-                simpleAdapter = new SimpleAdapter(this,dataList,R.layout.list_poi_orgin,new String[]{"item_src","item_text"},
-                        new int[]{R.id.item_src,R.id.item_text});
-            }
-            poiList.setAdapter(simpleAdapter);
-            poiList.setOnItemClickListener(this);
-            poiList.setItemsCanFocus(true);
+            spPlaceName.setAdapter(new MyAdapter(ss.split("---"),MarkerPosition.this).getAdaper());
         }
     }
 
@@ -261,4 +281,10 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
             }
         }
     }
+    //添加事件
+    public void addShigu(View view){
+        Intent intent = new Intent(MarkerPosition.this,MainActivity.class);
+        startActivity(intent);
+    }
+
 }
