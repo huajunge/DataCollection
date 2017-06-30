@@ -9,11 +9,21 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amap.api.maps.model.LatLng;
+import com.example.tr.datacollection.model.AcccidentData;
+import com.example.tr.datacollection.model.CarData;
+import com.example.tr.datacollection.model.EMdata;
+import com.example.tr.datacollection.model.PelpelData;
+import com.example.tr.datacollection.model.PeopelData2;
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,6 +39,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ViewPager vp_main;
     FragmentPagerAdapter fAdapter;
     List<Fragment> mFrags;
+
+    private AcccidentData acccidentData = new AcccidentData();
+    private EMdata eMdata = new EMdata();
+    private List<CarData> carDatas = new ArrayList<CarData>();
+    private PelpelData pelpelData1 = new PelpelData();
+    private PeopelData2 peopelData2 =new PeopelData2();
+    private PeopelData3 peopelData3 = new PeopelData3();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mFrags.add(new CarInfo());
 
         mFrags.add(new DriverInfo());
+
+        mFrags.get(0);
         selectFragment(0);
         fAdapter=new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
@@ -94,6 +114,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 frg3.setBackground(getResources().getDrawable(R.drawable.icon_accident_off));
                 frg4.setBackground(getResources().getDrawable(R.drawable.icon_driver_off));
                 tile.setText("环境信息");
+//                AccidentInfo accidentInfo = (AccidentInfo) mFrags.get(0);
+//                Toast.makeText(this,accidentInfo.GetCITY()+"",Toast.LENGTH_LONG).show();
                 break;
             case 2:
                 frg1.setBackground(getResources().getDrawable(R.drawable.icon_em));
@@ -123,13 +145,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.frag_em:
-                selectFragment(0);
-                break;
-            case R.id.frag_car:
                 selectFragment(1);
                 break;
-            case R.id.frag_accident:
+            case R.id.frag_car:
                 selectFragment(2);
+                break;
+            case R.id.frag_accident:
+                selectFragment(0);
                 break;
             case R.id.frag_driver:
                 selectFragment(3);
@@ -165,5 +187,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         dialog = builder.create();
         dialog.show();
+    }
+    public void updateInfo(final View view){
+        AccidentInfo accidentInfo = (AccidentInfo) mFrags.get(0);
+//                Toast.makeText(this,accidentInfo.GetCITY()+"",Toast.LENGTH_LONG).show();
+      //  acccidentData.setCity(accidentInfo.GetCITY());
+        Date date = accidentInfo.getCal().getTime();
+      //  date.setYear();
+        //经纬度
+        String[] latlngs = accidentInfo.Getjingweidu().split(",");
+        LatLng latLng = new LatLng(Double.valueOf(latlngs[1]),Double.valueOf(latlngs[0]));
+
+        acccidentData= new AcccidentData(date, accidentInfo.GetCITY(),accidentInfo.GetCOUNTRY(), accidentInfo.Getxiangzhen(), latLng,
+                accidentInfo.GetdimingBeiZhu(), accidentInfo.Getspshigu(), accidentInfo.GetspshiguType(), accidentInfo.Getspshigu2(), accidentInfo.GetspshiguType2(),
+                accidentInfo.Getspyanzhongcd(), accidentInfo.Getcarnum(), accidentInfo.GetdriverNums(), accidentInfo.GetFeidriverNums(),accidentInfo.Getssrenshu(),
+                accidentInfo.GetdieNums(), accidentInfo.Getspgongjiao(), accidentInfo.Getspzhaoshity(), accidentInfo.weiX, accidentInfo.GetWeixianbz(),
+                accidentInfo.Getspfromweixianbz(), accidentInfo.getRyouhaiwuzhi());
+        Log.i("data",acccidentData.toString());
+        LayoutInflater inflater = LayoutInflater.from (this);
+        View view2 = inflater.inflate(R.layout.updata,null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("上传数据");
+        builder.setView(view2);
+
+        dialog = builder.create();
+        dialog.show();
+    }
+    public void addNewCar(View view){
+        mFrags.set(2,new CarInfo());
+        
     }
 }

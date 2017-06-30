@@ -284,7 +284,22 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
     //添加事件
     public void addShigu(View view){
         Intent intent = new Intent(MarkerPosition.this,MainActivity.class);
-        startActivity(intent);
+        try{
+            intent.putExtra("lng", marker.getPosition().longitude);
+            intent.putExtra("lat", marker.getPosition().latitude);
+        }catch (Exception e){
+            intent.putExtra("lng", 0.0);
+            intent.putExtra("lat", 0.0);
+        }
+         intent.putExtra("city", textViewCity.getText().toString());
+         intent.putExtra("country", textViewXingzhengqu.getText().toString());
+         intent.putExtra("xiangzhen", textViewShangquan.getText().toString());
+     //    intent.putExtra("diming",spPlaceName.getSelectedItem().toString());
+         intent.putExtra("beizhu", editTextPlaceBeizhu.getText().toString());
+
+
+         startActivity(intent);
+
     }
 
 }

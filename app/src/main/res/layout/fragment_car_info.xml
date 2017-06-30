@@ -9,8 +9,63 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
-        <!-- 时间信息-->
+       >
+        <!-- 时间信息-->s
+
+
+        <LinearLayout
+            android:background="@color/bgofdefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="基础信息"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                style="@style/textstyle"
+                android:textColor="@color/lightgray"
+                android:text="车辆序号:01" />
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -59,20 +114,16 @@
 
                 </Spinner>
             </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
-
                     style="@style/textstyle"
                     android:text="车牌号:" />
 
                 <EditText
                     android:id="@+id/chepaihao"
-                    android:layout_width="150dp"
+                    android:layout_width="160dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
@@ -80,14 +131,31 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:layout_marginLeft="15dp"
                     android:text="品牌:" />
 
-                <Spinner
+                <TextView
                     android:id="@+id/sp_pingpai"
+                    style="@style/stylespanner"
+                    android:layout_width="140dp">
+
+                </TextView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="型号:" />
+
+                <TextView
+                    android:id="@+id/sp_xinghao"
                     style="@style/stylespanner">
 
-                </Spinner>
+                </TextView>
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle2">
@@ -98,12 +166,62 @@
 
                 <Spinner
                     android:id="@+id/sp_leixing"
-                    style="@style/stylespanner">
+                    style="@style/stylespanner"
+                    android:layout_width="200dp">
 
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/bgofdefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="详细信息"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -114,7 +232,8 @@
 
                 <Spinner
                     android:id="@+id/sp_cnrenshu"
-                    style="@style/stylespanner">
+                    style="@style/stylespanner"
+                    android:layout_width="120dp">
 
                 </Spinner>
             </LinearLayout>
@@ -127,14 +246,17 @@
 
                 <Spinner
                     android:id="@+id/sp_teshuzy"
-                    style="@style/stylespanner">
+                    style="@style/stylespanner"
+                    android:layout_width="140dp">
 
                 </Spinner>
             </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout style="@style/layoutstyle">
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:visibility="gone">
 
             <LinearLayout style="@style/layoutstyle2">
 
@@ -149,19 +271,6 @@
                 </Spinner>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="机动车辆法定限速:" />
-
-                <Spinner
-                    android:id="@+id/sp_xiansu"
-                    style="@style/stylespanner"
-                    android:layout_width="125dp">
-
-                </Spinner>
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
@@ -170,7 +279,7 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="事故前行驶方向:" />
+                    android:text="行驶方向:" />
 
                 <Spinner
                     android:id="@+id/sp_xsfangxiang"
@@ -184,21 +293,61 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="机动车辆操控/行为:" />
+                    android:text="车辆操控行为:" />
 
                 <Spinner
                     android:id="@+id/sp_caozuo"
                     style="@style/stylespanner"
-                    android:layout_width="115dp">
+                   >
 
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/bgofdefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <TextView
-            style="@style/textstyle"
-            android:layout_marginBottom="5dp"
-            android:text="车辆损坏" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="车辆损坏情况"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
 
@@ -242,5 +391,60 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/darkGrey" />
+
+        <LinearLayout style="@style/layoutstyle"
+            android:layout_marginLeft="10dp"
+            >
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <ImageView
+                    android:id="@+id/addphotos"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:src="@drawable/addphoto" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <ListView
+
+                    android:id="@+id/imgs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="128dp"></ListView>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="-15dp"
+            android:background="@color/darkGrey" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableRight="@drawable/icon_addcar"
+            android:background="@color/white"
+            android:onClick="addNewCar"
+            android:text="添加下一辆涉及车" />
     </LinearLayout>
 </FrameLayout>

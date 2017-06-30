@@ -9,23 +9,245 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+        >
+        <!-- 时间信息-->
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@color/bgofdefault"
+            android:gravity="center">
 
-        <LinearLayout style="@style/layoutstyle">
+            <!--时间-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textstyle"
+
+                    android:text="日期：" />
+
+                <LinearLayout
+                    android:id="@+id/setriqi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/icon_riqi" />
+
+                    <TextView
+                        android:id="@+id/text_day"
+                        style="@style/textstyle"
+                        android:text="2017年05月29日"
+                        android:textColor="@color/gray" />
+                </LinearLayout>
+            </LinearLayout>
+            <!--时间-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="时间：" />
+
+                <LinearLayout
+                    android:id="@+id/sethours"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/icon_time" />
+
+                    <TextView
+                        android:id="@+id/text_time"
+                        style="@style/textstyle"
+                        android:text="15:27"
+                        android:textColor="@color/gray" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:background="@color/bgofdefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/darkGrey" />
+        <!--位置信息-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gary6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="地理位置"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gary6" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+
+            android:background="@color/darkGrey" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:gravity="center_vertical">
 
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="星期:" />
+                    android:text="事故城市:" />
 
-                <Spinner
-                    android:id="@+id/sp_xingqi"
-                    style="@style/stylespanner"
-                    android:layout_width="180dp"></Spinner>
+                <TextView
+                    android:id="@+id/sp_city"
+                    style="@style/textstyle"
+                    android:layout_width="100dp">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="事故县/区:" />
+
+                <TextView
+                    android:id="@+id/sp_country"
+                    style="@style/textstyle"
+                    android:layout_width="100dp">
+
+                </TextView>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="事故乡镇:" />
+
+                <TextView
+                    android:id="@+id/sp_shangquan"
+                    style="@style/textstyle"
+                    android:layout_width="100dp">
+
+                </TextView>
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout style="@style/layoutstyle">
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/textstyle"
+                android:text="经纬度:" />
+
+            <TextView
+                android:id="@+id/text_jinweidu"
+                style="@style/textstyle"
+                android:text="103.2255555,36.5421582" />
+
+            <TextView
+                android:id="@+id/text_beizhu"
+                style="@style/textstyle"
+                android:text="地名备注:" />
+
+            <EditText
+                android:id="@+id/dimingbz"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    <LinearLayout
+        android:background="@color/bgofdefault"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/darkGrey" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gary6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="事故类型"
+                android:textSize="15dp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="@color/gary6" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/darkGrey" />
+        </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -35,34 +257,183 @@
                     android:text="严重程度:" />
 
                 <Spinner
-
                     android:id="@+id/sp_shiguchengdu"
-                    style="@style/stylespanner"
-                    android:layout_width="140dp"></Spinner>
+                    android:layout_width="200dp"
+                    style="@style/stylespanner"></Spinner>
             </LinearLayout>
+        </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/textstyle"
+                        android:text="事故类型:" />
+
+                    <Spinner
+                        android:id="@+id/shijian"
+                        style="@style/stylespanner">
+
+                    </Spinner>
+
+                    <Spinner
+                        android:id="@+id/sp_shijian_type"
+                        style="@style/stylespanner">
+
+                    </Spinner>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_shigu2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="发生二次事故" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/pzlx"
+            style="@style/layoutstyle"
+            android:visibility="gone">
+
+            <LinearLayout style="@style/layoutstyle2"
+
+                >
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="涉及机动车数:" />
+                    android:text="车辆碰撞类型:" />
 
-                <EditText
-                    android:id="@+id/jidongcheshu"
-                    android:layout_width="180dp"
-                    android:layout_height="wrap_content" />
+                <Spinner
+                    android:id="@+id/sp_caraccident"
+                    style="@style/stylespanner"
+                    android:layout_width="160dp">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+        <!--二次事故-->
+        <LinearLayout
+            android:id="@+id/shigu2"
+            style="@style/layoutstyle"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="二次事故:" />
+
+                    <Spinner
+                        android:id="@+id/shijian2"
+                        style="@style/stylespanner">
+
+                    </Spinner>
+
+                    <Spinner
+                        android:id="@+id/sp_shijian_type2"
+                        style="@style/stylespanner">
+
+                    </Spinner>
+                </LinearLayout>
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/pzlx2"
+                style="@style/layoutstyle"
+                android:visibility="gone">
 
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="车辆碰撞类型:" />
+
+                    <Spinner
+                        android:id="@+id/sp_caraccident2"
+                        style="@style/stylespanner"
+                        android:layout_width="160dp">
+
+                    </Spinner>
+                </LinearLayout>
+            </LinearLayout>
         </LinearLayout>
+        <LinearLayout
+            android:background="@color/bgofdefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="人车数量"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="驾乘人员数量:" />
+                    android:text="涉及车数:" />
+
+                <Spinner
+                    android:id="@+id/jidongcheshu"
+                    style="@style/stylespanner"></Spinner>
+
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="驾乘人数:" />
 
                 <EditText
                     android:id="@+id/renshu"
@@ -70,17 +441,6 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="驾乘人员以外人员数量:" />
-
-                <EditText
-                    android:id="@+id/outrenshu"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
@@ -89,11 +449,24 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="受伤数量:" />
+                    android:text="非驾乘人数:" />
+
+                <EditText
+                    android:id="@+id/outrenshu"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    android:id="@+id/textView7"
+                    style="@style/textstyle"
+                    android:text="受伤人数:" />
 
                 <EditText
                     android:id="@+id/ssrenshu"
-                    android:layout_width="145dp"
+                    android:layout_width="110dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
@@ -105,83 +478,67 @@
 
                 <EditText
                     android:id="@+id/swrenshu"
-                    android:layout_width="218dp"
+                    android:layout_width="120dp"
                     android:layout_height="wrap_content" />
             </LinearLayout>
         </LinearLayout>
         <!-- 时间信息-->
-        <LinearLayout style="@style/layoutstyle">
 
-            <Button
-
-                android:layout_width="wrap_content"
+        <LinearLayout
+            android:background="@color/bgofdefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableLeft="@drawable/icon_add"
-                android:drawablePadding="5dp"
-                android:text="添加事件" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <TextView
-                style="@style/textstyle"
-                android:layout_marginLeft="5dp"
-                android:text="已添加事件:0 件" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="其他信息"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
         </LinearLayout>
-
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="非碰撞:" />
-
-                <Spinner
-                    android:id="@+id/sp_feipengz"
-                    style="@style/stylespanner"></Spinner>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="碰撞固定物:" />
-
-                <Spinner
-                    android:id="@+id/sp_zhuangwu"
-                    style="@style/stylespanner">
-
-                </Spinner>
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/layoutstyle">
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="撞人、撞机动车等非固定物: " />
-
-                <Spinner
-                    android:id="@+id/sp_zhuangren"
-                    style="@style/stylespanner"
-                    android:layout_width="125dp"></Spinner>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout style="@style/layoutstyle">
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="公共汽车属性(巴士使用):" />
+                    android:text="大巴用途:" />
 
                 <Spinner
                     android:id="@+id/sp_busshuxing"
-                    style="@style/stylespanner"
-                    android:layout_width="155dp">
+                    style="@style/stylespanner">
 
                 </Spinner>
             </LinearLayout>
@@ -204,17 +561,137 @@
 
             <LinearLayout style="@style/layoutstyle2">
 
-                <TextView
+                <CheckBox
+                    android:id="@+id/checkbox_weixianche"
                     style="@style/textstyle"
-                    android:text="危险有害物**:" />
-
-                <Spinner
-                    android:id="@+id/sp_dangers"
-                    style="@style/stylespanner">
-
-                </Spinner>
+                    android:text="危险品运输车" />
             </LinearLayout>
+
+            <Spinner
+                android:id="@+id/sp_dangers"
+                style="@style/stylespanner"
+                android:visibility="gone"></Spinner>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/dangers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout style="@style/layoutstyle">
+
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="机动车辆是否有危险有害物(HM)标识？" />
+
+                    <RadioGroup
+                        android:id="@+id/weixianbiaozhi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="有" />
+
+                        <RadioButton
+                            android:id="@+id/no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="无" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wxbiaowei"
+                style="@style/layoutstyle"
+                android:visibility="visible">
+
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="危险有害物标识中可看出:" />
+
+                    <Spinner
+                        android:id="@+id/sp_weixianbiaozhi"
+                        style="@style/stylespanner"
+                        android:layout_width="150dp">
+
+                    </Spinner>
+                </LinearLayout>
+            </LinearLayout>
+            <!--存放处释放的有害物质（货仓）-->
+
+            <LinearLayout style="@style/layoutstyle">
+
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="存放处释放的有害物质（货仓）" />
+
+                    <RadioGroup
+                        android:id="@+id/youhaiwuzhi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="是" />
+
+                        <RadioButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="否" />
+                    </RadioGroup>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle"
+            android:layout_marginLeft="10dp"
+            >
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <ImageView
+                    android:id="@+id/addphotos"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:clickable="true"
+                    android:onClick="onClick"
+                    android:src="@drawable/addphoto" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <ImageView
+                    android:id="@+id/img1"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <ListView
+                    android:id="@+id/imgs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                </ListView>
+            </LinearLayout>
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
