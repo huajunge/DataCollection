@@ -52,13 +52,13 @@
             <android.support.v4.view.ViewPager
                 android:id="@+id/vpmain"
                 android:layout_width="match_parent"
-                android:layout_height="1000dp">
+                android:layout_height="1200dp">
 
             </android.support.v4.view.ViewPager>
         </LinearLayout>
         </ScrollView>
     <LinearLayout
-        android:background="@color/lavender"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -70,6 +70,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
+
             >
             <ImageView
                 android:id="@+id/frag_accident"
@@ -78,6 +79,7 @@
                 android:background="@drawable/icon_accident_on"
                 />
             <TextView
+                android:textColor="@color/wheat"
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -109,6 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="环境信息"
+                android:textColor="@color/wheat"
                 />
         </LinearLayout>
         <ImageView
@@ -132,6 +135,7 @@
                 android:background="@drawable/icon_car_off"
                 />
             <TextView
+                android:textColor="@color/wheat"
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,6 +164,7 @@
                 android:background="@drawable/icon_driver_off"
                 />
             <TextView
+                android:textColor="@color/wheat"
                 android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

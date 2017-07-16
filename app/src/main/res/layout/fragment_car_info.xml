@@ -64,8 +64,9 @@
             >
             <TextView
                 style="@style/textstyle"
+                android:id="@+id/carorder"
                 android:textColor="@color/lightgray"
-                android:text="车辆序号:01" />
+                android:text="车辆序号:1" />
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">

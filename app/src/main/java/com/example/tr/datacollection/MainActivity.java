@@ -12,8 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.maps.model.LatLng;
 import com.example.tr.datacollection.model.AcccidentData;
@@ -21,6 +24,8 @@ import com.example.tr.datacollection.model.CarData;
 import com.example.tr.datacollection.model.EMdata;
 import com.example.tr.datacollection.model.PelpelData;
 import com.example.tr.datacollection.model.PeopelData2;
+import com.example.tr.datacollection.model.SimpleDataTest;
+import com.example.tr.datacollection.util.DBO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private PeopelData2 peopelData2 =new PeopelData2();
     private PeopelData3 peopelData3 = new PeopelData3();
 
+    private int carsOrder =1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +143,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 frg3.setBackground(getResources().getDrawable(R.drawable.icon_accident_off));
                 frg4.setBackground(getResources().getDrawable(R.drawable.icon_driver_on));
                 tile.setText("人员信息");
+                Spinner spinnerXunhao = (Spinner) findViewById(R.id.sp_cheliangxunhao);
+                String[] strXunhao = new String[carDatas.size()];
+                int i=0;
+                for(CarData c :carDatas){
+                    strXunhao[i++]=c.getXunhao()+" "+c.getChepaihao();
+                }
+             //   Intent intent = new Intent()
+                spinnerXunhao.setAdapter(new MyAdapter(strXunhao,MainActivity.this).getAdaper());
+
+
                 break;
         }
         vp_main.setCurrentItem(position);
@@ -192,7 +208,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AccidentInfo accidentInfo = (AccidentInfo) mFrags.get(0);
 //                Toast.makeText(this,accidentInfo.GetCITY()+"",Toast.LENGTH_LONG).show();
       //  acccidentData.setCity(accidentInfo.GetCITY());
-        Date date = accidentInfo.getCal().getTime();
+        final Date date = accidentInfo.getCal().getTime();
       //  date.setYear();
         //经纬度
         String[] latlngs = accidentInfo.Getjingweidu().split(",");
@@ -207,14 +223,69 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         LayoutInflater inflater = LayoutInflater.from (this);
         View view2 = inflater.inflate(R.layout.updata,null);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("上传数据");
-        builder.setView(view2);
+        builder.setTitle("确认上传？");
+      //  builder.setView(view2);
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"上传成功",Toast.LENGTH_LONG).show();
+                DBO dbo =new DBO(MainActivity.this);
 
+                dbo.insertToSimpleTest(new SimpleDataTest(acccidentData.getLnglat().latitude,
+                        acccidentData.getLnglat().longitude,date.getTime(),acccidentData.getCity()+acccidentData.getXianQu()+acccidentData.getShangQuan()+"  "+acccidentData.getDiMingBeiZhu(),acccidentData.getYanZhongCd()));
+
+                List<SimpleDataTest> simpleDataTests = dbo.getsimpleDataTest();
+                for(SimpleDataTest s:simpleDataTests){
+                    Log.i("simpleDataTests",s.toString()+"------------");
+                }
+                dialog.dismiss();
+            }
+        });
         dialog = builder.create();
         dialog.show();
     }
     public void addNewCar(View view){
-        mFrags.set(2,new CarInfo());
-        
+        //mFrags.set(2,new CarInfo());
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("确定保存？");
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialog.dismiss();
+            }
+        });
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(MainActivity.this,"保存成功",Toast.LENGTH_LONG).show();
+                EditText editTextVin = (EditText) MainActivity.this.findViewById(R.id.vin);
+                EditText editTextChepaiHao = (EditText) MainActivity.this.findViewById(R.id.chepaihao);
+
+                CarData carData=new CarData();
+                TextView textView = (TextView) findViewById(R.id.carorder);
+                carData.setXunhao(carsOrder);
+                carData.setChepaihao(editTextChepaiHao.getText().toString());
+                carDatas.add(carData);
+                textView.setText("车辆序号:"+(++carsOrder));
+                editTextChepaiHao.setText("");
+                editTextVin.setText("");
+                dialog.dismiss();
+            }
+        });
+
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    public List<CarData> getCarData(){
+        return carDatas;
     }
 }

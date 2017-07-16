@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        >
+        <TextView
+            android:text="选择年份:"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+        <Spinner
+            android:id="@+id/spinner_year"
+            android:layout_marginLeft="5dp"
+            android:padding="-5dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+        </Spinner>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+        <TextView
+            android:text="选择月份"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"/>
+        <Spinner
+            android:id="@+id/spinner_month"
+            android:layout_marginLeft="5dp"
+            android:padding="-5dp"
+
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+        </Spinner>
+    </LinearLayout>
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/line_chart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/shinums"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="事故总数:"
+            />
+
+        <Button
+            android:padding="10dp"
+            android:textSize="20dp"
+            android:background="@drawable/btnstyle"
+            android:onClick="toLocation"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="详细位置"
+            android:textColor="@color/white"
+            />
+
+    </LinearLayout>
+</LinearLayout>

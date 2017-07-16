@@ -4,43 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     >
-    <LinearLayout
-        android:background="@color/colorPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        >
-        <ImageView
-            android:id="@+id/back"
-            android:onClick="back"
-            android:layout_gravity="center"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_back"
-            />
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-
-
-
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="驾驶人信息"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <ImageView
-            android:onClick="add"
-            android:layout_gravity="center"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon_queren"
-            />
-    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -51,7 +14,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp">
-
+·
             <TextView
                 style="@style/textstyle"
                 android:layout_marginBottom="10dp"
@@ -114,9 +77,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
 
-                <LinearLayout style="@style/layoutstyle2"
-                    android:layout_marginRight="22dp"
-                    >
+                <LinearLayout
+                    style="@style/layoutstyle2"
+                    android:layout_marginRight="22dp">
 
                     <TextView
                         style="@style/textstyle"
@@ -159,6 +122,7 @@
 
                     </Spinner>
                 </LinearLayout>
+
                 <LinearLayout style="@style/layoutstyle2">
 
                     <TextView
@@ -189,20 +153,20 @@
                     </Spinner>
                 </LinearLayout>
 
-                <LinearLayout style="@style/layoutstyle2"
-                    android:visibility="gone"
-                    >
+                <LinearLayout
+                    style="@style/layoutstyle2"
+                    android:visibility="gone">
 
-                <TextView
-                    style="@style/textstyle"
-                    android:text="类型:" />
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="类型:" />
 
-                <Spinner
-                    android:id="@+id/sp_renyuantype"
-                    style="@style/stylespanner">
+                    <Spinner
+                        android:id="@+id/sp_renyuantype"
+                        style="@style/stylespanner">
 
-                </Spinner>
-            </LinearLayout>
+                    </Spinner>
+                </LinearLayout>
 
                 <LinearLayout style="@style/layoutstyle2">
 
@@ -218,9 +182,9 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle"
-                android:visibility="gone"
-                >
+            <LinearLayout
+                style="@style/layoutstyle"
+                android:visibility="gone">
 
                 <LinearLayout style="@style/layoutstyle2">
 
@@ -254,6 +218,7 @@
                 style="@style/textstyle"
                 android:layout_marginBottom="10dp"
                 android:text="详细信息" />
+
             <LinearLayout style="@style/layoutstyle">
 
                 <LinearLayout
@@ -268,10 +233,10 @@
                     <EditText
                         android:id="@+id/phonenum"
                         android:layout_width="220dp"
-                        android:layout_height="wrap_content"
-                        />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout style="@style/layoutstyle">
 
                 <LinearLayout style="@style/layoutstyle2">
@@ -288,9 +253,9 @@
                     </Spinner>
                 </LinearLayout>
 
-                <LinearLayout style="@style/layoutstyle2"
-                    android:visibility="gone"
-                    >
+                <LinearLayout
+                    style="@style/layoutstyle2"
+                    android:visibility="gone">
 
                     <TextView
                         style="@style/textstyle"
@@ -374,9 +339,9 @@
                         android:text="超速询问:" />
 
                     <Spinner
-                        android:layout_width="70dp"
                         android:id="@+id/sp_chaosuxunwen"
-                        style="@style/stylespanner">
+                        style="@style/stylespanner"
+                        android:layout_width="70dp">
 
                     </Spinner>
                 </LinearLayout>
@@ -404,7 +369,7 @@
 
                     <TextView
                         style="@style/textstyle"
-                        android:text="发生时的行驶行为:" />
+                        android:text="驾驶行为:" />
 
                     <Spinner
                         android:id="@+id/sp_sgfssxingwie"
@@ -415,11 +380,13 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btn_xingshixingwei"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="新增行为" />
 
                 <TextView
+                    android:id="@+id/xingweishu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -445,11 +412,13 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btn_addzhuangtai"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="新增状态" />
 
                 <TextView
+                    android:id="@+id/text_zhuangtainums"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -464,7 +433,7 @@
 
                     <TextView
                         style="@style/textstyle"
-                        android:text="交通违法行为:" />
+                        android:text="交通违法状态:" />
 
                     <Spinner
                         android:id="@+id/sp_jtwfxingwei"
@@ -475,12 +444,13 @@
                 </LinearLayout>
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btn_addweifa"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="新增违法" />
 
                 <TextView
+                    android:id="@+id/text_weifa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -504,11 +474,13 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btn_addxianzhi"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
                     android:text="新增限制" />
 
                 <TextView
+                    android:id="@+id/text_xianzhinums"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -531,20 +503,20 @@
                     </Spinner>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout style="@style/layoutstyle"
+
+            <LinearLayout
                 android:id="@+id/jiujingces"
-                >
-                <LinearLayout
-                    style="@style/layoutstyle2"
-                    >
+                style="@style/layoutstyle">
+
+                <LinearLayout style="@style/layoutstyle2">
+
                     <TextView
                         style="@style/textstyle"
                         android:text="测试状态:" />
 
                     <Spinner
                         android:id="@+id/jjceshizhuangtai"
-                        style="@style/stylespanner"
-                        >
+                        style="@style/stylespanner">
 
                     </Spinner>
                 </LinearLayout>
@@ -557,8 +529,7 @@
 
                     <Spinner
                         android:id="@+id/jjceshitype"
-                        style="@style/stylespanner"
-                        >
+                        style="@style/stylespanner">
 
                     </Spinner>
                 </LinearLayout>
@@ -571,18 +542,19 @@
 
                     <Spinner
                         android:id="@+id/jjceshiresult"
-                        style="@style/stylespanner"
-                        >
+                        style="@style/stylespanner">
 
                     </Spinner>
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout style="@style/layoutstyle">
 
                 <TextView
                     style="@style/textstyle"
 
                     android:text="毒品测试" />
+
                 <LinearLayout
                     style="@style/layoutstyle2"
                     android:layout_marginLeft="20dp">
@@ -592,9 +564,9 @@
                         android:text="毒品类型:" />
 
                     <Spinner
-                        android:layout_width="136dp"
                         android:id="@+id/sp_dupinleixing"
-                        style="@style/stylespanner">
+                        style="@style/stylespanner"
+                        android:layout_width="136dp">
 
                     </Spinner>
                 </LinearLayout>
@@ -602,17 +574,16 @@
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle">
-                <LinearLayout
-                    style="@style/layoutstyle2"
-                    >
+
+                <LinearLayout style="@style/layoutstyle2">
+
                     <TextView
                         style="@style/textstyle"
                         android:text="测试状态:" />
 
                     <Spinner
                         android:id="@+id/sp_ceshizhuangtai"
-                        style="@style/stylespanner"
-                        >
+                        style="@style/stylespanner">
 
                     </Spinner>
                 </LinearLayout>
@@ -625,8 +596,7 @@
 
                     <Spinner
                         android:id="@+id/sp_ceshitype"
-                        style="@style/stylespanner"
-                        >
+                        style="@style/stylespanner">
 
                     </Spinner>
                 </LinearLayout>
@@ -639,12 +609,50 @@
 
                     <Spinner
                         android:id="@+id/sp_ceshiresult"
-                        style="@style/stylespanner"
-                        >
+                        style="@style/stylespanner">
 
                     </Spinner>
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/back"
+            android:onClick="back"
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_back"
+            />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+
+
+
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="驾驶人信息"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:onClick="add"
+            android:layout_gravity="center"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_queren"
+            />
+    </LinearLayout>
+
 </LinearLayout>

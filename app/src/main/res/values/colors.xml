@@ -62,6 +62,7 @@
     <color name="whitesmoke">#69b273</color><!--烟白色 -->
     <color name="beige">#f5f5dc</color><!--米色 -->
     <color name="wheat">#f5deb3</color><!--浅黄色 -->
+    <color name="middleblue">#f77d7a</color><!--浅黄色 -->
     <color name="sandybrown">#f4a460</color><!--沙褐色 -->
     <color name="azure">#f0ffff</color><!--天蓝色 -->
     <color name="honeydew">#f0fff0</color><!--蜜色 -->
@@ -168,4 +169,5 @@
     <color name="darkblue">#00008b</color><!--暗蓝色 -->
     <color name="navy">#000080</color><!--海军色 -->
     <color name="black">#000000</color><!--黑色 -->
+    <color name="btncolor">#3dad73</color><!--黑色 -->
 </resources>

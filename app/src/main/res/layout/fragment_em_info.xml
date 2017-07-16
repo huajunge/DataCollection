@@ -58,16 +58,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="@color/bgofdefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/darkGrey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -96,11 +98,13 @@
                     android:layout_weight="1"
                     android:background="@color/gary6" />
             </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout style="@style/layoutstyle">
             <!--发生位置-->
             <LinearLayout style="@style/layoutstyle2">
@@ -116,9 +120,9 @@
                 </Spinner>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2"
-                android:visibility="gone"
-                >
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/textstyle"
@@ -178,16 +182,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:background="@color/bgofdefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/darkGrey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -207,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="道路限制"
+                    android:text="道路基本信息"
                     android:textSize="15dp" />
 
                 <ImageView
@@ -216,12 +222,12 @@
                     android:layout_weight="1"
                     android:background="@color/gary6" />
             </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
-
 
 
         <LinearLayout style="@style/layoutstyle">
@@ -243,13 +249,29 @@
 
                 <TextView
                     style="@style/textstyle"
+                    android:text="边缘线类型:" />
+
+                <Spinner
+                    android:id="@+id/sp_bianyuanxian"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
 
                     android:text="道路限速:" />
 
                 <EditText
                     android:id="@+id/sp_speedlimit"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content">
+                    style="@style/myeditstyle">
 
                 </EditText>
             </LinearLayout>
@@ -262,8 +284,8 @@
 
                 <EditText
                     android:id="@+id/sp_chedaowidth"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/myeditstyle"
+                    android:layout_width="110dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -277,22 +299,9 @@
 
                 <EditText
                     android:id="@+id/sp_lujianwidth"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/myeditstyle" />
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="边缘线类型:" />
-
-                <Spinner
-                    android:id="@+id/sp_bianyuanxian"
-                    style="@style/stylespanner">
-
-                </Spinner>
-            </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle2">
 
@@ -301,24 +310,26 @@
                     android:text="中央带宽度:" />
 
                 <EditText
+                    android:layout_width="90dp"
                     android:id="@+id/sp_zhongjianwidth"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/myeditstyle" />
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:background="@color/bgofdefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/darkGrey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -338,7 +349,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="车道控制信息"
+                    android:text="交通控制信息"
                     android:textSize="15dp" />
 
                 <ImageView
@@ -347,11 +358,13 @@
                     android:layout_weight="1"
                     android:background="@color/gary6" />
             </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout style="@style/layoutstyle">
             <!--发生位置-->
 
@@ -390,9 +403,9 @@
                     android:text="交通控制类型:" />
 
                 <Spinner
-                    android:layout_width="160dp"
                     android:id="@+id/sp_jiaotongkzlx"
-                    style="@style/stylespanner" />
+                    style="@style/stylespanner"
+                    android:layout_width="160dp" />
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle2">
@@ -417,18 +430,20 @@
                     android:text="交叉街道车道数:" />
 
                 <Spinner
-                    android:layout_width="140dp"
                     android:id="@+id/sp_jiaochajds"
-                    style="@style/stylespanner">
+                    style="@style/stylespanner"
+                    android:layout_width="140dp">
 
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="2dp"
             android:layout_marginBottom="15dp"
             android:background="@color/darkGrey" />
+
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">

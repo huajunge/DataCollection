@@ -71,6 +71,8 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marker_position);
         init();
+//        DBO dbo = new DBO(this);
+//        dbo.clearTest();
         mapView.onCreate(savedInstanceState);   //必须重写
 
     }
@@ -301,5 +303,8 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
          startActivity(intent);
 
     }
-
+    public void analysis(View view){
+        Intent intent = new Intent(MarkerPosition.this,HistoryFuelConsumptionActivity.class);
+        startActivity(intent);
+    }
 }

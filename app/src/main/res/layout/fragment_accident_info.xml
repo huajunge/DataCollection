@@ -8,15 +8,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
         <!-- 时间信息-->
         <LinearLayout
             style="@style/layoutstyle"
-            android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
+            android:layout_marginBottom="0dp"
+            android:layout_marginTop="0dp"
             android:background="@color/bgofdefault"
             android:gravity="center">
 
@@ -89,52 +88,56 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:background="@color/bgofdefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
             android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/darkGrey" />
-        <!--位置信息-->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="@color/gary6" />
-
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+            <!--位置信息-->
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:text="地理位置"
-                android:textSize="15dp" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="地理位置"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="@color/gary6" />
-        </LinearLayout>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
 
-            android:background="@color/darkGrey" />
+                android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout
             style="@style/layoutstyle"
             android:gravity="center_vertical">
@@ -201,53 +204,59 @@
 
             <EditText
                 android:id="@+id/dimingbz"
+                style="@style/myeditstyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_marginRight="20dp" />
         </LinearLayout>
-    <LinearLayout
-        android:background="@color/bgofdefault"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="@color/darkGrey" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="5dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
+            android:orientation="vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="@color/gary6" />
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:text="事故类型"
-                android:textSize="15dp" />
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="事故类型"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_weight="1"
-                android:background="@color/gary6" />
+                android:background="@color/darkGrey" />
         </LinearLayout>
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/darkGrey" />
-        </LinearLayout>
+
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -258,8 +267,8 @@
 
                 <Spinner
                     android:id="@+id/sp_shiguchengdu"
-                    android:layout_width="200dp"
-                    style="@style/stylespanner"></Spinner>
+                    style="@style/stylespanner"
+                    android:layout_width="200dp"></Spinner>
             </LinearLayout>
         </LinearLayout>
 
@@ -371,17 +380,20 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
-            android:background="@color/bgofdefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/darkGrey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -410,11 +422,13 @@
                     android:layout_weight="1"
                     android:background="@color/gary6" />
             </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -428,6 +442,9 @@
                     style="@style/stylespanner"></Spinner>
 
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
@@ -437,13 +454,9 @@
 
                 <EditText
                     android:id="@+id/renshu"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/myeditstyle"
+                    android:layout_width="110dp" />
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
@@ -453,9 +466,13 @@
 
                 <EditText
                     android:id="@+id/outrenshu"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content" />
+
+                    style="@style/myeditstyle" />
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
 
             <LinearLayout style="@style/layoutstyle2">
 
@@ -466,8 +483,8 @@
 
                 <EditText
                     android:id="@+id/ssrenshu"
-                    android:layout_width="110dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/myeditstyle"
+                    android:layout_width="110dp" />
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle2">
@@ -478,23 +495,25 @@
 
                 <EditText
                     android:id="@+id/swrenshu"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/myeditstyle"
+                    android:layout_width="115dp" />
             </LinearLayout>
         </LinearLayout>
         <!-- 时间信息-->
 
         <LinearLayout
-            android:background="@color/bgofdefault"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
             android:orientation="vertical">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginBottom="10dp"
                 android:background="@color/darkGrey" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -523,11 +542,13 @@
                     android:layout_weight="1"
                     android:background="@color/gary6" />
             </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -659,9 +680,9 @@
 
         </LinearLayout>
 
-        <LinearLayout style="@style/layoutstyle"
-            android:layout_marginLeft="10dp"
-            >
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:layout_marginLeft="10dp">
 
             <LinearLayout style="@style/layoutstyle2">
 

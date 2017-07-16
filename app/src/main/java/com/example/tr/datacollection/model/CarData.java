@@ -6,6 +6,7 @@ package com.example.tr.datacollection.model;
  */
 
 public class CarData {
+    private int xunhao;
     private String vin;//VIN码
     private String chepaihao;//车牌号
     private String guobie;//国别
@@ -26,6 +27,26 @@ public class CarData {
 
     }
 
+    public CarData(int xunhao, String vin, String chepaihao, String guobie, String nianfen, String pingpai,
+                   String carType, String leixing, String cheneinum, String tesuzuoyong, String xingshifangxing,
+                   String xingwei, String jiechudian, String sunhuaibuwei, String sunhuaschengdu) {
+        this.xunhao = xunhao;
+        this.vin = vin;
+        this.chepaihao = chepaihao;
+        this.guobie = guobie;
+        this.nianfen = nianfen;
+        this.pingpai = pingpai;
+        this.carType = carType;
+        Leixing = leixing;
+        this.cheneinum = cheneinum;
+        this.tesuzuoyong = tesuzuoyong;
+        this.xingshifangxing = xingshifangxing;
+        Xingwei = xingwei;
+        Jiechudian = jiechudian;
+        this.sunhuaibuwei = sunhuaibuwei;
+        this.sunhuaschengdu = sunhuaschengdu;
+    }
+
     public CarData(String vin, String chepaihao, String guobie, String nianfen, String pingpai,
                    String carType, String leixing, String cheneinum, String tesuzuoyong, String xingshifangxing,
                    String xingwei, String jiechudian, String sunhuaibuwei, String sunhuaschengdu) {
@@ -43,6 +64,14 @@ public class CarData {
         Jiechudian = jiechudian;
         this.sunhuaibuwei = sunhuaibuwei;
         this.sunhuaschengdu = sunhuaschengdu;
+    }
+
+    public int getXunhao() {
+        return xunhao;
+    }
+
+    public void setXunhao(int xunhao) {
+        this.xunhao = xunhao;
     }
 
     public String getVin() {

@@ -9,10 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+
+        >
+    <LinearLayout style="@style/layoutstyle"
         android:padding="10dp"
         >
-    <LinearLayout style="@style/layoutstyle">
         <Button
+            android:visibility="gone"
             android:id="@+id/add"
             android:onClick="addPeopel"
             android:layout_width="wrap_content"
@@ -27,6 +30,7 @@
             android:text="已添加人员:0 "
             />
     </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -34,6 +38,12 @@
             android:layout_gravity="center"
             android:gravity="center"
             >
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="新增"
+
+            />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,8 +51,11 @@
             android:layout_weight="1"
             android:layout_gravity="center"
             android:gravity="center"
+
+            android:id="@+id/layjiashiren"
             >
             <ImageView
+                android:id="@+id/jiashiren"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_driver"
@@ -60,11 +73,14 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
+
+                android:id="@+id/laychengzhuoren"
                 >
                 <ImageView
+                    android:id="@+id/chengzhuoren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/iconqitaren"
+                    android:src="@drawable/iconqitaren_off"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -79,11 +95,14 @@
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="center"
+
+                android:id="@+id/layqitaren"
                 >
                 <ImageView
+                    android:id="@+id/qitaren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/iconczren"
+                    android:src="@drawable/iconczren_off"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -92,6 +111,10 @@
                     />
             </LinearLayout>
         </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/darkGrey" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -107,15 +130,24 @@
 
             </include>
             <include
+                android:visibility="invisible"
                 android:id="@+id/layoutchengzuoren"
                 layout="@layout/peopelinfo1">
 
             </include>
             <include
+                android:visibility="invisible"
                 android:id="@+id/layoutqitaren"
                 layout="@layout/activity_peopel_info3">
 
             </include>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="保存"
+                />
         </LinearLayout>
         </ScrollView>
         <LinearLayout

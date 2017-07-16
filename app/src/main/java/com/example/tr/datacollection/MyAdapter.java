@@ -21,7 +21,8 @@ public class MyAdapter {
         for(int i =0;i<strings.length;i++){
             datalist.add(strings[i]);
         }
-        this.arrayAdapter=new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item,datalist);
+        this.arrayAdapter=new ArrayAdapter<String>(context,R.layout.my_simple_spinner_self_item,datalist);
+        this.arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     }
     public ArrayAdapter getAdaper(){
         return this.arrayAdapter;
