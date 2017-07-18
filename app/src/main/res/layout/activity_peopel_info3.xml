@@ -61,7 +61,7 @@
 
                 <EditText
                     android:id="@+id/sp_name"
-                    style="@style/textstyle"
+                    style="@style/myeditstyle"
                     android:layout_width="100dp">
 
                 </EditText>
@@ -189,7 +189,7 @@
                 <EditText
                     android:id="@+id/phonenum"
                     android:layout_width="240dp"
-                    android:layout_height="wrap_content" />
+                    style="@style/myeditstyle" />
             </LinearLayout>
         </LinearLayout>
 

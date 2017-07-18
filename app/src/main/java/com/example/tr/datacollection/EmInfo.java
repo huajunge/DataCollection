@@ -111,7 +111,7 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 //道路等级
         spRouteLev = (Spinner) view.findViewById(R.id.sp_routelev);
         String[] strspRouteLev={	"01 高速公路","02 快速路","03 主干道","04 次干道","05 支路"};
-        spRouteLev.setAdapter(new MyAdapter(strspRouteLev,view.getContext()).getAdaper());
+        spRouteLev.setAdapter(new MyAdapter2(strspRouteLev,view.getContext()).getAdaper());
 //道路状况
         spRoutecondition =(Spinner)  view.findViewById(R.id.sp_routecondition);
         String[] strspRoutecondition={	"干燥","潮湿","积雪","泥泞","	积冰/霜	积水（固定，流动）","砂石	泥、灰尘、沙砾	油","其他","未知"};

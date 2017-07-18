@@ -4,10 +4,13 @@ package com.example.tr.datacollection;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.hardware.Camera;
+import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,10 +22,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -52,6 +59,7 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -60,6 +68,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -114,7 +123,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
     };
     private TextView Time;
     private TextView TimeHours;
-
+    private ProgressDialog processDialog = null;
     public TextView CITY;
     private TextView COUNTRY;
     private TextView xiangzhen;
@@ -159,6 +168,16 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
     private int day;
     private int hour;
     private int minute;
+
+    //视频录制
+    private File myRecAudioFile;
+    private SurfaceView mSurfaceView;
+    private SurfaceHolder mSurfaceHolder;
+    private Button buttonStart;
+    private Button buttonStop;
+    private File dir;
+    private MediaRecorder recorder;
+    private Camera mCamera;
     public AccidentInfo() {
         // Required empty public constructor
     }
@@ -295,7 +314,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spshiguType = (Spinner) view.findViewById(R.id.sp_shijian_type);
         spshiguType.setAdapter(new MyAdapter(strspShiguType_feipz, view.getContext()).getAdaper());
         spshigu = (Spinner) view.findViewById(R.id.shijian);
-        String[] strspshigu = {"01 非碰撞", "02 撞人、撞车等非固定物", "03 碰撞固定物"};
+        String[] strspshigu = {"非碰撞", "撞人、撞车等非固定物", "碰撞固定物"};
         spshigu.setAdapter(new MyAdapter(strspshigu, view.getContext()).getAdaper());
 
         spshigu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -372,7 +391,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
             }
         });
         spshigu2 = (Spinner) view.findViewById(R.id.shijian2);
-        String[] strspshigu2 = {"01 非碰撞", "02 撞人、撞车等非固定物", "03 碰撞固定物"};
+        String[] strspshigu2 = {"非碰撞", "撞人、撞车等非固定物", "碰撞固定物"};
         spshigu2.setAdapter(new MyAdapter(strspshigu2, view.getContext()).getAdaper());
         spshigu2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -414,11 +433,11 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
 //事故严重程度
         carnum = (Spinner) view.findViewById(R.id.jidongcheshu);
         String[] strscarnum = {"1辆", "2辆", "大于等于3辆"};
-        carnum.setAdapter(new MyAdapter(strscarnum, view.getContext()).getAdaper());
+        carnum.setAdapter(new MyAdapter2(strscarnum, view.getContext()).getAdaper());
 
         spzhaoshity = (Spinner) view.findViewById(R.id.sp_run);
         String[] strspzhaoshity = {"否，没有离开现场", "是，驾驶员或者车辆与驾驶员离开现场"};
-        spzhaoshity.setAdapter(new MyAdapter(strspzhaoshity, view.getContext()).getAdaper());
+        spzhaoshity.setAdapter(new MyAdapter2(strspzhaoshity, view.getContext()).getAdaper());
 //危险标识
         spfromweixianbz = (Spinner) view.findViewById(R.id.sp_weixianbiaozhi);
         String[] strspfromweixianbz = {"01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
@@ -457,9 +476,127 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item,
                 R.id.textView1, arrayList);
         Imgs.setAdapter(adapter);
+
+        //视频录制
+        mSurfaceView = (SurfaceView) view.findViewById(R.id.videoView);
+        mSurfaceHolder = mSurfaceView.getHolder();
+        mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        buttonStart=(Button)view.findViewById(R.id.start);
+        buttonStop=(Button)view.findViewById(R.id.stop);
+        File defaultDir = Environment.getExternalStorageDirectory();
+        String path = defaultDir.getAbsolutePath()+File.separator+"V"+File.separator;//创建文件夹存放视频
+        dir = new File(path);
+        if(!dir.exists()){
+            dir.mkdir();
+        }
+        recorder = new MediaRecorder();
+
+        buttonStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recorder();
+            }
+        });
+
+        buttonStop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showProcessing("保存视频中...");
+                Thread th = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            sleep(2000);
+                            dismissProcessing();
+                            dismissProgressDialog();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                th.start();
+                recorder.stop();
+                recorder.reset();
+                recorder.release();
+                recorder=null;
+               // mCamera.
+                mCamera.lock();
+                mCamera.release();
+                mCamera =null;
+                buttonStop.setClickable(false);
+            }
+        });
     }
+    public void recorder() {
+        try {
+         //   int CammeraIndex=FindBackCamera();//
+          //  Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
+            showProcessing("正在打开摄像头...");
+            Thread th = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        sleep(2000);
+                        dismissProcessing();
+                        dismissProgressDialog();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+            th.start();
+            mCamera=Camera.open();
+          //  mCamera.reconnect();
+            mCamera.setDisplayOrientation(90);
+            mCamera.unlock();
+            recorder.setCamera(mCamera);
+            myRecAudioFile = File.createTempFile("video", ".3gp",dir);//创建临时文件
+            recorder.setOrientationHint(90);
+            recorder.setPreviewDisplay(mSurfaceHolder.getSurface());//预览
+            recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);//视频源
+            recorder.setAudioSource(MediaRecorder.AudioSource.MIC); //录音源为麦克风
+            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);//输出格式为3gp
+            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+            recorder.setVideoSize(600,wm.getDefaultDisplay().getWidth()-20);//视频尺寸
+            recorder.setVideoFrameRate(15);//视频帧频率
+            recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H263);//视频编码
+            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);//音频编码
+            recorder.setMaxDuration(10000);//最大期限
+            recorder.setOutputFile(myRecAudioFile.getAbsolutePath());//保存路径
 
+            recorder.prepare();
+            //关闭点击事件
+            buttonStart.setClickable(false);
+            try{
+                recorder.start();
+            }catch (Exception e){
+                //System.out.println(e.toString());
+                Log.i("info",dir.getPath());
+                Log.i("info",e.toString());
+            }
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }catch (Exception e){
+            //System.out.println(e.toString());
+            Log.i("info",dir.getPath());
+            Log.i("info",e.toString());
+        }
+    }
+    public void dismissProcessing() {
+        if (processDialog != null && processDialog.isShowing()) {
+            processDialog.dismiss();
+            processDialog = null;
+        }
+    }
+    public void showProcessing(String hintText) {
+        if (processDialog == null) {
+            processDialog = new ProgressDialog(getContext());
+        }
+        processDialog.setMessage(hintText);
+        processDialog.setCancelable(true);
+        processDialog.show();
+    }
     @Override
     public void onClick(View v) {
         if ( DEBUG) {
@@ -519,7 +656,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
                     Log.i(TAG, "onActivityResult: " + finalUri);
                     //显示截图结果
                     img1Test.setImageBitmap(photo);
-                    View coupon_home_ad_item = LayoutInflater.from(getContext()).inflate(
+                    final View coupon_home_ad_item = LayoutInflater.from(getContext()).inflate(
                             R.layout.photoltem, null);
                     ImageView icon = (ImageView) coupon_home_ad_item
                             .findViewById(R.id.img);// 拿个这行的icon 就可以设置图片
@@ -529,6 +666,14 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
                     ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item,
                             R.id.textView1, arrayList);
                     Imgs.setAdapter(adapter);
+                    Button cancel = (Button) coupon_home_ad_item.findViewById(R.id.cancel);
+                    cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            coupon_home_ad_item.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), "删除成功", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     //上传头像
                     Log.i(TAG, "onActivityResult: finalUri.getPath() " + finalUri.getPath());
                //     uploadImg(finalUri.getPath());

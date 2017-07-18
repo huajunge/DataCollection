@@ -27,6 +27,7 @@ import com.example.tr.datacollection.model.PeopelData2;
 import com.example.tr.datacollection.model.SimpleDataTest;
 import com.example.tr.datacollection.util.DBO;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -150,7 +151,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     strXunhao[i++]=c.getXunhao()+" "+c.getChepaihao();
                 }
              //   Intent intent = new Intent()
-                spinnerXunhao.setAdapter(new MyAdapter(strXunhao,MainActivity.this).getAdaper());
+                try{
+                    spinnerXunhao.setAdapter(new MyAdapter(strXunhao,MainActivity.this).getAdaper());
+                }catch (Exception e){
+
+                }
+
 
 
                 break;
@@ -265,10 +271,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(MainActivity.this,"保存成功",Toast.LENGTH_LONG).show();
+
                 EditText editTextVin = (EditText) MainActivity.this.findViewById(R.id.vin);
                 EditText editTextChepaiHao = (EditText) MainActivity.this.findViewById(R.id.chepaihao);
-
+                AccidentInfo accidentInfo = (AccidentInfo) mFrags.get(0);
+               // int cs = Integer.parseInt(accidentInfo.Getcarnum());
+                String[] str = accidentInfo.Getcarnum().split("[^\\D]");
+                Log.i("cars","carsnum"+str[0]);
+                Log.i("cars",str[0]+"  :  "+carsOrder);
+                try{
+                    BigInteger cs = trimToNumber(accidentInfo.Getcarnum());
+                    if(carsOrder>=cs.intValue()){
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+//                        builder.setTitle("已完成添加");
+//                        dialog = builder.create();
+//                        dialog.show();
+                        Toast.makeText(MainActivity.this,"已添加完成所有车辆信息！",Toast.LENGTH_LONG).show();
+                        Log.i("cars",str[0]+"  :  "+carsOrder);
+                        return;
+                    }
+                }catch (Exception e){
+                        e.printStackTrace();
+                }
+                Toast.makeText(MainActivity.this,"保存成功",Toast.LENGTH_LONG).show();
                 CarData carData=new CarData();
                 TextView textView = (TextView) findViewById(R.id.carorder);
                 carData.setXunhao(carsOrder);
@@ -284,7 +309,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialog = builder.create();
         dialog.show();
     }
+    public static BigInteger trimToNumber(String s) {
+        int n = s.length();
+        char[] a = new char[n];
+        int len = 0;
+        for (int i = 0; i < n; i++) {
+            char ch = s.charAt(i);
+            if (ch >= '0' && ch <= '9') {
+                a[len++] = ch;
+            }
+        }
+        return new BigInteger(new String(a, 0, len));
+    }
 
+    public static void main(String[] args) {
+        String str = "123、4567/885*54666+8874";
+        BigInteger n = trimToNumber(str);
+        System.out.println(n);
+    }
     public List<CarData> getCarData(){
         return carDatas;
     }

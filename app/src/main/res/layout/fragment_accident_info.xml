@@ -679,12 +679,60 @@
             </LinearLayout>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="现场照片"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
         <LinearLayout
             style="@style/layoutstyle"
             android:layout_marginLeft="10dp">
 
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout style="@style/layoutstyle2"
+                android:orientation="vertical"
+                >
 
                 <ImageView
                     android:id="@+id/addphotos"
@@ -693,6 +741,14 @@
                     android:clickable="true"
                     android:onClick="onClick"
                     android:src="@drawable/addphoto" />
+                <TextView
+                    android:layout_marginTop="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="添加照片"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle2">
@@ -713,6 +769,88 @@
 
                 </ListView>
             </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="现场视频"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:layout_marginLeft="10dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginRight="10dp"
+                >
+            <SurfaceView android:id="@+id/videoView"
+                android:visibility="visible"
+                android:layout_width="match_parent"
+                android:layout_height="600dp">
+            </SurfaceView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="录制"
+                    android:id="@+id/start"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/start"
+                    android:text="停止"
+                    android:id="@+id/stop"/>
+                </LinearLayout>
+            </RelativeLayout>
         </LinearLayout>
     </LinearLayout>
 </FrameLayout>

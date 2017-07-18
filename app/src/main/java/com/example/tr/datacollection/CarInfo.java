@@ -144,7 +144,7 @@ public class CarInfo extends Fragment implements View.OnClickListener{
 
          spguobie= (Spinner) view.findViewById(R.id.sp_guobie);
          String[] strspguobie={"中国","外国"};
-         spguobie.setAdapter(new MyAdapter(strspguobie,view.getContext()).getAdaper());
+         spguobie.setAdapter(new MyAdapter2(strspguobie,view.getContext()).getAdaper());
 
 //年份
          spnianfen=(Spinner) view.findViewById(R.id.sp_nianfen);
@@ -156,7 +156,7 @@ public class CarInfo extends Fragment implements View.OnClickListener{
              ss+=i+",";
          }
          String[] strspnianfen =ss.split(",");
-         spnianfen.setAdapter(new MyAdapter(strspnianfen,view.getContext()).getAdaper());
+         spnianfen.setAdapter(new MyAdapter2(strspnianfen,view.getContext()).getAdaper());
 
        //  sppingpai=(Spinner) view.findViewById(R.id.sp_pingpai);//品牌
 
@@ -169,7 +169,7 @@ public class CarInfo extends Fragment implements View.OnClickListener{
             ss+=i+",";
         }
         String[] strsppeopelnum=ss.split(",");
-        sppeopelnum.setAdapter(new MyAdapter(strsppeopelnum,view.getContext()).getAdaper());
+        sppeopelnum.setAdapter(new MyAdapter2(strsppeopelnum,view.getContext()).getAdaper());
         
 //特殊作用
          sptszuoyong=(Spinner) view.findViewById(R.id.sp_teshuzy);//特殊作用
@@ -204,11 +204,11 @@ public class CarInfo extends Fragment implements View.OnClickListener{
         spshchengdu.setAdapter(new MyAdapter(strspshchengdu,view.getContext()).getAdaper());
 //车辆类型
         spLeixing = (Spinner) view.findViewById(R.id.sp_leixing);
-        String[] strspLeixing = {"001驾驶大型客车","002驾驶中型客车","003驾驶小大型客车","004驾驶微型客车","005驾驶重型货车",
-                "006驾驶中型货车","007驾驶轻型货车","008驾驶微型货车","009驾驶汽车列车","010驾驶三轮汽车","011驾驶低速货车","012驾驶其他汽车",
-                "013驾驶普通摩托车","014驾驶轻便摩托车","015驾驶拖拉机","016驾驶其他机动车","017自行车","018三轮车","019手推车","020残疾人专用车",
+        String[] strspLeixing = {"驾驶大型客车","驾驶中型客车","驾驶小大型客车","驾驶微型客车","驾驶重型货车",
+                "驾驶中型货车","驾驶轻型货车","驾驶微型货车","驾驶汽车列车","驾驶三轮汽车","驾驶低速货车","驾驶其他汽车",
+                "驾驶普通摩托车","驾驶轻便摩托车","驾驶拖拉机","驾驶其他机动车","自行车","三轮车","手推车","残疾人专用车",
                 "畜力车","电动自行车","其他非机动车","步行","乘大中型汽车","乘小微型客车","乘普通货车","乘三轮汽车和低速货车",
-                "021乘汽车列车","022乘摩托车","023乘拖拉机","024乘其他机动车","025乘其他非机动车","026其他"};
+                "乘汽车列车","乘摩托车","乘拖拉机","乘其他机动车","乘其他非机动车","其他"};
         spLeixing.setAdapter(new MyAdapter(strspLeixing,view.getContext()).getAdaper());
     //车辆品牌
         sppingpai = (TextView) view.findViewById(R.id.sp_pingpai);

@@ -76,7 +76,7 @@ public class Peopelnfo1 extends AppCompatActivity {
 //性别
          SPxingbie = (Spinner)findViewById(R.id.sp_xingbie);
         String[] strSPxingbie ={"男","女"};
-        SPxingbie.setAdapter(new MyAdapter(strSPxingbie,Peopelnfo1.this).getAdaper());
+        SPxingbie.setAdapter(new MyAdapter2(strSPxingbie,Peopelnfo1.this).getAdaper());
 //身份
         SPshenfentype = (Spinner)findViewById(R.id.sp_shenfentype);
         String[] strSPshenfentype ={"公务员","公安民警","职员","工人","农民","自主经营者","军人","武警","教师","大（专）学生","中（专）学生","小学生","学前儿童","港澳同胞","华侨","外国人","外来务工者","不在业人员","其他"};
@@ -126,7 +126,7 @@ public class Peopelnfo1 extends AppCompatActivity {
 //怀疑饮酒
          SPyinjiu = (Spinner)findViewById(R.id.sp_yinjiu);
         String[] strSPyinjiu ={"是","否","未知"};
-        SPyinjiu.setAdapter(new MyAdapter(strSPyinjiu,Peopelnfo1.this).getAdaper());
+        SPyinjiu.setAdapter(new MyAdapter2(strSPyinjiu,Peopelnfo1.this).getAdaper());
 
 //毒品类型
         SPduPingLeiXing = (Spinner)findViewById(R.id.sp_dupinleixing);
@@ -142,7 +142,7 @@ public class Peopelnfo1 extends AppCompatActivity {
         SPceshitype .setAdapter(new MyAdapter(strSPceshitype,Peopelnfo1.this).getAdaper());
          SPceshiresult = (Spinner) (Spinner)findViewById(R.id.sp_ceshiresult);
         String[] strSPceshiresult ={"阳性","阴性","未知"};
-        SPceshiresult .setAdapter(new MyAdapter(strSPceshiresult,Peopelnfo1.this).getAdaper());
+        SPceshiresult .setAdapter(new MyAdapter2(strSPceshiresult,Peopelnfo1.this).getAdaper());
 
         //酒精测试
         SPJJceshizhuangtai = (Spinner)findViewById(R.id.jjceshizhuangtai);

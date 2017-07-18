@@ -81,7 +81,7 @@ public class PeopelInfo3 extends AppCompatActivity {
 //性别
         SPxingbie = (Spinner)findViewById(R.id.sp_xingbie);
         String[] strSPxingbie ={"男","女"};
-        SPxingbie.setAdapter(new MyAdapter(strSPxingbie,PeopelInfo3.this).getAdaper());
+        SPxingbie.setAdapter(new MyAdapter2(strSPxingbie,PeopelInfo3.this).getAdaper());
 //身份
         SPshenfentype = (Spinner)findViewById(R.id.sp_shenfentype);
         String[] strSPshenfentype ={"公务员","公安民警","职员","工人","农民","自主经营者","军人","武警","教师","大（专）学生","中（专）学生","小学生","学前儿童","港澳同胞","华侨","外国人","外来务工者","不在业人员","其他"};
@@ -109,7 +109,7 @@ public class PeopelInfo3 extends AppCompatActivity {
 //怀疑饮酒
         SPyinjiu = (Spinner)findViewById(R.id.sp_yinjiu);
         String[] strSPyinjiu ={"是","否","未知"};
-        SPyinjiu.setAdapter(new MyAdapter(strSPyinjiu,PeopelInfo3.this).getAdaper());
+        SPyinjiu.setAdapter(new MyAdapter2(strSPyinjiu,PeopelInfo3.this).getAdaper());
 
 //事故发生是状态
         SPsgfssxingwei = (Spinner) findViewById(R.id.sp_sgfssxingwei);
@@ -144,7 +144,7 @@ public class PeopelInfo3 extends AppCompatActivity {
         SPceshitype .setAdapter(new MyAdapter(strSPceshitype,PeopelInfo3.this).getAdaper());
         SPceshiresult = (Spinner) (Spinner)findViewById(R.id.sp_ceshiresult);
         String[] strSPceshiresult ={"阳性","阴性","未知"};
-        SPceshiresult .setAdapter(new MyAdapter(strSPceshiresult,PeopelInfo3.this).getAdaper());
+        SPceshiresult .setAdapter(new MyAdapter2(strSPceshiresult,PeopelInfo3.this).getAdaper());
         //酒精测试
         SPJJceshizhuangtai = (Spinner)findViewById(R.id.jjceshizhuangtai);
         SPJJceshizhuangtai.setAdapter(new MyAdapter(strSPceshizhuangtai,PeopelInfo3.this).getAdaper());

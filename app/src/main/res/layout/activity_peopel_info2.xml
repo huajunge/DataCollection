@@ -31,7 +31,7 @@
                     <EditText
                         android:id="@+id/sp_name"
                         android:layout_width="140dp"
-                        android:layout_height="wrap_content">
+                        style="@style/myeditstyle">
 
                     </EditText>
                 </LinearLayout>
@@ -73,8 +73,7 @@
 
                 <EditText
                     android:id="@+id/jiazhao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/myeditstyle"
                     android:layout_weight="1" />
 
                 <LinearLayout
@@ -233,7 +232,7 @@
                     <EditText
                         android:id="@+id/phonenum"
                         android:layout_width="220dp"
-                        android:layout_height="wrap_content" />
+                        style="@style/myeditstyle"/>
                 </LinearLayout>
             </LinearLayout>
 

@@ -91,7 +91,7 @@ public class PeopelInfo2 extends AppCompatActivity {
 //性别
         SPxingbie = (Spinner)findViewById(R.id.sp_xingbie);
         String[] strSPxingbie ={"男","女"};
-        SPxingbie.setAdapter(new MyAdapter(strSPxingbie,PeopelInfo2.this).getAdaper());
+        SPxingbie.setAdapter(new MyAdapter2(strSPxingbie,PeopelInfo2.this).getAdaper());
 //身份
         SPshenfentype = (Spinner)findViewById(R.id.sp_shenfentype);
         String[] strSPshenfentype ={"未知","公务员","公安民警","职员","工人","农民","自主经营者","军人","武警","教师","大（专）学生","中（专）学生","小学生","学前儿童","港澳同胞","华侨","外国人","外来务工者","不在业人员","其他"};
@@ -142,7 +142,7 @@ public class PeopelInfo2 extends AppCompatActivity {
 //怀疑饮酒
         SPyinjiu = (Spinner)findViewById(R.id.sp_yinjiu);
         String[] strSPyinjiu ={"是","否","未知"};
-        SPyinjiu.setAdapter(new MyAdapter(strSPyinjiu,PeopelInfo2.this).getAdaper());
+        SPyinjiu.setAdapter(new MyAdapter2(strSPyinjiu,PeopelInfo2.this).getAdaper());
         //毒品类型
         SPduPingLeiXing = (Spinner)findViewById(R.id.sp_dupinleixing);
         String[] strSPduPingLeiXing ={"无","大麻","可卡因","鸦片","苯丙胺","五氯苯酚","其他控制的物质","其他毒品（不包括事故后的毒品）"};
@@ -157,7 +157,7 @@ public class PeopelInfo2 extends AppCompatActivity {
         SPceshitype .setAdapter(new MyAdapter(strSPceshitype,PeopelInfo2.this).getAdaper());
         SPceshiresult = (Spinner) (Spinner)findViewById(R.id.sp_ceshiresult);
         String[] strSPceshiresult ={"阳性","阴性","未知"};
-        SPceshiresult .setAdapter(new MyAdapter(strSPceshiresult,PeopelInfo2.this).getAdaper());
+        SPceshiresult .setAdapter(new MyAdapter2(strSPceshiresult,PeopelInfo2.this).getAdaper());
 
         jiazhao = (EditText) findViewById(R.id.jiazhao);
         
@@ -170,7 +170,7 @@ public class PeopelInfo2 extends AppCompatActivity {
 //商业驾照
          shangyejiazhao = (Spinner) findViewById(R.id.sp_shangyejiazhao);
         String [] strshangyejiazhao ={"不是","是"};
-        shangyejiazhao.setAdapter(new MyAdapter(strshangyejiazhao,this).getAdaper());
+        shangyejiazhao.setAdapter(new MyAdapter2(strshangyejiazhao,this).getAdaper());
 //签注
          qianzhu = (Spinner) findViewById(R.id.sp_qianzhu);
         String [] strqianzhu ={"无/不可用","T—两个/三个拖车","P—客车","N—坦克车","H—危险物品",
