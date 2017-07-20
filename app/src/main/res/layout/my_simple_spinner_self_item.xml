@@ -21,10 +21,10 @@
     android:id="@android:id/text1"
     style="?android:attr/spinnerDropDownItemStyle"
     android:textColor="#4c6dff"
-    android:gravity="center"
     android:singleLine="true"
     android:layout_width="match_parent"
     android:layout_height="40dp"
     android:ellipsize="marquee"
     android:textAlignment="inherit"
+    android:textSize="18sp"
     android:background="@drawable/qq_edit_login"/>

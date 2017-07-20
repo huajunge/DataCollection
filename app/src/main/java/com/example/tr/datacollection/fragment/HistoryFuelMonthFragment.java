@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.tr.datacollection.MyAdapter;
+import com.example.tr.datacollection.MyAdapter2;
 import com.example.tr.datacollection.R;
 import com.example.tr.datacollection.model.SimpleDataTest;
 import com.example.tr.datacollection.util.DBO;
@@ -117,7 +117,7 @@ public class HistoryFuelMonthFragment extends Fragment implements Spinner.OnItem
         }
         shiJianShu = (TextView) rootView.findViewById(R.id.shinums);
         String[] strspnianfen =ss.split(",");
-        spinnerYear.setAdapter(new MyAdapter(strspnianfen,getContext()).getAdaper());
+        spinnerYear.setAdapter(new MyAdapter2(strspnianfen,getContext()).getAdaper());
         spinnerYear.setOnItemSelectedListener(this);
         barChart = (BarChart) rootView.findViewById(R.id.bar_chart);
         setXAxis();

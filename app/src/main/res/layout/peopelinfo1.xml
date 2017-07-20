@@ -43,12 +43,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="10dp">
+       >
 
-        <TextView
-            style="@style/textstyle"
-            android:layout_marginBottom="10dp"
-            android:text="基本信息" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="基本信息"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
 
@@ -91,7 +134,7 @@
                     android:id="@+id/chushenri"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="20dp"
                     android:hint="选择日期"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -170,19 +213,125 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            style="@style/layoutstyle"
-            android:layout_marginBottom="10dp">
+        <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
+                    android:text="排位:" />
 
-                    android:text="详细信息" />
+                <Spinner
+                    android:id="@+id/sp_pai"
+                    style="@style/stylespanner">
+
+                </Spinner>
             </LinearLayout>
 
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="座位:" />
+
+                <Spinner
+                    android:id="@+id/sp_zuowei"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="其他位置:" />
+
+                <Spinner
+                    android:id="@+id/sp_qitaweizhi"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:visibility="gone">
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="受伤部位:" />
+
+                <Spinner
+                    android:id="@+id/sp_ssbuwei"
+                    style="@style/stylespanner"
+                    android:layout_width="130dp">
+
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="受伤程度:" />
+
+                <Spinner
+                    android:id="@+id/sp_sschengdu"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="详细信息"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
         </LinearLayout>
 
 
@@ -331,7 +480,53 @@
                 android:layout_marginLeft="10dp"
                 android:text="已添加状态数0" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:background="@color/bgofdefault"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="@color/darkGrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:text="相关测试"
+                    android:textSize="15dp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="@color/gary6" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/darkGrey" />
+        </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -400,26 +595,23 @@
                 style="@style/textstyle"
 
                 android:text="毒品测试" />
+        </LinearLayout>
 
-            <LinearLayout
-                style="@style/layoutstyle2"
-                android:layout_marginLeft="20dp">
+        <LinearLayout style="@style/layoutstyle">
+
+            <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
                     android:text="毒品类型:" />
 
                 <Spinner
+
                     android:id="@+id/sp_dupinleixing"
-                    style="@style/stylespanner"
-                    android:layout_width="136dp">
+                    style="@style/stylespanner">
 
                 </Spinner>
             </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
@@ -433,6 +625,10 @@
 
                 </Spinner>
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutstyle">
+
 
             <LinearLayout style="@style/layoutstyle2">
 

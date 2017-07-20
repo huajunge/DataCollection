@@ -11,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.tr.datacollection.MyAdapter;
+import com.example.tr.datacollection.MyAdapter2;
 import com.example.tr.datacollection.R;
 import com.example.tr.datacollection.model.SimpleDataTest;
 import com.example.tr.datacollection.util.DBO;
@@ -52,7 +52,7 @@ public class HistoryFuelDayFragment extends Fragment implements Spinner.OnItemSe
         View rootView = inflater.inflate(R.layout.fragment_history_fuel_day, null);
         spinnerMonth = (Spinner) rootView.findViewById(R.id.spinner_month);
         String[] strMonth ={"一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"};
-        spinnerMonth.setAdapter(new MyAdapter(strMonth,getContext()).getAdaper());
+        spinnerMonth.setAdapter(new MyAdapter2(strMonth,getContext()).getAdaper());
         spinnerYear = (Spinner) rootView.findViewById(R.id.spinner_year);
         String ss="";
         Date d = new Date(System.currentTimeMillis());
@@ -66,7 +66,7 @@ public class HistoryFuelDayFragment extends Fragment implements Spinner.OnItemSe
             ss+=i+",";
         }
         String[] strspnianfen =ss.split(",");
-        spinnerYear.setAdapter(new MyAdapter(strspnianfen,getContext()).getAdaper());
+        spinnerYear.setAdapter(new MyAdapter2(strspnianfen,getContext()).getAdaper());
 
         spinnerMonth.setOnItemSelectedListener(this);
         spinnerYear.setOnItemSelectedListener(this);
@@ -172,6 +172,8 @@ public class HistoryFuelDayFragment extends Fragment implements Spinner.OnItemSe
         //Collections.sort(entryList, new EntryXComparator());  x的坐标值必须是升序
 
         LineDataSet lineDataSet1 = new LineDataSet(entryList, "事故次数");    //对折线的文字说明
+//        Format format = new DecimalFormat("00");
+//        lineDataSet1.setFillFormatter((IFillFormatter) format);
         lineDataSet1.setAxisDependency(YAxis.AxisDependency.LEFT);
         lineDataSet1.setColor(Color.GREEN);    //线段颜色
         lineDataSet1.setValueTextColor(Color.RED);   //顶点的颜色
@@ -181,6 +183,7 @@ public class HistoryFuelDayFragment extends Fragment implements Spinner.OnItemSe
         setLineChart();
 
         LineData lineData = new LineData(lineDataSet1);
+
         lineChart.clear();
         lineChart.animateY(2000);
         lineChart.setData(lineData);

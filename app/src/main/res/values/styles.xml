@@ -6,6 +6,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/qq_edit_login</item>
         <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_weight">1</item>
     </style>
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
@@ -17,6 +18,9 @@
     <style name="stylespanner" >
         <item name="android:layout_width">100dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_weight">1</item>
+
     </style>
     <style name="textstyle">
         <item name="android:layout_marginLeft">5dp</item>
@@ -30,6 +34,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">15dp</item>
         <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginRight">10dp</item>
     </style>
     <style name="layoutstyle2">
         <item name="android:focusable">true</item>
@@ -38,5 +43,6 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_weight">1</item>
     </style>
 </resources>

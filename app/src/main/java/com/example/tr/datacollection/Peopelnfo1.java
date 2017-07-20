@@ -94,7 +94,7 @@ public class Peopelnfo1 extends AppCompatActivity {
 //车辆序号
          SPcheliangxunhao = (Spinner)findViewById(R.id.sp_cheliangxunhao);
         String[] strSPcheliangxunhao ={""};
-        SPcheliangxunhao.setAdapter(new MyAdapter(strSPcheliangxunhao,Peopelnfo1.this).getAdaper());
+        SPcheliangxunhao.setAdapter(new MyAdapter2(strSPcheliangxunhao,Peopelnfo1.this).getAdaper());
 ////座位位置
 //         SPposition = (Spinner)findViewById(R.id.sp_position);
 //        String[] str ={""};

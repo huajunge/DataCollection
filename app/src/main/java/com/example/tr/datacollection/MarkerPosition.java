@@ -173,7 +173,7 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
                     textViewShangquan.setText(pi.getBusinessArea());
                 }
             }
-            spPlaceName.setAdapter(new MyAdapter(ss.split("---"),MarkerPosition.this).getAdaper());
+            spPlaceName.setAdapter(new MyAdapter2(ss.split("---"),MarkerPosition.this).getAdaper());
         }
     }
 
@@ -267,7 +267,7 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
                     moveToLocation(amapLocation.getLatitude(),amapLocation.getLongitude());
                     marker = aMap.addMarker(new MarkerOptions().position(this.myLocation)
                             .icon(BitmapDescriptorFactory
-                                    .fromResource(R.drawable.place_marker)));
+                                    .fromResource(R.drawable.marker)));
                     marker.setDraggable(true);
                     LOCATION_KO = true;
                 }

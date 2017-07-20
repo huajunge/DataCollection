@@ -3,6 +3,7 @@ package com.example.tr.datacollection;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -121,5 +122,8 @@ public class Analysis extends AppCompatActivity implements AMapLocationListener,
             }
         }
         return false;
+    }
+    public void back(View view){
+        finish();
     }
 }

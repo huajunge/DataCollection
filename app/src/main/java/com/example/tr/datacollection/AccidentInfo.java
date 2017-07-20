@@ -441,7 +441,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
 //危险标识
         spfromweixianbz = (Spinner) view.findViewById(R.id.sp_weixianbiaozhi);
         String[] strspfromweixianbz = {"01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
-        spfromweixianbz.setAdapter(new MyAdapter(strspfromweixianbz, view.getContext()).getAdaper());
+        spfromweixianbz.setAdapter(new MyAdapter2(strspfromweixianbz, view.getContext()).getAdaper());
 
         spweixian = (Spinner) view.findViewById(R.id.sp_dangers);
         String[] strspweixian = {"是", "否"};

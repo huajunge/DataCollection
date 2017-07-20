@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -26,6 +28,8 @@ import com.example.tr.datacollection.model.PelpelData;
 import com.example.tr.datacollection.model.PeopelData2;
 import com.example.tr.datacollection.model.SimpleDataTest;
 import com.example.tr.datacollection.util.DBO;
+import com.example.tr.datacollection.util.MyProcessDialog;
+import com.example.tr.datacollection.util.SendDataToServer;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -54,6 +58,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private PeopelData3 peopelData3 = new PeopelData3();
 
     private int carsOrder =1;
+
+    //上传线程
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case SendDataToServer.SEND_SUCCESS:
+                    Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    break;
+                case SendDataToServer.SEND_FAIL:
+                    Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -152,7 +172,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
              //   Intent intent = new Intent()
                 try{
-                    spinnerXunhao.setAdapter(new MyAdapter(strXunhao,MainActivity.this).getAdaper());
+                    spinnerXunhao.setAdapter(new MyAdapter2(strXunhao,MainActivity.this).getAdaper());
                 }catch (Exception e){
 
                 }
@@ -251,6 +271,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.i("simpleDataTests",s.toString()+"------------");
                 }
                 dialog.dismiss();
+
+                MyProcessDialog myProcessDialog = new MyProcessDialog(MainActivity.this);
+                myProcessDialog.showProcessing("正在上传...",2000);
+                //JSONObject jsonObject = new JSONWriter(acccidentData);
+              //  JSONObject jsonObject = new JSONObject((Map) acccidentData);
+             //   jsonObject.
+             //   JSONObject jsonObject = JSONObject.fromObject(acccidentData);
+              //  new SendDataToServer(handler,"http://192.168.1.100:8080/DataCollectionServer/servlet/AccidentInfoServer").SendDataToServer(jsonObject.toString());
             }
         });
         dialog = builder.create();
@@ -258,8 +286,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public void addNewCar(View view){
         //mFrags.set(2,new CarInfo());
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("确定保存？");
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -281,25 +307,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i("cars",str[0]+"  :  "+carsOrder);
                 try{
                     BigInteger cs = trimToNumber(accidentInfo.Getcarnum());
-                    if(carsOrder>=cs.intValue()){
+                    if(carsOrder>cs.intValue()){
 //                        AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
 //                        builder.setTitle("已完成添加");
 //                        dialog = builder.create();
 //                        dialog.show();
-                        Toast.makeText(MainActivity.this,"已添加完成所有车辆信息！",Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this,"添加失败，已添加完成所有车辆信息！",Toast.LENGTH_LONG).show();
                         Log.i("cars",str[0]+"  :  "+carsOrder);
                         return;
                     }
                 }catch (Exception e){
                         e.printStackTrace();
                 }
-                Toast.makeText(MainActivity.this,"保存成功",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"保存成功",Toast.LENGTH_SHORT).show();
                 CarData carData=new CarData();
                 TextView textView = (TextView) findViewById(R.id.carorder);
                 carData.setXunhao(carsOrder);
                 carData.setChepaihao(editTextChepaiHao.getText().toString());
                 carDatas.add(carData);
-                textView.setText("车辆序号:"+(++carsOrder));
+                BigInteger cs = trimToNumber(accidentInfo.Getcarnum());
+                if(carsOrder == cs.intValue()){
+                    Toast.makeText(MainActivity.this,"已添加完成所有车辆信息！",Toast.LENGTH_LONG).show();
+                    ++carsOrder;
+                    return;
+                }
+                textView.setText("当前车辆序号:"+(++carsOrder));
                 editTextChepaiHao.setText("");
                 editTextVin.setText("");
                 dialog.dismiss();

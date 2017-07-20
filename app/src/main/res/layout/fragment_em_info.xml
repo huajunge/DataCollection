@@ -59,29 +59,37 @@
                 android:background="@color/darkGrey" />
         </LinearLayout>
         <!--第一次事故-->
-        <LinearLayout style="@style/layoutstyle">
+        <LinearLayout style="@style/layoutstyle"
+            android:layout_marginRight="20dp"
+            >
             <!--车辆间事故-->
 
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_weight="1"
+                >
 
                 <TextView
                     style="@style/textstyle"
                     android:text="天气状况:" />
 
                 <Spinner
+                    android:layout_weight="1"
                     android:id="@+id/sp_tqcondition"
                     style="@style/stylespanner">
 
                 </Spinner>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_weight="1"
+                >
 
                 <TextView
                     style="@style/textstyle"
                     android:text="照明状况:" />
 
                 <Spinner
+                    android:layout_weight="1"
                     android:id="@+id/sp_lightcondition"
                     style="@style/stylespanner"
                     android:layout_width="120dp">
@@ -89,13 +97,20 @@
                 </Spinner>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:layout_marginRight="20dp"
+            >
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/textstyle"
                     android:text="路面状况:" />
 
                 <Spinner
+                    android:layout_weight="1"
                     android:id="@+id/sp_routecondition"
                     style="@style/stylespanner">
 
@@ -153,13 +168,16 @@
 
         <LinearLayout style="@style/layoutstyle">
             <!--发生位置-->
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_weight="1"
+                >
 
                 <TextView
                     style="@style/textstyle"
                     android:text="事故发生路面位置:" />
 
                 <Spinner
+                    android:layout_weight="1"
                     android:id="@+id/sp_chedaoposition"
                     style="@style/stylespanner">
 
@@ -185,34 +203,40 @@
 
         <LinearLayout style="@style/layoutstyle">
             <!--车辆间事故-->
-
-
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_weight="1"
+                >
 
                 <TextView
                     style="@style/textstyle"
                     android:text="立交区域:" />
 
                 <Spinner
+                    android:layout_weight="1"
                     android:id="@+id/sp_jck"
                     style="@style/stylespanner">
 
                 </Spinner>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_weight="1"
+                >
 
                 <TextView
                     style="@style/textstyle"
                     android:text="交叉口类型:" />
 
                 <Spinner
+                    android:layout_weight="1"
                     android:id="@+id/sp_jcktype"
                     style="@style/stylespanner">
 
                 </Spinner>
             </LinearLayout>
-
+        </LinearLayout>
+        <LinearLayout
+            style="@style/layoutstyle">
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
@@ -503,15 +527,17 @@
 
         <LinearLayout
             android:id="@+id/workplace"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+
             android:visibility="gone">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
+                android:layout_marginRight="20dp"
                 android:orientation="horizontal">
 
                 <LinearLayout style="@style/layoutstyle2">
@@ -555,7 +581,9 @@
 
                     <Spinner
                         android:id="@+id/sp_xczhifa"
-                        style="@style/stylespanner">
+                        style="@style/stylespanner"
+                        android:layout_marginRight="10dp"
+                        >
 
                     </Spinner>
 

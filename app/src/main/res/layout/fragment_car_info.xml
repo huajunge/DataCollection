@@ -66,7 +66,22 @@
                 style="@style/textstyle"
                 android:id="@+id/carorder"
                 android:textColor="@color/lightgray"
-                android:text="车辆序号:1" />
+                android:layout_marginBottom="5dp"
+                android:text="当前车辆序号:1" />
+            <LinearLayout style="@style/layoutstyle">
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="车牌号:" />
+
+                    <EditText
+                        android:id="@+id/chepaihao"
+                        style="@style/myeditstyle"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -81,25 +96,46 @@
                     style="@style/myeditstyle"/>
             </LinearLayout>
 
-            <LinearLayout
-                style="@style/layoutstyle2"
-                android:layout_marginLeft="10dp">
 
-                <TextView
-
-                    style="@style/textstyle"
-                    android:text="国别:" />
-
-                <Spinner
-                    android:id="@+id/sp_guobie"
-                    style="@style/stylespanner"
-                    android:layout_width="135dp">
-
-                </Spinner>
-            </LinearLayout>
 
         </LinearLayout>
+            <LinearLayout style="@style/layoutstyle">
 
+                <LinearLayout style="@style/layoutstyle2"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="品牌:" />
+
+                    <TextView
+                        android:id="@+id/sp_pingpai"
+                        style="@style/myeditstyle"
+                        android:layout_width="0dp"
+                        >
+
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout style="@style/layoutstyle2"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="型号:" />
+
+                    <TextView
+                        android:id="@+id/sp_xinghao"
+                        style="@style/myeditstyle"
+                        android:layout_width="0dp"
+                        >
+
+                    </TextView>
+                </LinearLayout>
+            </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -115,58 +151,24 @@
 
                 </Spinner>
             </LinearLayout>
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="车牌号:" />
-
-                <EditText
-                    android:id="@+id/chepaihao"
-                    android:layout_width="160dp"
-                    style="@style/myeditstyle"/>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layoutstyle2"
-                android:layout_gravity="center"
-                android:gravity="center"
+            <LinearLayout
+                style="@style/layoutstyle2"
                 >
-
                 <TextView
+
                     style="@style/textstyle"
-                    android:text="品牌:" />
-
-                <TextView
-                    android:id="@+id/sp_pingpai"
-                    style="@style/myeditstyle"
-                    android:layout_width="140dp"
-
+                    android:text="国别:" />
+                <Spinner
+                    android:id="@+id/sp_guobie"
+                    style="@style/stylespanner"
                     >
 
-                </TextView>
+                </Spinner>
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout style="@style/layoutstyle">
-
-
-            <LinearLayout style="@style/layoutstyle2"
-                android:layout_gravity="center"
-                android:gravity="center"
-                >
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="型号:" />
-
-                <TextView
-                    android:id="@+id/sp_xinghao"
-                    style="@style/myeditstyle">
-
-                </TextView>
-            </LinearLayout>
-
+            <LinearLayout
+               style="@style/layoutstyle">
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
@@ -454,8 +456,10 @@
             android:layout_marginLeft="10dp"
             >
 
-            <LinearLayout style="@style/layoutstyle2">
-
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_width="100dp"
+                android:orientation="vertical"
+                >
                 <ImageView
                     android:id="@+id/addphotos"
                     android:layout_width="64dp"
@@ -463,6 +467,13 @@
                     android:clickable="true"
                     android:onClick="onClick"
                     android:src="@drawable/addphoto" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="添加照片"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle2">

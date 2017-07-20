@@ -2,6 +2,7 @@ package com.example.tr.datacollection;
 
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tr.datacollection.model.CarData;
 
@@ -25,6 +27,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -110,6 +114,18 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
     private int weifanum=0;
     private int xianzhinum=0;
     private int shibeinum=0;
+
+    //乘坐人信息
+    private Spinner paiWei;
+    private Spinner weiZhi;
+    private Spinner qiTaWeiZhi;
+
+    //保存
+    private Button SAVE;
+    private TextView peopelAD;//已添加人数
+    private int peopelAdded =0;
+
+    private ProgressDialog processDialog;//保存提醒框
  //   private
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,7 +164,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //性别
         SPxingbie = (Spinner)layoutPeoPel3.findViewById(R.id.sp_xingbie);
         String[] strSPxingbie ={"男","女"};
-        SPxingbie.setAdapter(new MyAdapter(strSPxingbie,getContext()).getAdaper());
+        SPxingbie.setAdapter(new MyAdapter2(strSPxingbie,getContext()).getAdaper());
 //身份
         SPshenfentype = (Spinner)layoutPeoPel3.findViewById(R.id.sp_shenfentype);
         String[] strSPshenfentype ={"公务员","公安民警","职员","工人","农民","自主经营者","军人","武警","教师","大（专）学生","中（专）学生","小学生","学前儿童","港澳同胞","华侨","外国人","外来务工者","不在业人员","其他"};
@@ -159,7 +175,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
         SPrenyuantype.setAdapter(new MyAdapter(strSPrenyuantype,getContext()).getAdaper());
 //受伤程度
         SPsschengdu = (Spinner)layoutPeoPel3.findViewById(R.id.sp_sszhuangtai);
-        String[] strSPsszhuangtai ={"致命伤","疑似严重受伤","疑似轻微受伤","可能受伤","无明显受伤"};
+        String[] strSPsszhuangtai ={"致命伤","重伤","疑似轻微受伤","可能受伤","无明显受伤"};
         SPsschengdu.setAdapter(new MyAdapter(strSPsszhuangtai,getContext()).getAdaper());
 
         phonenum = (EditText) layoutPeoPel3.findViewById(R.id.phonenum);
@@ -176,7 +192,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //怀疑饮酒
         SPyinjiu = (Spinner)layoutPeoPel3.findViewById(R.id.sp_yinjiu);
         String[] strSPyinjiu ={"是","否","未知"};
-        SPyinjiu.setAdapter(new MyAdapter(strSPyinjiu,getContext()).getAdaper());
+        SPyinjiu.setAdapter(new MyAdapter2(strSPyinjiu,getContext()).getAdaper());
 
 //事故发生是状态
         SPsgfssxingwei = (Spinner) layoutPeoPel3.findViewById(R.id.sp_sgfssxingwei);
@@ -211,7 +227,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
         SPceshitype .setAdapter(new MyAdapter(strSPceshitype,getContext()).getAdaper());
         SPceshiresult = (Spinner) (Spinner)layoutPeoPel3.findViewById(R.id.sp_ceshiresult);
         String[] strSPceshiresult ={"阳性","阴性","未知"};
-        SPceshiresult .setAdapter(new MyAdapter(strSPceshiresult,getContext()).getAdaper());
+        SPceshiresult .setAdapter(new MyAdapter2(strSPceshiresult,getContext()).getAdaper());
         //酒精测试
         SPJJceshizhuangtai = (Spinner)layoutPeoPel3.findViewById(R.id.jjceshizhuangtai);
         SPJJceshizhuangtai.setAdapter(new MyAdapter(strSPceshizhuangtai,getContext()).getAdaper());
@@ -302,7 +318,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //性别
         SPxingbie = (Spinner)layoutPeoPel2.findViewById(R.id.sp_xingbie);
         String[] strSPxingbie ={"男","女"};
-        SPxingbie.setAdapter(new MyAdapter(strSPxingbie,getContext()).getAdaper());
+        SPxingbie.setAdapter(new MyAdapter2(strSPxingbie,getContext()).getAdaper());
 //身份
         SPshenfentype = (Spinner)layoutPeoPel2.findViewById(R.id.sp_shenfentype);
         String[] strSPshenfentype ={"公务员","公安民警","职员","工人","农民","自主经营者","军人","武警","教师","大（专）学生","中（专）学生","小学生","学前儿童","港澳同胞","华侨","外国人","外来务工者","不在业人员","其他"};
@@ -313,7 +329,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
         SPrenyuantype.setAdapter(new MyAdapter(strSPrenyuantype,getContext()).getAdaper());
 //受伤程度
         SPsschengdu = (Spinner)layoutPeoPel2.findViewById(R.id.sp_sszhuangtai);
-        String[] strSPsszhuangtai ={"致命伤","疑似严重受伤","疑似轻微受伤","可能受伤","无明显受伤"};
+        String[] strSPsszhuangtai ={"致命伤","重伤","疑似轻微受伤","可能受伤","无明显受伤"};
         SPsschengdu.setAdapter(new MyAdapter(strSPsszhuangtai,getContext()).getAdaper());
 
         phonenum = (EditText) layoutPeoPel2.findViewById(R.id.phonenum);
@@ -325,6 +341,23 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //         SPposition = (Spinner)layoutPeoPel2.findViewById(R.id.sp_position);
 //        String[] str ={""};
 //        .setAdapter(new MyAdapter(str,getContext()).getAdaper());
+//座位位置
+        //排位
+        paiWei = (Spinner) layoutPeoPel2.findViewById(R.id.sp_pai);
+        String[] strpaiWei = {"前排","第二排","第三排","第四排","其他排（公交车、15座厢式货车等。）"};
+        paiWei.setAdapter(new MyAdapter(strpaiWei,getContext()).getAdaper());
+
+        //座位
+        weiZhi = (Spinner) layoutPeoPel2.findViewById(R.id.sp_zuowei);
+        String[] strweiZhi = {"右侧","左侧（通常是汽车或摩托车驾驶员，除了邮政车辆和一些外国车辆）","中部","其他","未知"};
+        weiZhi.setAdapter(new MyAdapter(strweiZhi,getContext()).getAdaper());
+
+        //其他
+        qiTaWeiZhi = (Spinner) layoutPeoPel2.findViewById(R.id.sp_qitaweizhi);
+        String[] strqiTaWeiZhi = {"不可用的","驾驶室（卡车）的卧铺","其他封闭的载货区域","未封闭载货区域","牵引单元","汽车外部的（非牵引单元）","未知"};
+        qiTaWeiZhi.setAdapter(new MyAdapter(strqiTaWeiZhi,getContext()).getAdaper());
+
+
 //安全约束
         SPysxitong = (Spinner)layoutPeoPel2.findViewById(R.id.sp_ysxitong);
         String[] strSPysxitong ={"无可用",
@@ -352,7 +385,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //怀疑饮酒
         SPyinjiu = (Spinner)layoutPeoPel2.findViewById(R.id.sp_yinjiu);
         String[] strSPyinjiu ={"是","否","未知"};
-        SPyinjiu.setAdapter(new MyAdapter(strSPyinjiu,getContext()).getAdaper());
+        SPyinjiu.setAdapter(new MyAdapter2(strSPyinjiu,getContext()).getAdaper());
 
 //毒品类型
         SPduPingLeiXing = (Spinner)layoutPeoPel2.findViewById(R.id.sp_dupinleixing);
@@ -368,7 +401,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
         SPceshitype .setAdapter(new MyAdapter(strSPceshitype,getContext()).getAdaper());
         SPceshiresult = (Spinner) (Spinner)layoutPeoPel2.findViewById(R.id.sp_ceshiresult);
         String[] strSPceshiresult ={"阳性","阴性","未知"};
-        SPceshiresult .setAdapter(new MyAdapter(strSPceshiresult,getContext()).getAdaper());
+        SPceshiresult .setAdapter(new MyAdapter2(strSPceshiresult,getContext()).getAdaper());
 
         //酒精测试
         SPJJceshizhuangtai = (Spinner)layoutPeoPel2.findViewById(R.id.jjceshizhuangtai);
@@ -419,7 +452,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //性别
         SPxingbie = (Spinner)view.findViewById(R.id.sp_xingbie);
         String[] strSPxingbie ={"男","女"};
-        SPxingbie.setAdapter(new MyAdapter(strSPxingbie,getContext()).getAdaper());
+        SPxingbie.setAdapter(new MyAdapter2(strSPxingbie,getContext()).getAdaper());
 //身份
         SPshenfentype = (Spinner)view.findViewById(R.id.sp_shenfentype);
         String[] strSPshenfentype ={"未知","公务员","公安民警","职员","工人","农民","自主经营者","军人","武警","教师","大（专）学生","中（专）学生","小学生","学前儿童","港澳同胞","华侨","外国人","外来务工者","不在业人员","其他"};
@@ -430,7 +463,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
         SPrenyuantype.setAdapter(new MyAdapter(strSPrenyuantype,getContext()).getAdaper());
 //受伤程度
         SPsschengdu = (Spinner)view.findViewById(R.id.sp_sszhuangtai);
-        String[] strSPsszhuangtai ={"致命伤","疑似严重受伤","疑似轻微受伤","可能受伤","无明显受伤"};
+        String[] strSPsszhuangtai ={"致命伤","重伤","疑似轻微受伤","可能受伤","无明显受伤"};
         SPsschengdu.setAdapter(new MyAdapter(strSPsszhuangtai,getContext()).getAdaper());
 
         phonenum = (EditText) view.findViewById(R.id.phonenum);
@@ -470,7 +503,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //怀疑饮酒
         SPyinjiu = (Spinner)view.findViewById(R.id.sp_yinjiu);
         String[] strSPyinjiu ={"是","否","未知"};
-        SPyinjiu.setAdapter(new MyAdapter(strSPyinjiu,getContext()).getAdaper());
+        SPyinjiu.setAdapter(new MyAdapter2(strSPyinjiu,getContext()).getAdaper());
         //毒品类型
         SPduPingLeiXing = (Spinner)view.findViewById(R.id.sp_dupinleixing);
         String[] strSPduPingLeiXing ={"无","大麻","可卡因","鸦片","苯丙胺","五氯苯酚","其他控制的物质","其他毒品（不包括事故后的毒品）"};
@@ -485,7 +518,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
         SPceshitype .setAdapter(new MyAdapter(strSPceshitype,getContext()).getAdaper());
         SPceshiresult = (Spinner) (Spinner)view.findViewById(R.id.sp_ceshiresult);
         String[] strSPceshiresult ={"阳性","阴性","未知"};
-        SPceshiresult .setAdapter(new MyAdapter(strSPceshiresult,getContext()).getAdaper());
+        SPceshiresult .setAdapter(new MyAdapter2(strSPceshiresult,getContext()).getAdaper());
 
         jiazhao = (EditText) view.findViewById(R.id.jiazhao);
 
@@ -498,7 +531,7 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
 //商业驾照
         shangyejiazhao = (Spinner) view.findViewById(R.id.sp_shangyejiazhao);
         String [] strshangyejiazhao ={"不是","是"};
-        shangyejiazhao.setAdapter(new MyAdapter(strshangyejiazhao,getContext()).getAdaper());
+        shangyejiazhao.setAdapter(new MyAdapter2(strshangyejiazhao,getContext()).getAdaper());
 //签注
         qianzhu = (Spinner) view.findViewById(R.id.sp_qianzhu);
         String [] strqianzhu ={"无/不可用","T—两个/三个拖车","P—客车","N—坦克车","H—危险物品",
@@ -604,6 +637,10 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
         layjiashiren.setOnClickListener(this);
         laychengzuoren.setOnClickListener(this);
         layqitaren.setOnClickListener(this);
+
+        SAVE = (Button) view.findViewById(R.id.save);
+        SAVE.setOnClickListener(this);
+        peopelAD = (TextView) view.findViewById(R.id.peopeladded);
     }
 
     private List<Map<String,Object>> getData() {
@@ -656,7 +693,49 @@ public class DriverInfo extends Fragment implements View.OnClickListener {
                 ChengZhuoRen.setImageDrawable(getResources().getDrawable(R.drawable.iconqitaren_off));
                 QiTaRen.setImageDrawable(getResources().getDrawable(R.drawable.iconczren));
                 break;
+            case R.id.save:
+                addPeopel();
+                break;
 
         }
+    }
+    public void addPeopel(){
+        showProcessing("保存人员信息中...",2000);
+        peopelAdded++;
+        peopelAD.setText("已添加人数:"+peopelAdded);
+    }
+    public void dismissProcessing() {
+        if (processDialog != null && processDialog.isShowing()) {
+            processDialog.dismiss();
+            processDialog = null;
+        }
+    }
+    public void showProcessing(String hintText) {
+        if (processDialog == null) {
+            processDialog = new ProgressDialog(getContext());
+        }
+        processDialog.setMessage(hintText);
+        processDialog.setCancelable(true);
+        processDialog.show();
+    }
+    public void showProcessing(final String hintText, final int dur) {
+        if (processDialog == null) {
+            processDialog = new ProgressDialog(getContext());
+        }
+        processDialog.setMessage(hintText);
+        processDialog.setCancelable(true);
+        processDialog.show();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    sleep(dur);
+                    processDialog.dismiss();
+                    Toast.makeText(getContext(), hintText+"  成功", Toast.LENGTH_SHORT).show();
+                }catch (Exception e){
+
+                }
+            }
+        }).start();
     }
 }
