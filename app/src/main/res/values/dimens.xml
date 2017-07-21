@@ -16,4 +16,5 @@
     <dimen name="index_offset">4dp</dimen>
     <dimen name="xxlTextSize">24sp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="layoutmargin">10dp</dimen>
 </resources>

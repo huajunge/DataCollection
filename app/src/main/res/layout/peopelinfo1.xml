@@ -44,12 +44,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
        >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@color/bgofdefault"
+            android:background="@color/titlecolor"
             android:orientation="vertical">
 
             <ImageView
@@ -62,15 +61,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -78,13 +74,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="基本信息"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline"/>
             </LinearLayout>
 
             <ImageView
@@ -255,42 +250,16 @@
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            style="@style/layoutstyle"
-            android:visibility="gone">
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="受伤部位:" />
-
-                <Spinner
-                    android:id="@+id/sp_ssbuwei"
-                    style="@style/stylespanner"
-                    android:layout_width="130dp">
-
-                </Spinner>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="受伤程度:" />
-
-                <Spinner
-                    android:id="@+id/sp_sschengdu"
-                    style="@style/stylespanner">
-
-                </Spinner>
-            </LinearLayout>
-        </LinearLayout>
+<ImageView
+    android:layout_width="match_parent"
+    android:layout_height="10dp"
+    android:background="@color/bgofdefault"
+    />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@color/bgofdefault"
+            android:background="@color/titlecolor"
             android:orientation="vertical">
 
             <ImageView
@@ -303,15 +272,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -319,13 +285,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="详细信息"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline"/>
             </LinearLayout>
 
             <ImageView
@@ -479,12 +444,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:text="已添加状态数0" />
-        </LinearLayout>
+        </LinearLayout><ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/bgofdefault"
+        />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@color/bgofdefault"
+            android:background="@color/titlecolor"
             android:orientation="vertical">
 
             <ImageView
@@ -497,15 +466,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -513,13 +479,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="相关测试"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline"/>
             </LinearLayout>
 
             <ImageView

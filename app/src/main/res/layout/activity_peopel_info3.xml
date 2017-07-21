@@ -10,12 +10,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@color/bgofdefault"
+            android:background="@color/titlecolor"
             android:orientation="vertical">
 
             <ImageView
@@ -28,15 +27,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -44,13 +40,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="基本信息"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -177,12 +172,16 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
-
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/bgofdefault"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@color/bgofdefault"
+            android:background="@color/titlecolor"
             android:orientation="vertical">
 
             <ImageView
@@ -195,15 +194,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -211,13 +207,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="详细信息"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -399,12 +394,16 @@
 
                 </Spinner>
             </LinearLayout>
-        </LinearLayout>
+        </LinearLayout>     <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@color/bgofdefault"
+        />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dp"
-            android:background="@color/bgofdefault"
+            android:background="@color/titlecolor"
             android:orientation="vertical">
 
             <ImageView
@@ -417,15 +416,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -433,13 +429,12 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="相关测试"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:textColor="@color/white"
+                    />
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="1dp"
-                    android:layout_weight="1"
-                    android:background="@color/gary6" />
+                    style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
