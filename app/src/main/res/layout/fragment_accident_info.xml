@@ -122,7 +122,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="地理位置"
-                    android:textSize="15dp" />
+                    android:textSize="@dimen/xlTextSize" />
 
                 <ImageView
                     style="@style/halfline" />
@@ -204,10 +204,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginRight="20dp" />
         </LinearLayout>
-        <ImageView
-            style="@style/halfline"
-            android:layout_width="match_parent"
-            />
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/layoutmargin"
@@ -242,7 +239,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="事故类型"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
                     />
 
@@ -437,7 +434,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="人车数量"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
                     />
 
@@ -484,6 +481,7 @@
                     style="@style/myeditstyle"
                     android:layout_width="110dp"
                     android:layout_weight="1"
+                    android:hint="1"
                     />
             </LinearLayout>
 
@@ -494,12 +492,15 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="非驾乘人数:" />
+                    android:text="非驾乘人数:"
+
+                    />
 
                 <EditText
                     android:id="@+id/outrenshu"
                     android:layout_weight="1"
                     android:layout_marginRight="10dp"
+                    android:hint="0"
                     style="@style/myeditstyle" />
             </LinearLayout>
         </LinearLayout>
@@ -520,6 +521,7 @@
                     android:layout_weight="1"
                     android:id="@+id/ssrenshu"
                     style="@style/myeditstyle"
+                    android:hint="0"
                     android:layout_width="110dp" />
             </LinearLayout>
 
@@ -536,6 +538,7 @@
                     android:id="@+id/swrenshu"
                     style="@style/myeditstyle"
                     android:layout_marginRight="10dp"
+                    android:hint="0"
                     android:layout_width="115dp" />
             </LinearLayout>
         </LinearLayout>
@@ -575,7 +578,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="其他信息"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
                     />
 
@@ -765,7 +768,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="现场照片"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
                     />
 
@@ -862,7 +865,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="现场视频"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
                     />
 

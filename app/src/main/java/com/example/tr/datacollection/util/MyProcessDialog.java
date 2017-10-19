@@ -12,6 +12,7 @@ import static java.lang.Thread.sleep;
 
 public class MyProcessDialog extends ProgressDialog {
     private ProgressDialog progressDialog;
+
     public MyProcessDialog(Context context) {
         super(context);
     }
@@ -22,6 +23,22 @@ public class MyProcessDialog extends ProgressDialog {
             progressDialog = null;
         }
     }
+    public void dismissProcessing(final int dur) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    sleep(dur);
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                        progressDialog = null;
+                    }
+                }catch (Exception e){}
+            }
+        }).start();
+
+    }
+
     public void showProcessing(String hintText) {
         if (progressDialog == null) {
             progressDialog = new ProgressDialog(getContext());

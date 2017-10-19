@@ -7,7 +7,8 @@ package com.example.tr.datacollection.model;
 
 public class PelpelData {
      String Type;//类型
-     String  name;
+     String number;
+     String name;
      String xingbie;
      String shenfentype;
      String renyuantype;
@@ -43,7 +44,10 @@ public class PelpelData {
         Type = type;
     }
 
-    public PelpelData(String name, String xingbie, String shenfentype, String renyuantype, String sschengdu, String phonenum, String cheliangxunhao, String ysxitong, String tuokuishiyong, String aqqnzt, String paochuzhuangta, String sgfsszhuangtai, String yinjiu, String duPingLeiXing, String ceshizhuangtai, String ceshitype, String ceshiresult) {
+    public PelpelData(String name, String xingbie, String shenfentype, String renyuantype,
+                      String sschengdu, String phonenum, String cheliangxunhao, String ysxitong,
+                      String tuokuishiyong, String aqqnzt, String paochuzhuangta, String sgfsszhuangtai,
+                      String yinjiu, String duPingLeiXing, String ceshizhuangtai, String ceshitype, String ceshiresult) {
         this.name = name;
         this.xingbie = xingbie;
         this.shenfentype = shenfentype;
@@ -61,6 +65,38 @@ public class PelpelData {
         this.ceshizhuangtai = ceshizhuangtai;
         this.ceshitype = ceshitype;
         this.ceshiresult = ceshiresult;
+    }
+
+    public PelpelData(String number,String name, String xingbie, String shenfentype, String renyuantype,
+                      String sschengdu, String phonenum, String cheliangxunhao, String ysxitong,
+                      String tuokuishiyong, String aqqnzt, String paochuzhuangta, String sgfsszhuangtai,
+                      String yinjiu, String duPingLeiXing, String ceshizhuangtai, String ceshitype, String ceshiresult) {
+        this.number = number;
+        this.name = name;
+        this.xingbie = xingbie;
+        this.shenfentype = shenfentype;
+        this.renyuantype = renyuantype;
+        this.sschengdu = sschengdu;
+        this.phonenum = phonenum;
+        this.cheliangxunhao = cheliangxunhao;
+        this.ysxitong = ysxitong;
+        this.tuokuishiyong = tuokuishiyong;
+        this.aqqnzt = aqqnzt;
+        this.paochuzhuangta = paochuzhuangta;
+        this.sgfsszhuangtai = sgfsszhuangtai;
+        this.yinjiu = yinjiu;
+        this.duPingLeiXing = duPingLeiXing;
+        this.ceshizhuangtai = ceshizhuangtai;
+        this.ceshitype = ceshitype;
+        this.ceshiresult = ceshiresult;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getName() {
@@ -197,5 +233,30 @@ public class PelpelData {
 
     public void setCeshiresult(String ceshiresult) {
         this.ceshiresult = ceshiresult;
+    }
+
+    @Override
+    public String toString() {
+        return "PelpelData{" +
+                "Type='" + Type + '\'' +
+                ", number='" + number + '\'' +
+                ", name='" + name + '\'' +
+                ", xingbie='" + xingbie + '\'' +
+                ", shenfentype='" + shenfentype + '\'' +
+                ", renyuantype='" + renyuantype + '\'' +
+                ", sschengdu='" + sschengdu + '\'' +
+                ", phonenum='" + phonenum + '\'' +
+                ", cheliangxunhao='" + cheliangxunhao + '\'' +
+                ", ysxitong='" + ysxitong + '\'' +
+                ", tuokuishiyong='" + tuokuishiyong + '\'' +
+                ", aqqnzt='" + aqqnzt + '\'' +
+                ", paochuzhuangta='" + paochuzhuangta + '\'' +
+                ", sgfsszhuangtai='" + sgfsszhuangtai + '\'' +
+                ", yinjiu='" + yinjiu + '\'' +
+                ", duPingLeiXing='" + duPingLeiXing + '\'' +
+                ", ceshizhuangtai='" + ceshizhuangtai + '\'' +
+                ", ceshitype='" + ceshitype + '\'' +
+                ", ceshiresult='" + ceshiresult + '\'' +
+                '}';
     }
 }

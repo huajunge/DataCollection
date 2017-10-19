@@ -11,14 +11,19 @@
         android:layout_height="60dp"
         android:orientation="horizontal"
         >
-
+        <ImageView
+            android:onClick="upLoad"
+            android:layout_gravity="center"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/icon_upload"
+            />
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:layout_marginLeft="80dp"
-
             android:layout_weight="1"
             android:gravity="center"
             android:text="环境信息"
@@ -28,9 +33,10 @@
         <ImageView
             android:onClick="updateInfo"
             android:layout_gravity="center"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/icon_upload"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/icon_save"
             />
     </LinearLayout>
 

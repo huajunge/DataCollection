@@ -159,7 +159,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
     private LinearLayout DANGER;
     String[] strspShiguType_feipz={"翻车","火灾/爆炸","淹没，全部或部分","弯折现象","货物/设备损失或转移","从车辆掉落/跳下	物体丢掷或掉落","其他非碰撞事故"};
     String[] strspShiguType_feigudingc={"行人","自行车","其他非机动车","轨道车辆","动物","运动机动车","静止机动车","车辆坠落物","施工/维护设备","其他非固定物"};
-    String[] strspShiguType_guding={"碰撞衰减器/防撞墩	桥架结构","桥墩或桥梁支撑结构","桥梁轨道","缆索护栏","涵洞","路缘","沟渠","路堤","护栏表面",
+    String[] strspShiguType_guding={"碰撞衰减器/防撞墩	桥架结构","桥墩或桥梁支撑结构","桥梁栏杆","缆索护栏","涵洞","路缘","沟渠","路堤","护栏表面",
             "护栏尾部	混凝土交通障碍物","其他交通障碍物","树木（直立的）","电线杆/电灯支撑结构","交通标志支撑结构","交通信号灯支撑结构	护栏","邮箱	其他邮件、灯具支撑结构	其他固定物（墙体、建筑物、隧道等）","未知	"};
     private String[] xingqi={"一","二","三","四","五","六","七"};
     private Calendar cal;
@@ -254,6 +254,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
 
             xiangzhen = (TextView) view.findViewById(R.id.sp_shangquan);
             xiangzhen.setText(intent.getStringExtra("xiangzhen").toString());
+
             dimingBeiZhu = (EditText) view.findViewById(R.id.dimingbz);
             dimingBeiZhu.setText(intent.getStringExtra("beizhu").toString());
             jingweidu = (TextView) view.findViewById(R.id.text_jinweidu);
@@ -420,14 +421,14 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         });
 //事故严重程度
         spyanzhongcd = (Spinner) view.findViewById(R.id.sp_shiguchengdu);
-        String[] strspyanzhongcd = {"致命伤（K）", "疑似严重受伤（A）", "疑似轻微受伤（B）", "可能受伤（C）", "仅财产损失（O）", "未知"};
+        String[] strspyanzhongcd = { "仅财产损失（O）", "可能受伤（C）", "疑似轻微受伤（B）", "疑似严重受伤（A）","致命伤（K）","未知"};
         spyanzhongcd.setAdapter(new MyAdapter(strspyanzhongcd, view.getContext()).getAdaper());
 
 //事故二级分类
 
 
         spgongjiao = (Spinner) view.findViewById(R.id.sp_busshuxing);
-        String[] strspgongjiao = {"非巴士", "学校用途", "公交/通勤", "城际", "租赁/旅游", "穿梭巴士"};
+        String[] strspgongjiao = {"非公交","学校用途","公交/通勤","城际","租赁/旅游","穿梭巴士"};
         spgongjiao.setAdapter(new MyAdapter(strspgongjiao, view.getContext()).getAdaper());
 
 //事故严重程度
@@ -436,11 +437,11 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         carnum.setAdapter(new MyAdapter2(strscarnum, view.getContext()).getAdaper());
 
         spzhaoshity = (Spinner) view.findViewById(R.id.sp_run);
-        String[] strspzhaoshity = {"否，没有离开现场", "是，驾驶员或者车辆与驾驶员离开现场"};
+        String[] strspzhaoshity = {"否", "是"};
         spzhaoshity.setAdapter(new MyAdapter2(strspzhaoshity, view.getContext()).getAdaper());
 //危险标识
         spfromweixianbz = (Spinner) view.findViewById(R.id.sp_weixianbiaozhi);
-        String[] strspfromweixianbz = {"01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
+        String[] strspfromweixianbz = {"","01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
         spfromweixianbz.setAdapter(new MyAdapter2(strspfromweixianbz, view.getContext()).getAdaper());
 
         spweixian = (Spinner) view.findViewById(R.id.sp_dangers);

@@ -5,16 +5,15 @@ package com.example.tr.datacollection.model;
  */
 
 public class PeopelData2 {
+    private String number;
     private String SPname;
     private String SPxingbie;
-
-
     private String SPshenfentype;
     private String SPrenyuantype;
 
     private String SPsschengdu;
 
-    private String  phonenum;
+    private String phonenum;
     private String SPcheliangxunhao;
 
     private String SPysxitong;
@@ -45,7 +44,13 @@ public class PeopelData2 {
 
     }
 
-    public PeopelData2(String SPname, String SPxingbie, String SPshenfentype, String SPrenyuantype, String SPsschengdu, String phonenum, String SPcheliangxunhao, String SPysxitong, String SPtuokuishiyong, String SPaqqnzt, String SPpaochuzhuangta, String SPsgfsszhuangtai, String SPyinjiu, String SPduPingLeiXing, String SPceshizhuangtai, String SPceshitype, String SPceshiresult, String jiazhao, String dengji, String shangyejiazhao, String qianzhu, String guanxiaqu, String chaosuxunwen, String fenxinjiashi, String sgfssxingwie, String sgfsszhuangt, String jtwfxingwei, String jiazhaoxianzhi) {
+    public PeopelData2(String SPname, String SPxingbie, String SPshenfentype, String SPrenyuantype,
+                       String SPsschengdu, String phonenum, String SPcheliangxunhao, String SPysxitong,
+                       String SPtuokuishiyong, String SPaqqnzt, String SPpaochuzhuangta, String SPsgfsszhuangtai,
+                       String SPyinjiu, String SPduPingLeiXing, String SPceshizhuangtai, String SPceshitype,
+                       String SPceshiresult, String jiazhao, String dengji, String shangyejiazhao, String qianzhu,
+                       String guanxiaqu, String chaosuxunwen, String fenxinjiashi, String sgfssxingwie, String sgfsszhuangt,
+                       String jtwfxingwei, String jiazhaoxianzhi) {
         this.SPname = SPname;
         this.SPxingbie = SPxingbie;
         this.SPshenfentype = SPshenfentype;
@@ -74,6 +79,52 @@ public class PeopelData2 {
         this.sgfsszhuangt = sgfsszhuangt;
         this.jtwfxingwei = jtwfxingwei;
         this.jiazhaoxianzhi = jiazhaoxianzhi;
+    }
+
+    public PeopelData2(String number,String SPname, String SPxingbie, String SPshenfentype, String SPrenyuantype,
+                       String SPsschengdu, String phonenum, String SPcheliangxunhao, String SPysxitong,
+                       String SPtuokuishiyong, String SPaqqnzt, String SPpaochuzhuangta, String SPsgfsszhuangtai,
+                       String SPyinjiu, String SPduPingLeiXing, String SPceshizhuangtai, String SPceshitype,
+                       String SPceshiresult, String jiazhao, String dengji, String shangyejiazhao, String qianzhu,
+                       String guanxiaqu, String chaosuxunwen, String fenxinjiashi, String sgfssxingwie, String sgfsszhuangt,
+                       String jtwfxingwei, String jiazhaoxianzhi) {
+        this.number = number;
+        this.SPname = SPname;
+        this.SPxingbie = SPxingbie;
+        this.SPshenfentype = SPshenfentype;
+        this.SPrenyuantype = SPrenyuantype;
+        this.SPsschengdu = SPsschengdu;
+        this.phonenum = phonenum;
+        this.SPcheliangxunhao = SPcheliangxunhao;
+        this.SPysxitong = SPysxitong;
+        this.SPtuokuishiyong = SPtuokuishiyong;
+        this.SPaqqnzt = SPaqqnzt;
+        this.SPpaochuzhuangta = SPpaochuzhuangta;
+        this.SPsgfsszhuangtai = SPsgfsszhuangtai;
+        this.SPyinjiu = SPyinjiu;
+        this.SPduPingLeiXing = SPduPingLeiXing;
+        this.SPceshizhuangtai = SPceshizhuangtai;
+        this.SPceshitype = SPceshitype;
+        this.SPceshiresult = SPceshiresult;
+        this.jiazhao = jiazhao;
+        this.dengji = dengji;
+        this.shangyejiazhao = shangyejiazhao;
+        this.qianzhu = qianzhu;
+        this.guanxiaqu = guanxiaqu;
+        this.chaosuxunwen = chaosuxunwen;
+        this.fenxinjiashi = fenxinjiashi;
+        this.sgfssxingwie = sgfssxingwie;
+        this.sgfsszhuangt = sgfsszhuangt;
+        this.jtwfxingwei = jtwfxingwei;
+        this.jiazhaoxianzhi = jiazhaoxianzhi;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
     }
 
     public String getSPname() {
@@ -298,5 +349,40 @@ public class PeopelData2 {
 
     public void setJiazhaoxianzhi(String jiazhaoxianzhi) {
         this.jiazhaoxianzhi = jiazhaoxianzhi;
+    }
+
+    @Override
+    public String toString() {
+        return "PeopelData2{" +
+                "number='" + number + '\'' +
+                ", SPname='" + SPname + '\'' +
+                ", SPxingbie='" + SPxingbie + '\'' +
+                ", SPshenfentype='" + SPshenfentype + '\'' +
+                ", SPrenyuantype='" + SPrenyuantype + '\'' +
+                ", SPsschengdu='" + SPsschengdu + '\'' +
+                ", phonenum='" + phonenum + '\'' +
+                ", SPcheliangxunhao='" + SPcheliangxunhao + '\'' +
+                ", SPysxitong='" + SPysxitong + '\'' +
+                ", SPtuokuishiyong='" + SPtuokuishiyong + '\'' +
+                ", SPaqqnzt='" + SPaqqnzt + '\'' +
+                ", SPpaochuzhuangta='" + SPpaochuzhuangta + '\'' +
+                ", SPsgfsszhuangtai='" + SPsgfsszhuangtai + '\'' +
+                ", SPyinjiu='" + SPyinjiu + '\'' +
+                ", SPduPingLeiXing='" + SPduPingLeiXing + '\'' +
+                ", SPceshizhuangtai='" + SPceshizhuangtai + '\'' +
+                ", SPceshitype='" + SPceshitype + '\'' +
+                ", SPceshiresult='" + SPceshiresult + '\'' +
+                ", jiazhao='" + jiazhao + '\'' +
+                ", dengji='" + dengji + '\'' +
+                ", shangyejiazhao='" + shangyejiazhao + '\'' +
+                ", qianzhu='" + qianzhu + '\'' +
+                ", guanxiaqu='" + guanxiaqu + '\'' +
+                ", chaosuxunwen='" + chaosuxunwen + '\'' +
+                ", fenxinjiashi='" + fenxinjiashi + '\'' +
+                ", sgfssxingwie='" + sgfssxingwie + '\'' +
+                ", sgfsszhuangt='" + sgfsszhuangt + '\'' +
+                ", jtwfxingwei='" + jtwfxingwei + '\'' +
+                ", jiazhaoxianzhi='" + jiazhaoxianzhi + '\'' +
+                '}';
     }
 }

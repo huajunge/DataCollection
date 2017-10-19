@@ -204,11 +204,7 @@ public class CarInfo extends Fragment implements View.OnClickListener{
         spshchengdu.setAdapter(new MyAdapter(strspshchengdu,view.getContext()).getAdaper());
 //车辆类型
         spLeixing = (Spinner) view.findViewById(R.id.sp_leixing);
-        String[] strspLeixing = {"驾驶大型客车","驾驶中型客车","驾驶小大型客车","驾驶微型客车","驾驶重型货车",
-                "驾驶中型货车","驾驶轻型货车","驾驶微型货车","驾驶汽车列车","驾驶三轮汽车","驾驶低速货车","驾驶其他汽车",
-                "驾驶普通摩托车","驾驶轻便摩托车","驾驶拖拉机","驾驶其他机动车","自行车","三轮车","手推车","残疾人专用车",
-                "畜力车","电动自行车","其他非机动车","步行","乘大中型汽车","乘小微型客车","乘普通货车","乘三轮汽车和低速货车",
-                "乘汽车列车","乘摩托车","乘拖拉机","乘其他机动车","乘其他非机动车","其他"};
+        String[] strspLeixing = {"小客车","中客车","大客车","公交","校车","小货车","中货车","大货车","拖挂车","特种车辆","摩托车","非机动车","畜力车"};
         spLeixing.setAdapter(new MyAdapter(strspLeixing,view.getContext()).getAdaper());
     //车辆品牌
         sppingpai = (TextView) view.findViewById(R.id.sp_pingpai);
@@ -454,4 +450,52 @@ public class CarInfo extends Fragment implements View.OnClickListener{
 
     }
 
+    public String carnumber(){
+        return null;
+    }
+    public int   xunhao(){
+        return 0;
+    }
+    public String vin(){
+        return ed_vin.getText().toString();
+    }//VIN码
+    public String chepaihao(){
+        return ed_chepaihao.getText().toString();
+    }//车牌号
+    public String guobie(){
+        return spguobie.getSelectedItem().toString();
+    }//国别
+    public String nianfen(){
+        return spnianfen.getSelectedItem().toString();
+    }
+    public String pingpai(){
+        return sppingpai.getText().toString();
+    }//品牌
+    public String carType(){
+        return spcarType.getText().toString();
+    }//车辆型号
+    public String Leixing(){
+        return spLeixing.getSelectedItem().toString();
+    }//车辆类型
+    public String cheneinum(){
+        return sppeopelnum.getSelectedItem().toString();
+    }//车内人数
+    public String tesuzuoyong(){
+        return sptszuoyong.getSelectedItem().toString();
+    }//特殊作用
+    public String xingshifangxing(){
+        return spXsfangxing.getSelectedItem().toString();
+    }//行驶方向
+    public String Xingwei(){
+        return spXingwei.getSelectedItem().toString();
+    }//行驶方向
+    public String Jiechudian(){
+        return spJiechudian.getSelectedItem().toString();
+    }//接触点
+    public String sunhuaibuwei(){
+        return spshbuwei.getSelectedItem().toString();
+    }//损坏部位
+    public String sunhuaschengdu(){
+        return spshchengdu.getSelectedItem().toString();
+    }//损坏程度
 }

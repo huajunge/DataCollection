@@ -6,7 +6,8 @@ package com.example.tr.datacollection.model;
  */
 
 public class CarData {
-    private int xunhao;
+    private String carnumber;
+    private int    xunhao;
     private String vin;//VIN码
     private String chepaihao;//车牌号
     private String guobie;//国别
@@ -27,9 +28,10 @@ public class CarData {
 
     }
 
-    public CarData(int xunhao, String vin, String chepaihao, String guobie, String nianfen, String pingpai,
+    public CarData(String carnumber,int xunhao, String vin, String chepaihao, String guobie, String nianfen, String pingpai,
                    String carType, String leixing, String cheneinum, String tesuzuoyong, String xingshifangxing,
                    String xingwei, String jiechudian, String sunhuaibuwei, String sunhuaschengdu) {
+        this.carnumber =carnumber;
         this.xunhao = xunhao;
         this.vin = vin;
         this.chepaihao = chepaihao;
@@ -64,6 +66,14 @@ public class CarData {
         Jiechudian = jiechudian;
         this.sunhuaibuwei = sunhuaibuwei;
         this.sunhuaschengdu = sunhuaschengdu;
+    }
+
+    public String getCarnumber() {
+        return carnumber;
+    }
+
+    public void setCarnumber(String carnumber) {
+        this.carnumber = carnumber;
     }
 
     public int getXunhao() {
@@ -184,5 +194,27 @@ public class CarData {
 
     public void setSunhuaschengdu(String sunhuaschengdu) {
         this.sunhuaschengdu = sunhuaschengdu;
+    }
+
+    @Override
+    public String toString() {
+        return "CarData{" +
+                "carnumber='" + carnumber + '\'' +
+                ", xunhao=" + xunhao +
+                ", vin='" + vin + '\'' +
+                ", chepaihao='" + chepaihao + '\'' +
+                ", guobie='" + guobie + '\'' +
+                ", nianfen='" + nianfen + '\'' +
+                ", pingpai='" + pingpai + '\'' +
+                ", carType='" + carType + '\'' +
+                ", Leixing='" + Leixing + '\'' +
+                ", cheneinum='" + cheneinum + '\'' +
+                ", tesuzuoyong='" + tesuzuoyong + '\'' +
+                ", xingshifangxing='" + xingshifangxing + '\'' +
+                ", Xingwei='" + Xingwei + '\'' +
+                ", Jiechudian='" + Jiechudian + '\'' +
+                ", sunhuaibuwei='" + sunhuaibuwei + '\'' +
+                ", sunhuaschengdu='" + sunhuaschengdu + '\'' +
+                '}';
     }
 }

@@ -5,15 +5,14 @@ package com.example.tr.datacollection;
  */
 
 public class PeopelData3 {
-    private String  SPname;
+    private String number;
+    private String SPname;
     private String SPxingbie;
     private String SPshenfentype;
     private String SPrenyuantype;
 
     private String SPsschengdu;
-
     private String  phonenum;
-
 
     private String SPsgfssxingwei;
     private String SPsgfsqxingwei;
@@ -33,7 +32,12 @@ public class PeopelData3 {
 
     }
 
-    public PeopelData3(String SPname, String SPxingbie, String SPshenfentype, String SPrenyuantype, String SPsschengdu, String phonenum, String SPsgfssxingwei, String SPsgfsqxingwei, String SPsgfsszhuangtai, String SPaqsbsyzhuangtai, String SPsgfssposition, String SPcheliangxunhao, String SPyinjiu, String SPduPingLeiXing, String SPceshizhuangtai, String SPceshitype, String SPceshiresult) {
+    public PeopelData3(String SPname, String SPxingbie, String SPshenfentype,
+                        String SPrenyuantype, String SPsschengdu, String phonenum,
+                        String SPsgfssxingwei, String SPsgfsqxingwei, String SPsgfsszhuangtai,
+                        String SPaqsbsyzhuangtai, String SPsgfssposition, String SPcheliangxunhao,
+                        String SPyinjiu, String SPduPingLeiXing, String SPceshizhuangtai,
+                        String SPceshitype, String SPceshiresult) {
         this.SPname = SPname;
         this.SPxingbie = SPxingbie;
         this.SPshenfentype = SPshenfentype;
@@ -53,12 +57,70 @@ public class PeopelData3 {
         this.SPceshiresult = SPceshiresult;
     }
 
+    public PeopelData3(String number,String SPname, String SPxingbie, String SPshenfentype,
+                       String SPrenyuantype, String SPsschengdu, String phonenum,
+                       String SPsgfssxingwei, String SPsgfsqxingwei, String SPsgfsszhuangtai,
+                       String SPaqsbsyzhuangtai, String SPsgfssposition, String SPcheliangxunhao,
+                       String SPyinjiu, String SPduPingLeiXing, String SPceshizhuangtai,
+                       String SPceshitype, String SPceshiresult) {
+        this.number = number;
+        this.SPname = SPname;
+        this.SPxingbie = SPxingbie;
+        this.SPshenfentype = SPshenfentype;
+        this.SPrenyuantype = SPrenyuantype;
+        this.SPsschengdu = SPsschengdu;
+        this.phonenum = phonenum;
+        this.SPsgfssxingwei = SPsgfssxingwei;
+        this.SPsgfsqxingwei = SPsgfsqxingwei;
+        this.SPsgfsszhuangtai = SPsgfsszhuangtai;
+        this.SPaqsbsyzhuangtai = SPaqsbsyzhuangtai;
+        this.SPsgfssposition = SPsgfssposition;
+        this.SPcheliangxunhao = SPcheliangxunhao;
+        this.SPyinjiu = SPyinjiu;
+        this.SPduPingLeiXing = SPduPingLeiXing;
+        this.SPceshizhuangtai = SPceshizhuangtai;
+        this.SPceshitype = SPceshitype;
+        this.SPceshiresult = SPceshiresult;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public String getSPname() {
         return SPname;
     }
 
     public void setSPname(String SPname) {
         this.SPname = SPname;
+    }
+
+    @Override
+    public String toString() {
+        return "PeopelData3{" +
+                "number='" + number + '\'' +
+                ", SPname='" + SPname + '\'' +
+                ", SPxingbie='" + SPxingbie + '\'' +
+                ", SPshenfentype='" + SPshenfentype + '\'' +
+                ", SPrenyuantype='" + SPrenyuantype + '\'' +
+                ", SPsschengdu='" + SPsschengdu + '\'' +
+                ", phonenum='" + phonenum + '\'' +
+                ", SPsgfssxingwei='" + SPsgfssxingwei + '\'' +
+                ", SPsgfsqxingwei='" + SPsgfsqxingwei + '\'' +
+                ", SPsgfsszhuangtai='" + SPsgfsszhuangtai + '\'' +
+                ", SPaqsbsyzhuangtai='" + SPaqsbsyzhuangtai + '\'' +
+                ", SPsgfssposition='" + SPsgfssposition + '\'' +
+                ", SPcheliangxunhao='" + SPcheliangxunhao + '\'' +
+                ", SPyinjiu='" + SPyinjiu + '\'' +
+                ", SPduPingLeiXing='" + SPduPingLeiXing + '\'' +
+                ", SPceshizhuangtai='" + SPceshizhuangtai + '\'' +
+                ", SPceshitype='" + SPceshitype + '\'' +
+                ", SPceshiresult='" + SPceshiresult + '\'' +
+                '}';
     }
 
     public String getSPxingbie() {
@@ -188,4 +250,5 @@ public class PeopelData3 {
     public void setSPceshiresult(String SPceshiresult) {
         this.SPceshiresult = SPceshiresult;
     }
+
 }

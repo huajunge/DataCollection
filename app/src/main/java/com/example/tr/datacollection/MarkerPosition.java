@@ -297,7 +297,12 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
          intent.putExtra("country", textViewXingzhengqu.getText().toString());
          intent.putExtra("xiangzhen", textViewShangquan.getText().toString());
      //    intent.putExtra("diming",spPlaceName.getSelectedItem().toString());
-         intent.putExtra("beizhu", editTextPlaceBeizhu.getText().toString());
+        try {
+            intent.putExtra("beizhu", spPlaceName.getSelectedItem().toString()+editTextPlaceBeizhu.getText().toString());
+        }
+        catch (Exception e) {
+            intent.putExtra("beizhu", editTextPlaceBeizhu.getText().toString());
+        }
 
 
          startActivity(intent);
@@ -306,5 +311,14 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
     public void analysis(View view){
         Intent intent = new Intent(MarkerPosition.this,HistoryFuelConsumptionActivity.class);
         startActivity(intent);
+    }
+
+    public void moveToCenter(View view) {
+        marker.setPosition(myLocation);
+        position = new LatLng(marker.getPosition().latitude,marker.getPosition().longitude);
+        setPoi("",new LatLng(marker.getPosition().latitude,marker.getPosition().longitude));
+        moveToLocation(marker.getPosition().latitude,marker.getPosition().longitude);
+        //marker.setAnimation();
+        jumpPoint(marker);
     }
 }

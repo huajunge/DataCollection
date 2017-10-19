@@ -3,6 +3,7 @@ package com.example.tr.datacollection;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,6 +49,12 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
     private LinearLayout WorkPlace;
 
     private EditText editlimitSpeed;
+    private EditText chedaoWidth;
+    private EditText lujianWidth;
+    private EditText centerWidth;
+    private String workPlaceR = "no";
+    private LinearLayout layoutRouteBaseInfo;
+    private LinearLayout layoutControllerType;
     public EmInfo() {
         // Required empty public constructor
     }
@@ -62,7 +69,12 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
     }
 
     private void intiView(View view) {
-
+        //宽度
+        chedaoWidth = (EditText) view.findViewById(R.id.sp_chedaowidth);
+        lujianWidth = (EditText) view.findViewById(R.id.sp_lujianwidth);
+        centerWidth = (EditText) view.findViewById(R.id.sp_zhongjianwidth);
+        layoutRouteBaseInfo  = (LinearLayout) view.findViewById(R.id.lay_routeinfo) ;
+        layoutControllerType = (LinearLayout) view.findViewById(R.id.lay_jtkzlx);
         //工作区
         WorkPlace = (LinearLayout) view.findViewById(R.id.workplace);
         ckWorkPlace = (CheckBox) view.findViewById(R.id.checkbox_workplace);
@@ -71,8 +83,10 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if(b){
                     WorkPlace.setVisibility(LinearLayout.VISIBLE);
+                    workPlaceR = "yes";
                 }else{
                     WorkPlace.setVisibility(LinearLayout.GONE);
+                    workPlaceR = "no";
                 }
             }
         });
@@ -96,8 +110,35 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 
 //交叉口类型
         spJcktype= (Spinner) view.findViewById(R.id.sp_jcktype);
-        String[] strspJcktype={"非交叉口","十字交叉口","T形交叉口","Y形交叉口","L形交叉口","环形交叉口","环岛","五或更多条腿交叉口"};
+        String[] strspJcktype={"非交叉口","十字交叉口","T形交叉口","Y形交叉口","L形交叉口","环形交叉口","环岛","五或更多条交叉口","立交区域"};
         spJcktype.setAdapter(new MyAdapter(strspJcktype,view.getContext()).getAdaper());
+        Log.i("iteminfo","okkk");
+        spJcktype.setEnabled(true);
+//        spJcktype.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                Log.i("iteminfo","onItemClick");
+//            }
+//        });
+        spJcktype.setOnItemSelectedListener(this);
+        /*spJcktype.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i<8 && i >0) {
+                    layoutRouteBaseInfo.setVisibility(View.VISIBLE);
+                    layoutControllerType.setVisibility(View.GONE);
+                }else {
+                    layoutControllerType.setVisibility(View.VISIBLE);
+                    layoutRouteBaseInfo.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });*/
+
 
 //光照情况
         spLightcondition  =(Spinner)  view.findViewById(R.id.sp_lightcondition);
@@ -131,8 +172,8 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 
 //特殊位置
         spTsposition = (Spinner) view.findViewById(R.id.sp_tsposition);
-        String[] strspTsposition={"进/出口匝道","与进/出口匝道相关","铁路平交道","与弯道相关","接近连接道路","与连接道路相关",
-                "公用路径或小道","加速/减速车道","穿越道路","其他以上未列出但与交叉口相关区域","未知","收费站"};
+        String[] strspTsposition={"未知","进/出口匝道","与进/出口匝道相关","铁路平交道口","与立交相关","私有道路","与私有道路相关",
+                "公用路径或小道","加速/减速车道","直通道路","其他以上未列出但与交叉口相关区域","收费站"};
         spTsposition.setAdapter(new MyAdapter(strspTsposition,view.getContext()).getAdaper());
 
 //作业区类型        
@@ -212,12 +253,99 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 //        Log.i("shijians","adapterViewid:"+adapterView.getId());
 //        Log.i("shijians","R.id.shijian"+R.id.shijian);
         switch (adapterView.getId()){
+            case R.id.sp_jcktype:
+                if (i<8 && i >0) {
+                    layoutControllerType.setVisibility(View.VISIBLE);
+                    layoutRouteBaseInfo.setVisibility(View.GONE);
 
+                }else {
+                    layoutRouteBaseInfo.setVisibility(View.VISIBLE);
+                    layoutControllerType.setVisibility(View.GONE);
+                }
+                break;
         }
+        Log.i("shijians","in"+i);
+
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
 
     }
+
+    //获取数据
+
+   public String  Routeposition() {//路面位置
+        return spRouteposition.getSelectedItem().toString();
+   }
+   public String  pengzhuangleixing() {//碰撞类型
+        return "未知";
+   }
+   public String  liJiaoQuYu() {//立交区域
+        return spJck.getSelectedItem().toString();
+   }
+   public String  Jcktype() {//交叉口类型
+        return spJcktype.getSelectedItem().toString();
+   }
+   public String  Teshuposition() {//特殊位置
+        return spTsposition.getSelectedItem().toString();
+   }
+   public String  Tianqicondition() {//天气状况
+        return spTqcondition.getSelectedItem().toString();
+   }
+   public String  zhaomingcondition() {//照明状况
+        return spLightcondition.getSelectedItem().toString();
+   }
+   public String  luMianCondition() {//路面状况
+        return spRoutecondition.getSelectedItem().toString();
+   }
+   public String  luMianLev() {//路面等级
+        return spRouteLev.getSelectedItem().toString();
+   }
+
+   public String  limitSpeed() {//限速
+        return editlimitSpeed.getText().toString();
+   }
+   public String  chedaowidth() {//车道宽度
+        return chedaoWidth.getText().toString();
+   }
+
+   public String  luJianWidth() {//路肩宽度
+        return lujianWidth.getText().toString();
+   }
+
+    public String  bianYuanXianle() {//边缘线类型
+        return spbianyuanxianlx.getSelectedItem().toString();
+    }
+
+   public String  zhongyanwidht() {//中央带宽带
+        return centerWidth.getText().toString();
+   }
+   public String  zhongXinXian() {//中心线类型
+        return spzhongxinxianlx.getSelectedItem().toString();
+   }
+   public String  chedaoxianbj() {//车道线标记
+        return spchedaobiaoji.getSelectedItem().toString();
+   }
+   public String  jiaotongkzlx() {//交通控制类型
+        return spjiaotongkzlx.getSelectedItem().toString();
+   }
+   public String  zhuchedaoshu() {//主车道数
+        return spzhuchedaolx.getSelectedItem().toString();
+   }
+   public String  jiaochajiedaoshu() {//交叉街道数
+        return spjiaochakoucds.getSelectedItem().toString();
+   }
+   public String  WorkPlaceR() {//与工作区相关
+        return workPlaceR;
+   }
+   public String  Worktype() {//工作区类型
+        return spWorktype.getSelectedItem().toString();
+   }
+   public String  Havepeople() {//是否存在工人
+        return spHavepeople.getSelectedItem().toString();
+   }
+   public String  xianChangZhifa() {//现场执法
+        return spXczhifa.getSelectedItem().toString();
+   }
 }

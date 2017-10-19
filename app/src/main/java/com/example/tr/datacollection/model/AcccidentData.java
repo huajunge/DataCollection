@@ -10,7 +10,9 @@ import java.util.Date;
  */
 
 public class AcccidentData {
-    private Date riQI;//日期
+
+    private String accidencenumber;
+    private Date   riQI;//日期
     private String city;//城市
     private String xianQu;//县区
     private String shangQuan;//商圈
@@ -70,6 +72,81 @@ public class AcccidentData {
         this.youHaiWuZhi = youHaiWuZhi;
     }
 
+    public AcccidentData(String number,Date riQI, String city, String xianQu, String shangQuan, LatLng lnglat,
+                         String diMingBeiZhu, String shigu, String shiguType, String shigu2, String shiguType2,
+                         String yanZhongCd, String carnum, String driverNums, String feidriverNums, String ssNums,
+                         String dieNums, String gongjiao, String taoYi, boolean weixianche, String weixianbz,
+                         String fromWeixianbz, String youHaiWuZhi) {
+        this.accidencenumber = number;
+        this.riQI = riQI;
+        this.city = city;
+        this.xianQu = xianQu;
+        this.shangQuan = shangQuan;
+        this.lnglat = lnglat;
+        this.diMingBeiZhu = diMingBeiZhu;
+        this.shigu = shigu;
+        this.shiguType = shiguType;
+        this.shigu2 = shigu2;
+        this.shiguType2 = shiguType2;
+        this.yanZhongCd = yanZhongCd;
+        this.carnum = carnum;
+        this.driverNums = driverNums;
+        this.feidriverNums = feidriverNums;
+        this.ssNums = ssNums;
+        this.dieNums = dieNums;
+        this.gongjiao = gongjiao;
+        this.taoYi = taoYi;
+        if(weixianche){
+            Weixianche = "否";
+        }
+
+        Weixianbz = weixianbz;
+        this.fromWeixianbz = fromWeixianbz;
+        this.youHaiWuZhi = youHaiWuZhi;
+    }
+
+    public AcccidentData(String accidencenumber,Date riQI, String city, String xianQu, String shangQuan, String lnglat,
+                         String diMingBeiZhu, String shigu, String shiguType, String shigu2, String shiguType2,
+                         String yanZhongCd, String carnum, String driverNums, String feidriverNums, String ssNums,
+                         String dieNums, String gongjiao, String taoYi, String weixianche, String weixianbz,
+                         String fromWeixianbz, String youHaiWuZhi) {
+        this.accidencenumber = accidencenumber;
+        this.riQI = riQI;
+        this.city = city;
+        this.xianQu = xianQu;
+        this.shangQuan = shangQuan;
+        String[] latlngs = lnglat.split(",");
+        this.lnglat = new LatLng(Double.valueOf(latlngs[1]),Double.valueOf(latlngs[0]));
+
+        this.diMingBeiZhu = diMingBeiZhu;
+        this.shigu = shigu;
+        this.shiguType = shiguType;
+        this.shigu2 = shigu2;
+        this.shiguType2 = shiguType2;
+        this.yanZhongCd = yanZhongCd;
+        this.carnum = carnum;
+        this.driverNums = driverNums;
+        this.feidriverNums = feidriverNums;
+        this.ssNums = ssNums;
+        this.dieNums = dieNums;
+        this.gongjiao = gongjiao;
+        this.taoYi = taoYi;
+
+        this.Weixianche = weixianche;
+
+        Weixianbz = weixianbz;
+        this.fromWeixianbz = fromWeixianbz;
+        this.youHaiWuZhi = youHaiWuZhi;
+    }
+
+    public String getAccidencenumber() {
+        return accidencenumber;
+    }
+
+    public void setAccidencenumber(String accidencenumber) {
+        this.accidencenumber = accidencenumber;
+    }
+
     public Date getRiQI() {
         return riQI;
     }
@@ -106,6 +183,9 @@ public class AcccidentData {
         return lnglat;
     }
 
+    public String getLnglatstr() {
+        return lnglat.latitude+","+lnglat.longitude;
+    }
     public void setLnglat(LatLng lnglat) {
         this.lnglat = lnglat;
     }

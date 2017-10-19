@@ -6,7 +6,7 @@ package com.example.tr.datacollection.model;
  */
 
 public class EMdata {
-
+    private String emnumber;//编号
     private String Routeposition;//路面位置
     private String pengzhuangleixing;//碰撞类型
     private String liJiaoQuYu;//立交区域
@@ -65,6 +65,44 @@ public class EMdata {
         this.xianChangZhifa = xianChangZhifa;
     }
 
+    public String getEmnumber() {
+        return emnumber;
+    }
+
+    public void setEmnumber(String emnumber) {
+        this.emnumber = emnumber;
+    }
+
+    public EMdata(String emnumber, String routeposition, String pengzhuangleixing, String liJiaoQuYu, String jcktype,
+                  String teshuposition, String tianqicondition, String zhaomingcondition, String luMianCondition,
+                  String luMianLev, String limitSpeed, String chedaowidth, String luJianWidth, String bianYuanXianle,
+                  String zhongyanwidht, String zhongXinXian, String chedaoxianbj, String jiaotongkzlx, String zhuchedaoshu,
+                  String jiaochajiedaoshu, String workPlaceR, String worktype, String havepeople, String xianChangZhifa) {
+        this.emnumber = emnumber;
+        Routeposition = routeposition;
+        this.pengzhuangleixing = pengzhuangleixing;
+        this.liJiaoQuYu = liJiaoQuYu;
+        Jcktype = jcktype;
+        Teshuposition = teshuposition;
+        Tianqicondition = tianqicondition;
+        this.zhaomingcondition = zhaomingcondition;
+        this.luMianCondition = luMianCondition;
+        this.luMianLev = luMianLev;
+        this.limitSpeed = limitSpeed;
+        this.chedaowidth = chedaowidth;
+        this.luJianWidth = luJianWidth;
+        this.bianYuanXianle = bianYuanXianle;
+        this.zhongyanwidht = zhongyanwidht;
+        this.zhongXinXian = zhongXinXian;
+        this.chedaoxianbj = chedaoxianbj;
+        this.jiaotongkzlx = jiaotongkzlx;
+        this.zhuchedaoshu = zhuchedaoshu;
+        this.jiaochajiedaoshu = jiaochajiedaoshu;
+        WorkPlaceR = workPlaceR;
+        Worktype = worktype;
+        Havepeople = havepeople;
+        this.xianChangZhifa = xianChangZhifa;
+    }
     public String getRouteposition() {
         return Routeposition;
     }
@@ -247,5 +285,34 @@ public class EMdata {
 
     public void setXianChangZhifa(String xianChangZhifa) {
         this.xianChangZhifa = xianChangZhifa;
+    }
+
+    @Override
+    public String toString() {
+        return "EMdata{" +
+                "Routeposition='" + Routeposition + '\'' +
+                ", pengzhuangleixing='" + pengzhuangleixing + '\'' +
+                ", liJiaoQuYu='" + liJiaoQuYu + '\'' +
+                ", Jcktype='" + Jcktype + '\'' +
+                ", Teshuposition='" + Teshuposition + '\'' +
+                ", Tianqicondition='" + Tianqicondition + '\'' +
+                ", zhaomingcondition='" + zhaomingcondition + '\'' +
+                ", luMianCondition='" + luMianCondition + '\'' +
+                ", luMianLev='" + luMianLev + '\'' +
+                ", limitSpeed='" + limitSpeed + '\'' +
+                ", chedaowidth='" + chedaowidth + '\'' +
+                ", luJianWidth='" + luJianWidth + '\'' +
+                ", bianYuanXianle='" + bianYuanXianle + '\'' +
+                ", zhongyanwidht='" + zhongyanwidht + '\'' +
+                ", zhongXinXian='" + zhongXinXian + '\'' +
+                ", chedaoxianbj='" + chedaoxianbj + '\'' +
+                ", jiaotongkzlx='" + jiaotongkzlx + '\'' +
+                ", zhuchedaoshu='" + zhuchedaoshu + '\'' +
+                ", jiaochajiedaoshu='" + jiaochajiedaoshu + '\'' +
+                ", WorkPlaceR='" + WorkPlaceR + '\'' +
+                ", Worktype='" + Worktype + '\'' +
+                ", Havepeople='" + Havepeople + '\'' +
+                ", xianChangZhifa='" + xianChangZhifa + '\'' +
+                '}';
     }
 }

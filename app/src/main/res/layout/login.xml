@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="欢迎使用交警巡检系统"
+            android:text="泸州市交通事故数据采集系统"
             android:layout_marginTop="15dp"
             android:textSize="25dp"/>
 

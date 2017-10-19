@@ -46,6 +46,7 @@ public class Analysis extends AppCompatActivity implements AMapLocationListener,
         DBO dbo = new DBO(this);
 
         SimpleDataTests = dbo.getsimpleDataTest();
+
         initMarker();
         mapLocationClient = new AMapLocationClient(Analysis.this);
         mapLocationClientOption = new AMapLocationClientOption();
@@ -59,7 +60,7 @@ public class Analysis extends AppCompatActivity implements AMapLocationListener,
         mapLocationClient.setLocationOption(mapLocationClientOption);
         //启动定位
         mapLocationClient.startLocation();
-       aMap.setOnMapClickListener(this);
+        aMap.setOnMapClickListener(this);
         aMap.setOnMarkerClickListener(this);
     }
 

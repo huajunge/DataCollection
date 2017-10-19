@@ -41,7 +41,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="自然环境状况"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"/>
 
                 <ImageView
@@ -148,7 +148,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="道路位置"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"/>
 
                 <ImageView
@@ -163,21 +163,7 @@
 
         <LinearLayout style="@style/layoutstyle">
             <!--发生位置-->
-            <LinearLayout style="@style/layoutstyle2"
-                android:layout_weight="1"
-                >
 
-                <TextView
-                    style="@style/textstyle"
-                    android:text="事故发生路面位置:" />
-
-                <Spinner
-                    android:layout_weight="1"
-                    android:id="@+id/sp_chedaoposition"
-                    style="@style/stylespanner">
-
-                </Spinner>
-            </LinearLayout>
 
             <LinearLayout
                 style="@style/layoutstyle2"
@@ -200,6 +186,7 @@
             <!--车辆间事故-->
             <LinearLayout style="@style/layoutstyle2"
                 android:layout_weight="1"
+                android:visibility="gone"
                 >
 
                 <TextView
@@ -245,7 +232,12 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
-
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/lay_routeinfo"
+    >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -281,7 +273,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="道路基本信息"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"/>
 
                 <ImageView
@@ -293,10 +285,26 @@
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+    <LinearLayout style="@style/layoutstyle">
+        <LinearLayout style="@style/layoutstyle2"
+            android:layout_weight="1"
+            >
 
+            <TextView
+                style="@style/textstyle"
+                android:text="事故发生路面位置:" />
 
+            <Spinner
+                android:layout_weight="1"
+                android:id="@+id/sp_chedaoposition"
+                style="@style/stylespanner">
+
+            </Spinner>
+        </LinearLayout>
+        </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
             <!--发生位置-->
+
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
@@ -364,6 +372,7 @@
 
                 <EditText
                     android:id="@+id/sp_lujianwidth"
+                    android:hint="0.5"
                     style="@style/myeditstyle" />
             </LinearLayout>
 
@@ -377,11 +386,19 @@
                 <EditText
                     android:layout_width="90dp"
                     android:id="@+id/sp_zhongjianwidth"
+                    android:hint="0"
                     style="@style/myeditstyle" />
             </LinearLayout>
 
         </LinearLayout>
-
+</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/lay_jtkzlx"
+        android:visibility="gone"
+        >
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -417,7 +434,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="交通控制信息"
-                    android:textSize="15dp"
+                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"/>
 
                 <ImageView
@@ -502,7 +519,7 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
-
+</LinearLayout>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="2dp"

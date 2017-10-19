@@ -22,7 +22,6 @@
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.GET_TASKS" />
-
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
@@ -46,15 +45,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".MarkerPosition" />
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait"
-            />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".Peopelnfo1" />
         <activity android:name=".PeopelInfo2" />
         <activity android:name=".PeopelInfo3" />
         <activity android:name=".aboutCar.CarBrandActivity" />
-        <activity android:name=".Analysis"></activity>
-        <activity android:name=".HistoryFuelConsumptionActivity"></activity>
+        <activity android:name=".Analysis" />
+        <activity android:name=".HistoryFuelConsumptionActivity" />
+        <activity android:name=".UploadData"></activity>
     </application>
 
 </manifest>
