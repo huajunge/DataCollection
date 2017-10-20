@@ -89,7 +89,8 @@
 
                     <EditText
                         android:id="@+id/sp_name"
-                        style="@style/myeditstyle">
+                        style="@style/myeditstyle"
+                        >
 
                     </EditText>
                 </LinearLayout>
@@ -159,7 +160,9 @@
                 <EditText
                     android:id="@+id/jiazhao"
                     style="@style/myeditstyle"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:layout_marginRight="18dp"
+                    />
 
             </LinearLayout>
 
@@ -182,6 +185,21 @@
 
                     <TextView
                         style="@style/textstyle"
+                        android:text="管辖区:" />
+
+                    <Spinner
+                        android:id="@+id/sp_guanxiaqu"
+                        style="@style/stylespanner"
+                        android:layout_width="110dp">
+
+                    </Spinner>
+                </LinearLayout>
+                <LinearLayout style="@style/layoutstyle2"
+                    android:visibility="gone"
+                    >
+
+                    <TextView
+                        style="@style/textstyle"
                         android:text="商业驾照:" />
 
                     <Spinner
@@ -193,7 +211,9 @@
                </LinearLayout>
 
                 <LinearLayout style="@style/layoutstyle">
-                <LinearLayout style="@style/layoutstyle2">
+                <LinearLayout style="@style/layoutstyle2"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         style="@style/textstyle"
@@ -206,19 +226,7 @@
                     </Spinner>
                 </LinearLayout>
 
-                <LinearLayout style="@style/layoutstyle2">
 
-                    <TextView
-                        style="@style/textstyle"
-                        android:text="管辖区:" />
-
-                    <Spinner
-                        android:id="@+id/sp_guanxiaqu"
-                        style="@style/stylespanner"
-                        android:layout_width="110dp">
-
-                    </Spinner>
-                </LinearLayout>
             </LinearLayout>
 
 
@@ -317,8 +325,8 @@
                         android:text="手机号码:" />
 
                     <EditText
+                        android:layout_marginRight="18dp"
                         android:id="@+id/phonenum"
-                        android:layout_width="220dp"
                         style="@style/myeditstyle"/>
                 </LinearLayout>
             </LinearLayout>
@@ -334,7 +342,7 @@
                     <Spinner
                         android:id="@+id/sp_cheliangxunhao"
                         style="@style/stylespanner"
-
+                        android:layout_width="135dp"
                        >
 
                     </Spinner>
@@ -356,7 +364,9 @@
                     </Spinner>
                 </LinearLayout>
 
-                <LinearLayout style="@style/layoutstyle2">
+                <LinearLayout style="@style/layoutstyle2"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         style="@style/textstyle"
@@ -368,11 +378,26 @@
 
                     </Spinner>
                 </LinearLayout>
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="安全气囊状态:" />
+
+                    <Spinner
+                        android:id="@+id/sp_aqqnzt"
+                        style="@style/stylespanner"
+                        >
+
+                    </Spinner>
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle">
 
-                <LinearLayout style="@style/layoutstyle2">
+                <LinearLayout style="@style/layoutstyle2"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         style="@style/textstyle"
@@ -386,19 +411,7 @@
                     </Spinner>
                 </LinearLayout>
 
-                <LinearLayout style="@style/layoutstyle2">
 
-                    <TextView
-                        style="@style/textstyle"
-                        android:text="安全气囊状态:" />
-
-                    <Spinner
-                        android:id="@+id/sp_aqqnzt"
-                        style="@style/stylespanner"
-                       >
-
-                    </Spinner>
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle">
@@ -422,7 +435,7 @@
                     <TextView
 
                         style="@style/textstyle"
-                        android:text="超速询问:" />
+                        android:text="超速情况:" />
 
                     <Spinner
                         android:id="@+id/sp_chaosuxunwen"
@@ -451,9 +464,12 @@
 
             <LinearLayout
                 style="@style/layoutstyle"
+                android:visibility="gone"
                 android:layout_marginBottom="0dp">
 
-                <LinearLayout style="@style/layoutstyle2">
+                <LinearLayout style="@style/layoutstyle2"
+
+                    >
 
                     <TextView
                         style="@style/textstyle"
@@ -521,7 +537,7 @@
 
                     <TextView
                         style="@style/textstyle"
-                        android:text="交通违法状态:" />
+                        android:text="违法行为:" />
 
                     <Spinner
                         android:id="@+id/sp_jtwfxingwei"
@@ -631,7 +647,7 @@
 
                     <TextView
                         style="@style/textstyle"
-                        android:text="怀疑饮酒:" />
+                        android:text="是否酒驾:" />
 
                     <Spinner
                         android:id="@+id/sp_yinjiu"
@@ -646,7 +662,9 @@
                 android:id="@+id/jiujingces"
                 style="@style/layoutstyle">
 
-                <LinearLayout style="@style/layoutstyle2">
+                <LinearLayout style="@style/layoutstyle2"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         style="@style/textstyle"
@@ -691,7 +709,7 @@
                 <TextView
                     style="@style/textstyle"
 
-                    android:text="毒品测试" />
+                    android:text="是否毒驾:" />
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle">
@@ -710,7 +728,9 @@
                     </Spinner>
                 </LinearLayout>
 
-                <LinearLayout style="@style/layoutstyle2">
+                <LinearLayout style="@style/layoutstyle2"
+                    android:visibility="gone"
+                    >
 
                     <TextView
                         style="@style/textstyle"

@@ -309,7 +309,7 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
 
     }
     public void analysis(View view){
-        Intent intent = new Intent(MarkerPosition.this,HistoryFuelConsumptionActivity.class);
+        Intent intent = new Intent(MarkerPosition.this,UploadData.class);
         startActivity(intent);
     }
 

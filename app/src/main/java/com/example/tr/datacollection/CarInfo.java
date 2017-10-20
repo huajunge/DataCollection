@@ -173,29 +173,29 @@ public class CarInfo extends Fragment implements View.OnClickListener{
         
 //特殊作用
          sptszuoyong=(Spinner) view.findViewById(R.id.sp_teshuzy);//特殊作用
-        String[] strsptszuoyong={"无特殊作用","出租车","作为学校车辆使用","像其余公交一样使用","军用","警用","救护","消防车辆","非营运紧急救险车辆","应急响应车辆","未知"};
+        String[] strsptszuoyong={"无","出租车","校车","公交","军用","警用","救护","消防车辆","其它"};
         sptszuoyong.setAdapter(new MyAdapter(strsptszuoyong,view.getContext()).getAdaper());
  //紧急作用       
 
 
 //行驶方向
          spXsfangxing=(Spinner) view.findViewById(R.id.sp_xsfangxiang);//行驶方向
-        String[] strspXsfangxing = {"向北","向南","向东","向西","不在道路上","未知"};
+        String[] strspXsfangxing = {"向北","向南","向东","向西","未知"};
         spXsfangxing.setAdapter(new MyAdapter(strspXsfangxing,view.getContext()).getAdaper());
 
 //操作行为
          spXingwei=(Spinner) view.findViewById(R.id.sp_caozuo);//行驶方向
-        String[] strspXingwei = {"几乎直行","连续转弯","超重/超车","右转","左转","掉头","驶离车道","进入车道","减速","停止的","运行时停车","其他","未知"};
+        String[] strspXingwei = {"直行","变道","超车","右转","左转","掉头","减速","加速","其它"};
         spXingwei.setAdapter(new MyAdapter(strspXingwei,view.getContext()).getAdaper());
  
 //接触点        
          spJiechudian=(Spinner) view.findViewById(R.id.sp_jiechudian);//接触点
-        String[] strspJiechudian = {"无碰撞","十二点时钟","车顶","车底","货物丢失","未知"};
+        String[] strspJiechudian = {"无碰撞","左前角","前端左侧","前端右侧","右前角","右侧前部","右侧后部","右后角","后端右侧","后端左侧","左后角","左侧后部","左侧前部","车底","车顶"};
         spJiechudian.setAdapter(new MyAdapter(strspJiechudian,view.getContext()).getAdaper());
         
 //损坏部位        
          spshbuwei=(Spinner) view.findViewById(R.id.sp_shbuwei);//损坏部位
-        String[] strspshbuwei = {"未知","十二点时钟图（附录1）","车顶","车底","所有区域","无损坏"};
+        String[] strspshbuwei = {"无","左前角","前端左侧","前端右侧","右前角","右侧前部","右侧后部","右后角","后端右侧","后端左侧","左后角","左侧后部","左侧前部","车底","车顶"};
         spshbuwei.setAdapter(new MyAdapter(strspshbuwei,view.getContext()).getAdaper());
         
 //损坏程度        

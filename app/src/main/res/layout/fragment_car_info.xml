@@ -67,23 +67,6 @@
                 android:layout_marginBottom="5dp"
                 android:text="当前车辆序号:1"
                 android:textColor="@color/lightgray" />
-
-            <LinearLayout style="@style/layoutstyle">
-
-                <LinearLayout style="@style/layoutstyle2">
-
-                    <TextView
-                        style="@style/textstyle"
-                        android:text="车牌号:" />
-
-                    <EditText
-                        android:id="@+id/chepaihao"
-                        style="@style/myeditstyle" />
-                </LinearLayout>
-
-
-            </LinearLayout>
-
             <LinearLayout style="@style/layoutstyle">
 
                 <LinearLayout style="@style/layoutstyle2">
@@ -100,6 +83,23 @@
 
 
             </LinearLayout>
+            <LinearLayout style="@style/layoutstyle">
+
+                <LinearLayout style="@style/layoutstyle2">
+
+                    <TextView
+                        style="@style/textstyle"
+                        android:text="车牌:" />
+
+                    <EditText
+                        android:id="@+id/chepaihao"
+                        style="@style/myeditstyle" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
 
             <LinearLayout style="@style/layoutstyle">
 
@@ -175,7 +175,7 @@
 
                     <TextView
                         style="@style/textstyle"
-                        android:text="车辆类型:" />
+                        android:text="类型:" />
 
                     <Spinner
                         android:id="@+id/sp_leixing"
@@ -524,6 +524,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/white"
+            android:textSize="20sp"
             android:drawableRight="@drawable/icon_addcar"
             android:onClick="addNewCar"
             android:text="添加下一辆涉及车" />

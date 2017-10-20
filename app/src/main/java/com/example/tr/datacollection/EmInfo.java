@@ -110,7 +110,7 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 
 //交叉口类型
         spJcktype= (Spinner) view.findViewById(R.id.sp_jcktype);
-        String[] strspJcktype={"非交叉口","十字交叉口","T形交叉口","Y形交叉口","L形交叉口","环形交叉口","环岛","五或更多条交叉口","立交区域"};
+        String[] strspJcktype={"非交叉口","十字","T形","Y形","环岛","多路交叉口","立交","其它"};
         spJcktype.setAdapter(new MyAdapter(strspJcktype,view.getContext()).getAdaper());
         Log.i("iteminfo","okkk");
         spJcktype.setEnabled(true);
@@ -142,7 +142,7 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 
 //光照情况
         spLightcondition  =(Spinner)  view.findViewById(R.id.sp_lightcondition);
-        String[] strspLightcondition={"白天","凌晨","夜晚","黄昏","夜间无路灯照明","夜间光线状况不明","其他	未知"};
+        String[] strspLightcondition={"白天","无路灯夜晚","有路灯夜晚","凌晨","黄昏","其它"};
         spLightcondition.setAdapter(new MyAdapter(strspLightcondition,view.getContext()).getAdaper());
 //是否发生在建设区
         spOnbulid = (Spinner) (Spinner) view.findViewById(R.id.sp_onbulid);
@@ -151,15 +151,15 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 //致因条件，环境
 //道路等级
         spRouteLev = (Spinner) view.findViewById(R.id.sp_routelev);
-        String[] strspRouteLev={	"01 高速公路","02 快速路","03 主干道","04 次干道","05 支路"};
-        spRouteLev.setAdapter(new MyAdapter2(strspRouteLev,view.getContext()).getAdaper());
+        String[] strspRouteLev={	"主干道","快速路","次干道","支路","高速公路","国道","省道","县道","乡村公路"};
+        spRouteLev.setAdapter(new MyAdapter(strspRouteLev,view.getContext()).getAdaper());
 //道路状况
         spRoutecondition =(Spinner)  view.findViewById(R.id.sp_routecondition);
-        String[] strspRoutecondition={	"干燥","潮湿","积雪","泥泞","	积冰/霜	积水（固定，流动）","砂石	泥、灰尘、沙砾	油","其他","未知"};
+        String[] strspRoutecondition={	"干燥","潮湿","积雪","泥泞","结冰","积水","砂石","破损","其它"};
         spRoutecondition.setAdapter(new MyAdapter(strspRoutecondition,view.getContext()).getAdaper());
 //车道位置
         spRouteposition = (Spinner) view.findViewById(R.id.sp_chedaoposition);
-        String[] strspRouteposition={"在路中","在路肩","路中心线","在路旁","三角区","隔离带	","停车道路或区域","非道路中，未知位置","道路（公共行车道）","未知"};
+        String[] strspRouteposition={"路内","路肩","路外","中央隔离带","机非隔离带","未知"};
         spRouteposition.setAdapter(new MyAdapter(strspRouteposition,view.getContext()).getAdaper());
 
 //道路限速
@@ -167,43 +167,42 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 
 //天气状况
         spTqcondition = (Spinner) view.findViewById(R.id.sp_tqcondition);
-        String[] strspTqcondition={"晴朗","多云","雾，烟，烟雾","雨","雨夹雪或冰雹","冻雨或冻雾雨","雪","飘雪","严重侧风","沙尘","其他","未知"};
+        String[] strspTqcondition={"晴天","阴天","雨","雾","雪","冰雹","台风","其它"};
         spTqcondition.setAdapter(new MyAdapter(strspTqcondition,view.getContext()).getAdaper());
 
 //特殊位置
         spTsposition = (Spinner) view.findViewById(R.id.sp_tsposition);
-        String[] strspTsposition={"未知","进/出口匝道","与进/出口匝道相关","铁路平交道口","与立交相关","私有道路","与私有道路相关",
-                "公用路径或小道","加速/减速车道","直通道路","其他以上未列出但与交叉口相关区域","收费站"};
+        String[] strspTsposition={"非特殊位置","匝道","铁路平交道口","收费站","其它"};
         spTsposition.setAdapter(new MyAdapter(strspTsposition,view.getContext()).getAdaper());
 
 //作业区类型        
         spWorktype =(Spinner)  view.findViewById(R.id.sp_worktype);
-        String[] strspWorktype={"车道关闭","车道变换","工作于路肩或中央带","间歇或移动作业","其他"};
+        String[] strspWorktype={"单向车道关闭","单向车道压缩"};
         spWorktype.setAdapter(new MyAdapter(strspWorktype,view.getContext()).getAdaper());
         
 // 现场执法  
         spXczhifa = (Spinner) view.findViewById(R.id.sp_xczhifa);
-        String[] strspXczhifa={"无","仅有执法人员","仅有执法车辆"};
+        String[] strspXczhifa={"无","有"};
         spXczhifa.setAdapter(new MyAdapter(strspXczhifa,view.getContext()).getAdaper());
 
          spbianyuanxianlx = (Spinner)view.findViewById(R.id.sp_bianyuanxian)  ;
-        String[] strspbianyuanxianlx = {"无标记边缘线","标准宽度边缘线","较宽的边缘线","其他"};
+        String[] strspbianyuanxianlx = {"有","无"};
         spbianyuanxianlx.setAdapter(new MyAdapter(strspbianyuanxianlx,view.getContext()).getAdaper());
 
          spzhongxinxianlx = (Spinner)view.findViewById(R.id.sp_zhongxinxian)  ;
-        String[] strspzhongxinxianlx = {"无标记中心线","标准中心线标记","有振动减速带的中心线"};
+        String[] strspzhongxinxianlx = {"双实","双虚","一实一虚","单实","单虚","无"};
         spzhongxinxianlx.setAdapter(new MyAdapter(strspzhongxinxianlx,view.getContext()).getAdaper());
 
         spchedaobiaoji = (Spinner)view.findViewById(R.id.sp_chedaoxianbj)  ;
-        String[] strspchedaobiaoji = {"无车道线","标准车道线","较宽的车道线"};
+        String[] strspchedaobiaoji = {"无","有"};
         spchedaobiaoji.setAdapter(new MyAdapter(strspchedaobiaoji,view.getContext()).getAdaper());
 
          spjiaotongkzlx = (Spinner)view.findViewById(R.id.sp_jiaotongkzlx)  ;
-        String[] strspjiaotongkzlx = {"无控制","交叉口内停车标志","全向停车标志","全向闪灯（交叉路红灯）","全向闪灯（主要道路黄灯，次要道路红灯）","交叉口内让行标志","定时信号灯（两相位）","定时信号灯（多相位）","半感应信号灯（两相位）","半感应信号灯（多相位）","全感应信号灯（两相位）","全感应信号灯（多相位） ","其他","未知"};
+        String[] strspjiaotongkzlx = {"无控制","停车让行控制","减速让行控制","信号控制"};
         spjiaotongkzlx .setAdapter(new MyAdapter(strspjiaotongkzlx,view.getContext()).getAdaper());
 
          spzhuchedaolx = (Spinner)view.findViewById(R.id.sp_zhuxiancds)  ;
-        String[] strspzhuchedaolx = {"单车道","双车道","三车道","四到六车道","七或更多车道","未知"};
+        String[] strspzhuchedaolx = {"单车道","双车道","三车道","四到六车道","七或更多车道"};
         spzhuchedaolx.setAdapter(new MyAdapter(strspzhuchedaolx,view.getContext()).getAdaper());
 
          spjiaochakoucds = (Spinner) view.findViewById(R.id.sp_jiaochajds);
@@ -254,7 +253,7 @@ public class EmInfo extends Fragment implements View.OnClickListener, AdapterVie
 //        Log.i("shijians","R.id.shijian"+R.id.shijian);
         switch (adapterView.getId()){
             case R.id.sp_jcktype:
-                if (i<8 && i >0) {
+                if (i >0) {
                     layoutControllerType.setVisibility(View.VISIBLE);
                     layoutRouteBaseInfo.setVisibility(View.GONE);
 

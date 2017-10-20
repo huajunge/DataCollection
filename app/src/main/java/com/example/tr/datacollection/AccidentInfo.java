@@ -157,10 +157,9 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
     private Spinner spCaraccident2;
 
     private LinearLayout DANGER;
-    String[] strspShiguType_feipz={"翻车","火灾/爆炸","淹没，全部或部分","弯折现象","货物/设备损失或转移","从车辆掉落/跳下	物体丢掷或掉落","其他非碰撞事故"};
-    String[] strspShiguType_feigudingc={"行人","自行车","其他非机动车","轨道车辆","动物","运动机动车","静止机动车","车辆坠落物","施工/维护设备","其他非固定物"};
-    String[] strspShiguType_guding={"碰撞衰减器/防撞墩	桥架结构","桥墩或桥梁支撑结构","桥梁栏杆","缆索护栏","涵洞","路缘","沟渠","路堤","护栏表面",
-            "护栏尾部	混凝土交通障碍物","其他交通障碍物","树木（直立的）","电线杆/电灯支撑结构","交通标志支撑结构","交通信号灯支撑结构	护栏","邮箱	其他邮件、灯具支撑结构	其他固定物（墙体、建筑物、隧道等）","未知	"};
+    String[] strspShiguType_feipz={"翻车","坠落","火灾","爆炸","淹没","其它非碰撞"};
+    String[] strspShiguType_feigudingc={"机动车","行人","摩托车","电动车","自行车","动物","其它非固定物"};
+    String[] strspShiguType_guding={"防撞墩/桶","护栏","桥梁栏杆","路缘石","隔离墩","信号灯杆","路灯杆","标志牌柱","树木","其它固定物"};
     private String[] xingqi={"一","二","三","四","五","六","七"};
     private Calendar cal;
     private int year;
@@ -349,7 +348,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spshiguType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               if(spshigu.getSelectedItemPosition()==1 && (i==5||i==6)){
+               if(spshigu.getSelectedItemPosition()==1 && (i==0)){
                   //  LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.pzlx);
                     PZLX.setVisibility(LinearLayout.VISIBLE);
                }else {
@@ -364,8 +363,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         });
 
         spCaraccident =(Spinner) view.findViewById(R.id.sp_caraccident);
-        String[] strspCaraccident={	"追尾碰撞","正面碰撞","侧面碰撞（同向）","侧面碰撞（对向）","侧面","碰撞（直角）","侧面碰撞（角度不确定）",
-                "同向刮擦","对向刮擦","其他角度碰撞"};
+        String[] strspCaraccident={	"追尾碰撞","正面碰撞","侧面碰撞","直角碰撞","刮擦","其它"};
         spCaraccident.setAdapter(new MyAdapter(strspCaraccident,view.getContext()).getAdaper());
 
         spCaraccident2 =(Spinner) view.findViewById(R.id.sp_caraccident2);
@@ -378,7 +376,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spshiguType2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(spshigu2.getSelectedItemPosition()==1 && (i==5||i==6)){
+                if(spshigu2.getSelectedItemPosition()==1 && (i==0)){
                     //  LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.pzlx);
                     PZLX2.setVisibility(LinearLayout.VISIBLE);
                 }else {
@@ -421,14 +419,14 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         });
 //事故严重程度
         spyanzhongcd = (Spinner) view.findViewById(R.id.sp_shiguchengdu);
-        String[] strspyanzhongcd = { "仅财产损失（O）", "可能受伤（C）", "疑似轻微受伤（B）", "疑似严重受伤（A）","致命伤（K）","未知"};
+        String[] strspyanzhongcd = { "仅财损","轻伤","重伤","死亡","未知"};
         spyanzhongcd.setAdapter(new MyAdapter(strspyanzhongcd, view.getContext()).getAdaper());
 
 //事故二级分类
 
 
         spgongjiao = (Spinner) view.findViewById(R.id.sp_busshuxing);
-        String[] strspgongjiao = {"非公交","学校用途","公交/通勤","城际","租赁/旅游","穿梭巴士"};
+        String[] strspgongjiao = {"无","出租车","校车","公交","军用","警用","救护","消防车辆","其它"};
         spgongjiao.setAdapter(new MyAdapter(strspgongjiao, view.getContext()).getAdaper());
 
 //事故严重程度
@@ -441,7 +439,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spzhaoshity.setAdapter(new MyAdapter2(strspzhaoshity, view.getContext()).getAdaper());
 //危险标识
         spfromweixianbz = (Spinner) view.findViewById(R.id.sp_weixianbiaozhi);
-        String[] strspfromweixianbz = {"","01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
+        String[] strspfromweixianbz = {"无危险有害物识别码","01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
         spfromweixianbz.setAdapter(new MyAdapter2(strspfromweixianbz, view.getContext()).getAdaper());
 
         spweixian = (Spinner) view.findViewById(R.id.sp_dangers);

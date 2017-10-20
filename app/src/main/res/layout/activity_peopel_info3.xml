@@ -8,8 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,8 +31,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -40,12 +39,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="基本信息"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -172,11 +169,12 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
-            android:background="@color/bgofdefault"
-            />
+            android:background="@color/bgofdefault" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -198,8 +196,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -207,12 +204,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="详细信息"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -235,7 +230,8 @@
                 <EditText
                     android:id="@+id/phonenum"
                     style="@style/myeditstyle"
-                    android:layout_width="240dp" />
+                    android:layout_width="240dp"
+                    android:layout_marginRight="19dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -255,9 +251,9 @@
                     android:layout_height="wrap_content" />
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2"
-
-                >
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/textstyle"
@@ -278,7 +274,7 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="事故发生时人员行为:" />
+                    android:text="违法行为:" />
 
                 <Spinner
                     android:id="@+id/sp_sgfssxingwei"
@@ -338,7 +334,7 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="安全设备使用状态:" />
+                    android:text="安全设备:" />
 
                 <Spinner
                     android:id="@+id/sp_aqsbsyzhuangtai"
@@ -368,7 +364,7 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="事故发生时的位置:" />
+                    android:text="人员位置:" />
 
                 <Spinner
                     android:id="@+id/sgfssposition"
@@ -385,7 +381,7 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="第一辆肇事车序号:" />
+                    android:text="肇事车序号:" />
 
                 <Spinner
                     android:id="@+id/zsjdcxunhao"
@@ -394,11 +390,13 @@
 
                 </Spinner>
             </LinearLayout>
-        </LinearLayout>     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/bgofdefault"
-        />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@color/bgofdefault" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -420,8 +418,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -429,12 +426,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="相关测试"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -442,13 +437,14 @@
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="怀疑饮酒:" />
+                    android:text="是否酒驾:" />
 
                 <Spinner
                     android:id="@+id/sp_yinjiu"
@@ -463,7 +459,9 @@
             android:id="@+id/jiujingces"
             style="@style/layoutstyle">
 
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/textstyle"
@@ -505,10 +503,20 @@
 
         <LinearLayout style="@style/layoutstyle">
 
-            <TextView
-                style="@style/textstyle"
+            <LinearLayout style="@style/layoutstyle2">
 
-                android:text="毒品测试" />
+                <TextView
+                    style="@style/textstyle"
+                    android:text="是否毒驾:" />
+
+                <Spinner
+                    android:id="@+id/sp_dujia"
+                    style="@style/stylespanner"
+                    android:layout_width="130dp"
+                    android:visibility="gone">
+
+                </Spinner>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
@@ -527,7 +535,9 @@
                 </Spinner>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:visibility="gone">
 
                 <TextView
                     style="@style/textstyle"

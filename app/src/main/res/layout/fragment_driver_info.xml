@@ -11,26 +11,7 @@
         android:orientation="vertical"
 
         >
-    <LinearLayout style="@style/layoutstyle"
-        android:padding="10dp"
-        >
-        <Button
-            android:visibility="gone"
-            android:id="@+id/add"
-            android:onClick="addPeopel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="新增人员"
-            android:drawablePadding="5dp"
-            android:drawableLeft="@drawable/icon_add"
-            />
-        <TextView
-            android:id="@+id/peopeladded"
-            style="@style/textstyle"
-            android:layout_marginLeft="5dp"
-            android:text="已添加人员:0 "
-            />
-    </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,6 +54,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
+        </LinearLayout>
+        <LinearLayout style="@style/layoutstyle"
+            android:padding="10dp"
+            >
+            <Button
+                android:visibility="gone"
+                android:id="@+id/add"
+                android:onClick="addPeopel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="新增人员"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/icon_add"
+                />
+            <TextView
+                android:id="@+id/peopeladded"
+                style="@style/textstyle"
+                android:layout_marginLeft="5dp"
+                android:text="已添加人员:0 "
+                />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"

@@ -596,6 +596,7 @@
 
             <LinearLayout style="@style/layoutstyle2"
                 android:layout_weight="1"
+                android:visibility="visible"
                 >
 
                 <TextView
@@ -613,7 +614,6 @@
             <LinearLayout style="@style/layoutstyle2"
                 android:layout_weight="1"
                 >
-
                 <TextView
                     style="@style/textstyle"
                     android:text="肇事逃逸:" />

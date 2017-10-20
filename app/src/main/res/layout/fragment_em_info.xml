@@ -40,7 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
-                    android:text="自然环境状况"
+                    android:text="路面信息"
                     android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"/>
 
@@ -111,8 +111,27 @@
 
                 </Spinner>
             </LinearLayout>
-        </LinearLayout>
 
+        </LinearLayout>
+        <LinearLayout
+           style="@style/layoutstyle">
+            <LinearLayout style="@style/layoutstyle2"
+                android:layout_weight="1"
+                >
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="事故发生路面位置:" />
+
+                <Spinner
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:id="@+id/sp_chedaoposition"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="10dp"
@@ -180,7 +199,21 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
-        ``
+        <LinearLayout
+            style="@style/layoutstyle">
+            <LinearLayout style="@style/layoutstyle2">
+
+                <TextView
+                    style="@style/textstyle"
+                    android:text="特 殊 位 置 :" />
+
+                <Spinner
+                    android:id="@+id/sp_tsposition"
+                    style="@style/stylespanner">
+
+                </Spinner>
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
             <!--车辆间事故-->
@@ -217,21 +250,7 @@
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
-        <LinearLayout
-            style="@style/layoutstyle">
-            <LinearLayout style="@style/layoutstyle2">
 
-                <TextView
-                    style="@style/textstyle"
-                    android:text="特殊位置:" />
-
-                <Spinner
-                    android:id="@+id/sp_tsposition"
-                    style="@style/stylespanner">
-
-                </Spinner>
-            </LinearLayout>
-        </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -286,21 +305,7 @@
                 android:background="@color/darkGrey" />
         </LinearLayout>
     <LinearLayout style="@style/layoutstyle">
-        <LinearLayout style="@style/layoutstyle2"
-            android:layout_weight="1"
-            >
 
-            <TextView
-                style="@style/textstyle"
-                android:text="事故发生路面位置:" />
-
-            <Spinner
-                android:layout_weight="1"
-                android:id="@+id/sp_chedaoposition"
-                style="@style/stylespanner">
-
-            </Spinner>
-        </LinearLayout>
         </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
             <!--发生位置-->
@@ -317,22 +322,51 @@
 
                 </Spinner>
             </LinearLayout>
-
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="边缘线类型:" />
+                    android:text="行车道线:" />
 
                 <Spinner
-                    android:id="@+id/sp_bianyuanxian"
-                    style="@style/stylespanner">
-
-                </Spinner>
+                    android:id="@+id/sp_chedaoxianbj"
+                    style="@style/stylespanner" />
             </LinearLayout>
 
+
+        </LinearLayout>
+    <LinearLayout style="@style/layoutstyle">
+        <!--发生位置-->
+
+        <LinearLayout style="@style/layoutstyle2">
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/textstyle"
+                android:text="中心标线:" />
+
+            <Spinner
+                android:id="@+id/sp_zhongxinxian"
+                style="@style/stylespanner"
+                android:layout_width="80dp">
+
+            </Spinner>
         </LinearLayout>
 
+        <LinearLayout style="@style/layoutstyle2">
+
+            <TextView
+                style="@style/textstyle"
+                android:text="边缘标线:" />
+
+            <Spinner
+                android:layout_width="80dp"
+                android:id="@+id/sp_bianyuanxian"
+                style="@style/stylespanner">
+
+            </Spinner>
+        </LinearLayout>
+    </LinearLayout>
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -358,7 +392,7 @@
                 <EditText
                     android:id="@+id/sp_chedaowidth"
                     style="@style/myeditstyle"
-                    android:layout_width="110dp" />
+                    android:layout_width="95dp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -381,10 +415,10 @@
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="中央带宽度:" />
+                    android:text="中央隔离带宽度:" />
 
                 <EditText
-                    android:layout_width="90dp"
+                    android:layout_width="40dp"
                     android:id="@+id/sp_zhongjianwidth"
                     android:hint="0"
                     style="@style/myeditstyle" />
@@ -447,35 +481,21 @@
                 android:background="@color/darkGrey" />
         </LinearLayout>
 
+
+
+
         <LinearLayout style="@style/layoutstyle">
-            <!--发生位置-->
-
             <LinearLayout style="@style/layoutstyle2">
 
                 <TextView
                     style="@style/textstyle"
-                    android:text="中心线类型:" />
+                    android:text="主线车道数:" />
 
                 <Spinner
-                    android:id="@+id/sp_zhongxinxian"
-                    style="@style/stylespanner"
-                    android:layout_width="180dp">
-
-                </Spinner>
-            </LinearLayout>
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="车道线标记:" />
-
-                <Spinner
-                    android:id="@+id/sp_chedaoxianbj"
+                    android:id="@+id/sp_zhuxiancds"
                     style="@style/stylespanner" />
             </LinearLayout>
         </LinearLayout>
-
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
@@ -490,19 +510,7 @@
                     android:layout_width="160dp" />
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2">
-
-                <TextView
-                    style="@style/textstyle"
-                    android:text="主线车道数:" />
-
-                <Spinner
-                    android:id="@+id/sp_zhuxiancds"
-                    style="@style/stylespanner" />
-            </LinearLayout>
-
         </LinearLayout>
-
         <LinearLayout style="@style/layoutstyle">
 
             <LinearLayout style="@style/layoutstyle2">
