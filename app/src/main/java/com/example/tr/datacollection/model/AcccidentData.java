@@ -12,11 +12,11 @@ import java.util.Date;
 public class AcccidentData {
 
     private String accidencenumber;
-    private Date   riQI;//日期
+    private Date   riQI = null;//日期
     private String city;//城市
     private String xianQu;//县区
     private String shangQuan;//商圈
-    private LatLng lnglat;//经纬度
+    private LatLng lnglat = new LatLng(0.0,0.0);//经纬度
     private String diMingBeiZhu;//地名备注
     private String shigu;//事故1
     private String shiguType;//事故1类型
@@ -116,7 +116,7 @@ public class AcccidentData {
         this.xianQu = xianQu;
         this.shangQuan = shangQuan;
         String[] latlngs = lnglat.split(",");
-        this.lnglat = new LatLng(Double.valueOf(latlngs[1]),Double.valueOf(latlngs[0]));
+        this.lnglat = new LatLng(Double.valueOf(latlngs[0]),Double.valueOf(latlngs[1]));
 
         this.diMingBeiZhu = diMingBeiZhu;
         this.shigu = shigu;
@@ -326,31 +326,5 @@ public class AcccidentData {
         this.youHaiWuZhi = youHaiWuZhi;
     }
 
-    @Override
-    public String toString() {
-        return "AcccidentData{" +
-                "riQI=" + riQI +
-                ", city='" + city + '\'' +
-                ", xianQu='" + xianQu + '\'' +
-                ", shangQuan='" + shangQuan + '\'' +
-                ", lnglat=" + lnglat +
-                ", diMingBeiZhu='" + diMingBeiZhu + '\'' +
-                ", shigu='" + shigu + '\'' +
-                ", shiguType='" + shiguType + '\'' +
-                ", shigu2='" + shigu2 + '\'' +
-                ", shiguType2='" + shiguType2 + '\'' +
-                ", yanZhongCd='" + yanZhongCd + '\'' +
-                ", carnum='" + carnum + '\'' +
-                ", driverNums='" + driverNums + '\'' +
-                ", feidriverNums='" + feidriverNums + '\'' +
-                ", ssNums='" + ssNums + '\'' +
-                ", dieNums='" + dieNums + '\'' +
-                ", gongjiao='" + gongjiao + '\'' +
-                ", taoYi='" + taoYi + '\'' +
-                ", Weixianche='" + Weixianche + '\'' +
-                ", Weixianbz='" + Weixianbz + '\'' +
-                ", fromWeixianbz='" + fromWeixianbz + '\'' +
-                ", youHaiWuZhi='" + youHaiWuZhi + '\'' +
-                '}';
-    }
+
 }

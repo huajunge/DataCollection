@@ -15,17 +15,25 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.tr.datacollection.MainActivity;
 import com.example.tr.datacollection.PeopelData3;
 import com.example.tr.datacollection.R;
+import com.example.tr.datacollection.entitys.Accidencecollectiondata;
+import com.example.tr.datacollection.entitys.Accidentdata;
+import com.example.tr.datacollection.entitys.Cardata;
+import com.example.tr.datacollection.entitys.Emdata;
 import com.example.tr.datacollection.model.AcccidentData;
 import com.example.tr.datacollection.model.AccidenceCollectionData;
 import com.example.tr.datacollection.model.CarData;
@@ -35,6 +43,8 @@ import com.example.tr.datacollection.model.PeopelData2;
 import com.example.tr.datacollection.util.DBO;
 import com.example.tr.datacollection.util.MyProcessDialog;
 import com.example.tr.datacollection.util.NoNumInString;
+
+import org.json.JSONException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -57,8 +67,10 @@ public class NoUploadFragment extends Fragment implements AdapterView.OnItemSele
     private boolean isOK;
     private AlertDialog dialog = null;
     MyProcessDialog myProcessDialog;
+    private int upload_numebr = 0;
+    private int canUpload_numebr = 5;
  ///192.168.43.34
-   final private String httpURL = "http://192.168.1.172:8080";
+   final private String httpURL = "http://192.168.1.172:8080/roadCheck";
     final private String httpURL2 = "http://192.168.1.172:8081";
     public NoUploadFragment() {
         // Required empty public constructor
@@ -152,92 +164,97 @@ public class NoUploadFragment extends Fragment implements AdapterView.OnItemSele
     }
     public void uploadAC(){
         myProcessDialog.showProcessing("正在上传...");
-        RequestQueue mQueue = Volley.newRequestQueue(getContext());
         int i = 0;
         for(final AccidenceCollectionData collectionData : collectionDatas){
             if (!collectionBoolean.get(i++))
                 continue;
                 final int index = i-1;
+            upload_numebr = 0;
+            /*
+            * 上传事故汇总信息
+            *
+            * */
+            Accidencecollectiondata accidencecollectiondata = new Accidencecollectiondata(collectionData);
+            sendPost2(httpURL+"/accidentcollection/add/",accidencecollectiondata,"事故汇总信息失败",collectionData);
+
+            /*
+            * 事故信息
+            * */
             DBO dbo = new DBO(getContext());
             List<AcccidentData> acccidentDatas = new ArrayList<>();
             acccidentDatas = dbo.getAcccidentData(collectionData.getAccidenceNumber());
             if(acccidentDatas.size()>0) {
                 AcccidentData accidentData = acccidentDatas.get(0);
-                upLoadAccident(collectionData.getAccidenceNumber(),accidentData);
+                Accidentdata accidentdata = new Accidentdata(accidentData);
+                sendPost(httpURL+"/accidentDatas/add/accidentdatas",accidentdata,"事故信息");
+              //  upLoadAccident(collectionData.getAccidenceNumber(),accidentData);
             }
-            //环境信息
+            /*
+            *
+            * 环境信息
+            * */
+            /*//*/
             List<EMdata> eMdatas = new ArrayList<>();
             eMdatas = dbo.getEMdata(collectionData.getEnvironmentNumber());
             if(eMdatas.size()>0) {
                 EMdata eMdata = eMdatas.get(0);
-                upLoadEnvironment(collectionData.getEnvironmentNumber(), eMdata);
-            }
-//环境信息
+                //upLoadEnvironment(collectionData.getEnvironmentNumber(), eMdata);
+                Emdata emdata = new Emdata(eMdata);
+                sendPost(httpURL+"/emdata/add",emdata,"环境信息");
+
+           }
+           /*
+           * 车辆信息
+           *
+           * */
             List<CarData> carDatas = new ArrayList<>();
             carDatas = dbo.getCarData(collectionData.getCarNumber());
             if(carDatas.size()>0) {
                 CarData carData = carDatas.get(0);
                 for (CarData carData1 : carDatas) {
-                    upLoadCarData(collectionData.getCarNumber(), carData1);
+                   // upLoadCarData(collectionData.getCarNumber(), carData1);
+                    Cardata cardata = new Cardata(carData1);
+                    sendPost(httpURL+"/cardata/add",cardata,"车辆信息");
                 }
             }
-            //乘坐人
+
+            /*
+            *
+            * 乘坐人
+            * */
+
             List<PelpelData> pelpelDatas = new ArrayList<>();
             pelpelDatas = dbo.getPeopel1(collectionData.getPeopelNumber());
             for(PelpelData p : pelpelDatas){
-                upLoadPeopel2(collectionData.getPeopelNumber(),p);
+               // upLoadPeopel2(collectionData.getPeopelNumber(),p);
+                sendPost(httpURL+"/peopel/add/chezuoren",p,"乘坐人");
             }
-            //驾驶人
+            /*
+            *
+            * 驾驶人
+            * */
+
+
             List<PeopelData2> peopelData2s = new ArrayList<>();
             peopelData2s = dbo.getPeopel2(collectionData.getPeopelNumber());
             for(PeopelData2 p : peopelData2s){
-                upLoadPeopel1(collectionData.getPeopelNumber(),p);
+               // upLoadPeopel1(collectionData.getPeopelNumber(),p);
+                sendPost(httpURL+"/peopel/add/driver",p,"驾驶人");
             }
 
-            //其它人
-
+            /*
+            * 其它人
+            *
+            * */
+            //
             List<PeopelData3> peopelData3s = new ArrayList<>();
             peopelData3s = dbo.getPeopel3(collectionData.getPeopelNumber());
             for (PeopelData3 peopelData3 : peopelData3s) {
-                upLoadPeopel3(collectionData.getPeopelNumber(),peopelData3);
+             //   upLoadPeopel3(collectionData.getPeopelNumber(),peopelData3);
+                sendPost(httpURL+"/peopel/add/qitaren",peopelData3,"其它人");
             }
 
-                StringRequest stringRequest1 = new StringRequest(Request.Method.POST,httpURL+"/DataCollectionServer/servlet/CollectionData",
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String s) {
-                            Log.i(TAG,"OK");
-                            DBO dbo = new DBO(getContext());
-                            dbo.updateAccidenceCollectionData(collectionDatas.get(index),collectionDatas.get(index).getNumber(),1);
-                            myProcessDialog.dismissProcessing(1000);
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError volleyError) {
-                    Log.i(TAG,"eee");
-                    myProcessDialog.dismissProcessing();
-                    setDialog("上传失败！请检查网络连接");
-                }
-            }
-            ){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    Map<String,String> map = new HashMap<String, String>();
-//                    map.put("p1","hhh");
-//                    map.put("p2","eee");eee
-                    map.put("number",collectionData.getNumber());//事故编号
-                    map.put("accidenceNumber",collectionData.getAccidenceNumber());//事故信息
-                    map.put("environmentNumber",collectionData.getEnvironmentNumber());//环境信息
-                    map.put("carNumber",collectionData.getCarNumber());//车辆信息
-                    map.put("peopelNumber",collectionData.getPeopelNumber());//人员信息
-                    map.put("data",collectionData.getData().getTime()+"");//时间
-                    map.put("placeName",collectionData.getPlaceName());//地名
-                    return map;
-                }
-            };
-            mQueue.add(stringRequest1);
         }
-        mQueue.start();
     }
 
     private void upLoadPeopel2(String peopelNumber, final PelpelData pelpelData) {
@@ -569,6 +586,112 @@ public class NoUploadFragment extends Fragment implements AdapterView.OnItemSele
         mQueue.add(stringRequest);
         mQueue.start();
     }
+
+    public void sendPost(String url, Object object, final String errorNotification){
+        JSON JJ =(JSONObject) JSONObject.toJSON(object);
+        JSONObject jsonObject = JSONObject.parseObject(JJ.toJSONString());
+        System.out.println(JJ.toJSONString());
+        System.out.println(jsonObject.toJSONString());
+        Log.i("httptest","JJ.toJSONString()"+JJ.toJSONString());
+        Log.i("httptest","jsonObject.toJSONString()"+jsonObject.toJSONString());
+
+        org.json.JSONObject jsonObject1 = null;
+        try {
+            jsonObject1 = new org.json.JSONObject(jsonObject.toJSONString());
+            Log.i("httptest","jsonObject1.toJSONString()"+jsonObject1.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
+                jsonObject1 , new Response.Listener<org.json.JSONObject>() {
+            @Override
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Log.i("httptest","onResponse"+jsonObject.toString());
+
+                /*
+                * 此处感觉会有bug
+                *
+                * */
+                upload_numebr ++;
+                if(upload_numebr > 3){
+                    upload_numebr = 0;
+                    myProcessDialog.dismissProcessing();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.i("httptest","onErrorResponse"+volleyError.getMessage());
+                Log.i("httptest","onErrorResponse"+errorNotification);
+                myProcessDialog.dismissProcessing();
+                setDialog(errorNotification+"上传失败！请检查网络或后台");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String,String> headers = new HashMap<String,String>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json;charset=UTF-8");
+                return headers;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
+        requestQueue.start();
+    };
+
+
+    public void sendPost2(String url, final Object object, final String errorNotification,final AccidenceCollectionData accidenceCollectionData){
+        JSON JJ =(JSONObject) JSONObject.toJSON(object);
+        JSONObject jsonObject = JSONObject.parseObject(JJ.toJSONString());
+        System.out.println(JJ.toJSONString());
+        System.out.println(jsonObject.toJSONString());
+        Log.i("httptest","JJ.toJSONString()"+JJ.toJSONString());
+        Log.i("httptest","jsonObject.toJSONString()"+jsonObject.toJSONString());
+
+        org.json.JSONObject jsonObject1 = null;
+        try {
+            jsonObject1 = new org.json.JSONObject(jsonObject.toJSONString());
+            Log.i("httptest","jsonObject1.toJSONString()"+jsonObject1.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url,
+                jsonObject1 , new Response.Listener<org.json.JSONObject>() {
+            @Override
+            public void onResponse(org.json.JSONObject jsonObject) {
+                Log.i("httptest","onResponse"+jsonObject.toString());
+
+                /*
+                * 此处感觉会有bug
+                *
+                * */
+                DBO dbo = new DBO(getContext());
+                dbo.updateAccidenceCollectionData(accidenceCollectionData,1);
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.i("httptest","onErrorResponse"+volleyError.getMessage());
+                Log.i("httptest","onErrorResponse"+errorNotification);
+                myProcessDialog.dismissProcessing();
+                setDialog(errorNotification+"上传失败！请检查网络或后台");
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String,String> headers = new HashMap<String,String>();
+                headers.put("Accept","application/json");
+                headers.put("Content-Type","application/json;charset=UTF-8");
+                return headers;
+            }
+        };
+        requestQueue.add(jsonObjectRequest);
+        requestQueue.start();
+    };
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         Log.i("onItemLongClick","onItemSelected");
@@ -582,7 +705,22 @@ public class NoUploadFragment extends Fragment implements AdapterView.OnItemSele
     @Override
     public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
         Intent intent = new Intent(getContext(), MainActivity.class);
+        TextView textView = (TextView) view.findViewById(R.id.text_bianhao);
+        DBO dbo = new DBO(getContext());
+        try {
+            AcccidentData acccidentData = dbo.getAcccidentData(textView.getText().toString()).get(0);
+            intent.putExtra("city",acccidentData.getCity());
+            intent.putExtra("country",acccidentData.getXianQu());
+            intent.putExtra("xiangzhen",acccidentData.getShangQuan());
+            intent.putExtra("lng",acccidentData.getLnglat().longitude);
+            intent.putExtra("lat",acccidentData.getLnglat().latitude);
+            intent.putExtra("beizhu",acccidentData.getDiMingBeiZhu());
+        }catch (Exception e) {
+
+        }
+        intent.putExtra("shigunumber",textView.getText().toString());
         startActivity(intent);
+
         Log.i("onItemLongClick","onItemLongClick");
         //collectionsMap.get()
         return false;

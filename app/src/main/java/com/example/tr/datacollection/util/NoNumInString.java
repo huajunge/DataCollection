@@ -7,6 +7,9 @@ package com.example.tr.datacollection.util;
 public class NoNumInString {
 
     public static String start(String string){
+        if ( string == null || string .equals("")){
+            return "";
+        }
         String temp = string.replaceAll("\\d\\d ","");
 
         return temp;

@@ -139,6 +139,10 @@ public class DBO {
     public void updateAccidenceCollectionData(AccidenceCollectionData accidenceCollectionData ,String number,int isUpload){
         db.execSQL("update AccidenceCollectionData set isUpload ="+isUpload+" where shigunumber='"+number+"'");
     }
+
+    public void updateAccidenceCollectionData(AccidenceCollectionData accidenceCollectionData ,int isUpload){
+        db.execSQL("update AccidenceCollectionData set isUpload ="+isUpload+" where shigunumber='"+accidenceCollectionData.getNumber()+"'");
+    }
     public List<AccidenceCollectionData> getAccidenceCollectionData(int isUpload){  //获取数据
         db.execSQL("create table if not exists AccidenceCollectionData(_id integer primary key autoincrement," +
                 "shigunumber text not null,place text not null,riqi long not null,accidencenumber text not null,environmentnumber text not null," +
@@ -179,8 +183,8 @@ public class DBO {
                 "city text," +
                 "xianQu text," +
                 "shangQuan text," +
-                "lat double not null,"+
-                "lng double not null,"+
+                "lat text not null,"+
+                "lng text not null,"+
                 "diMingBeiZhu text," +
                 "shigu text," +
                 "shiguType text," +
@@ -223,13 +227,13 @@ public class DBO {
                 "Weixianbz," +
                 "fromWeixianbz," +
                 "youHaiWuZhi)values('"+
-              accidentData.getAccidencenumber()+"'," +
+               accidentData.getAccidencenumber()+"'," +
                accidentData.getRiQI().getTime()+",'" +
                accidentData.getCity()+"','"+
                accidentData.getXianQu()+"','"+
-               accidentData.getShangQuan()+"',"+
-               accidentData.getLnglat().latitude+","+
-                accidentData.getLnglat().longitude+",'"+
+               accidentData.getShangQuan()+"','"+
+               accidentData.getLnglat().latitude+"','"+
+               accidentData.getLnglat().longitude+"','"+
                accidentData.getDiMingBeiZhu()+"','"+
                accidentData.getShigu()+"','"+
                accidentData.getShiguType()+"','"+
@@ -247,6 +251,9 @@ public class DBO {
                accidentData.getWeixianbz()+"','"+
                accidentData.getFromWeixianbz()+"','"+
                accidentData.getYouHaiWuZhi()+"')");
+
+        Log.i("httptest","插入经纬度"+ accidentData.getLnglat().latitude+","+
+                accidentData.getLnglat().longitude);
     }
     //更新
     public void updateAccidentData(AcccidentData accidentData,String number){
@@ -255,8 +262,8 @@ public class DBO {
                 "city = '"+accidentData.getCity()+"'," +
                 "xianQu = '"+accidentData.getXianQu()+"'," +
                 "shangQuan = '"+accidentData.getShangQuan()+"'," +
-                "lat = "+accidentData.getLnglat().latitude+"," +
-                "lng = "+accidentData.getLnglat().longitude+"," +
+                "lat = '"+accidentData.getLnglat().latitude+"'," +
+                "lng = '"+accidentData.getLnglat().longitude+"'," +
                 "diMingBeiZhu = '"+accidentData.getDiMingBeiZhu()+"'," +
                 "shigu = '"+accidentData.getShigu()+"'," +
                 "shiguType = '"+accidentData.getShiguType()+"'," +
@@ -282,8 +289,8 @@ public class DBO {
                 "city text," +
                 "xianQu text," +
                 "shangQuan text," +
-                "lat double not null,"+
-                "lng double not null,"+
+                "lat text not null,"+
+                "lng text not null,"+
                 "diMingBeiZhu text," +
                 "shigu text," +
                 "shiguType text," +
@@ -334,6 +341,8 @@ public class DBO {
                 );
                 ps.add(p);
                 Log.i("info",p.toString());
+                Log.i("httptest","经纬度dao:"+cursor.getString(cursor.getColumnIndex("lat"))+","+cursor.getString(cursor.getColumnIndex("lng")));
+                Log.i("httptest","经纬度"+p.getLnglatstr());
                 Log.i("info","!!!!!!!!!!!!!!!!1");
             }
             cursor.close();
