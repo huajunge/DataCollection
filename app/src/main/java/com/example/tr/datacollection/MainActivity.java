@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView frg3;
     private ImageView frg4;
     private TextView tile;
-    private String[] s_renyuantype ={"驾驶人","乘坐人","其他涉及人员"};
+    private String[] s_renyuantype = {"驾驶人", "乘坐人", "其他涉及人员"};
     private Context context;
     private AlertDialog dialog = null;
     ViewPager vp_main;
@@ -59,19 +59,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EMdata eMdata = new EMdata();
     private List<CarData> carDatas = new ArrayList<CarData>();
     private PelpelData pelpelData1 = new PelpelData();
-    private PeopelData2 peopelData2 =new PeopelData2();
+    private PeopelData2 peopelData2 = new PeopelData2();
     private PeopelData3 peopelData3 = new PeopelData3();
 
-    private int carsOrder =1;
+    private int carsOrder = 1;
 
-    private String sgId ="";
+    private String sgId = "";
     private boolean isSAVED = false;
     //上传线程
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            switch (msg.what){
+            switch (msg.what) {
                 case SendDataToServer.SEND_SUCCESS:
                     Toast.makeText(MainActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
                     break;
@@ -88,27 +88,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
-        Log.i("TEST","进入");
-
-        Log.i("TEST","退出");
     }
+
 
     private void testUpload() {
         //String number, String accidenceNumber, String environmentNumber, String carNumber, String peopelNumber, Date data, String placeName, boolean isUpload
         DBO dao = new DBO(this);
-        Log.i("TEST","初始化成功");
-        dao.insertToCollection(new AccidenceCollectionData("2017100601","2017100601","017100601","2017100601","2017100601",new java.sql.Date(System.currentTimeMillis()),"你猜",0));
-        dao.insertToCollection(new AccidenceCollectionData("2017100602","2017100602","017100601","2017100601","2017100601",new java.sql.Date(System.currentTimeMillis()),"你猜哇",1));
-        Log.i("TEST","插入成功");
+        Log.i("TEST", "初始化成功");
+        dao.insertToCollection(new AccidenceCollectionData("2017100601", "2017100601", "017100601", "2017100601", "2017100601", new java.sql.Date(System.currentTimeMillis()), "你猜", 0));
+        dao.insertToCollection(new AccidenceCollectionData("2017100602", "2017100602", "017100601", "2017100601", "2017100601", new java.sql.Date(System.currentTimeMillis()), "你猜哇", 1));
+        Log.i("TEST", "插入成功");
         List<AccidenceCollectionData> accidenceNumber = new ArrayList<AccidenceCollectionData>();
 
-        accidenceNumber = dao.getAccidenceCollectionData(System.currentTimeMillis()-24*60*60*1000,System.currentTimeMillis());
-        Log.i("TEST","查询成功");
+        accidenceNumber = dao.getAccidenceCollectionData(System.currentTimeMillis() - 24 * 60 * 60 * 1000, System.currentTimeMillis());
+        Log.i("TEST", "查询成功");
         for (AccidenceCollectionData a : accidenceNumber) {
-            Log.i("TEST","输出");
+            Log.i("TEST", "输出");
             System.out.println(a.toString());
         }
-      //  dao.clearAll();
+        //  dao.clearAll();
     }
 
     private void init() {
@@ -133,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         mFrags.get(0);
         selectFragment(0);
-        fAdapter=new FragmentPagerAdapter(getSupportFragmentManager()) {
+        fAdapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public Fragment getItem(int position) {
                 return mFrags.get(position);
@@ -155,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onPageSelected(int position) {
                 vp_main.setCurrentItem(position);
-               selectFragment(position);
+                selectFragment(position);
             }
 
             @Override
@@ -166,13 +164,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initId() {
-        Date date= new Date(System.currentTimeMillis());
-        SimpleDateFormat sf =new SimpleDateFormat("yyyyMMddhhmmss");
-        sgId = "SG"+sf.format(date);
+        Date date = new Date(System.currentTimeMillis());
+        SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddhhmmss");
+        sgId = "SG" + sf.format(date);
     }
 
-    public void selectFragment(int position){
-        switch (position){
+    public void selectFragment(int position) {
+        switch (position) {
             case 1:
                 frg1.setBackground(getResources().getDrawable(R.drawable.icon_em_on));
                 frg2.setBackground(getResources().getDrawable(R.drawable.icon_car_off));
@@ -221,9 +219,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         vp_main.setCurrentItem(position);
     }
+
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.frag_em:
                 selectFragment(1);
                 break;
@@ -239,25 +238,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
     }
-    public void addPeopel(final View view){
+
+    public void addPeopel(final View view) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("新增人员类型");
 
-        builder.setSingleChoiceItems(s_renyuantype,0,new DialogInterface.OnClickListener(){
+        builder.setSingleChoiceItems(s_renyuantype, 0, new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                switch (i){
-                    case 0:Intent intent = new Intent(view.getContext(),PeopelInfo2.class);
+                switch (i) {
+                    case 0:
+                        Intent intent = new Intent(view.getContext(), PeopelInfo2.class);
                         startActivity(intent);
 
                         break;
-                    case 1:Intent intent2 = new Intent(view.getContext(),Peopelnfo1.class);
+                    case 1:
+                        Intent intent2 = new Intent(view.getContext(), Peopelnfo1.class);
                         startActivity(intent2);
 
                         break;
-                    case 2:Intent intent3 = new Intent(view.getContext(),PeopelInfo3.class);
+                    case 2:
+                        Intent intent3 = new Intent(view.getContext(), PeopelInfo3.class);
                         startActivity(intent3);
 
                         break;
@@ -268,13 +271,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         dialog = builder.create();
         dialog.show();
     }
-    public void updateInfo(final View view){
-        LayoutInflater inflater = LayoutInflater.from (this);
-        View view2 = inflater.inflate(R.layout.updata,null);
+
+    public void updateInfo(final View view) {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view2 = inflater.inflate(R.layout.updata, null);
         //保存
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("确认保存？");
-      //  builder.setView(view2);
+        //  builder.setView(view2);
         builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -285,7 +289,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-                Toast.makeText(MainActivity.this,"保存成功",Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "保存成功", Toast.LENGTH_LONG).show();
 //                DBO dbo =new DBO(MainActivity.this);
 //                dbo.insertToSimpleTest(new SimpleDataTest(acccidentData.getLnglat().latitude,
 //                        acccidentData.getLnglat().longitude,date.getTime(),acccidentData.getCity()+acccidentData.getXianQu()+acccidentData.getShangQuan()+"  "+acccidentData.getDiMingBeiZhu(),acccidentData.getYanZhongCd()));
@@ -297,17 +301,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 uploadAll(view);
                 dialog.dismiss();
                 //上传数据，测试
-                if(ISDEBUG){
+                if (ISDEBUG) {
                     testUpload();
                 }
 
                 MyProcessDialog myProcessDialog = new MyProcessDialog(MainActivity.this);
-                myProcessDialog.showProcessing("正在保存...",2000);
+                myProcessDialog.showProcessing("正在保存...", 2000);
                 //JSONObject jsonObject = new JSONWriter(acccidentData);
-              //  JSONObject jsonObject = new JSONObject((Map) acccidentData);
-             //   jsonObject.
-             //   JSONObject jsonObject = JSONObject.fromObject(acccidentData);
-              //  new SendDataToServer(handler,"http://192.168.1.100:8080/DataCollectionServer/servlet/AccidentInfoServer").SendDataToServer(jsonObject.toString());
+                //  JSONObject jsonObject = new JSONObject((Map) acccidentData);
+                //   jsonObject.
+                //   JSONObject jsonObject = JSONObject.fromObject(acccidentData);
+                //  new SendDataToServer(handler,"http://192.168.1.100:8080/DataCollectionServer/servlet/AccidentInfoServer").SendDataToServer(jsonObject.toString());
             }
         });
         dialog = builder.create();
@@ -321,14 +325,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Date date = accidentInfo.getCal().getTime();
         //经纬度
         String[] latlngs = accidentInfo.Getjingweidu().split(",");
-        LatLng latLng = new LatLng(Double.valueOf(latlngs[1]),Double.valueOf(latlngs[0]));
+        LatLng latLng = new LatLng(Double.valueOf(latlngs[1]), Double.valueOf(latlngs[0]));
 
-        acccidentData= new AcccidentData(sgId,date, accidentInfo.GetCITY(),accidentInfo.GetCOUNTRY(), accidentInfo.Getxiangzhen(), latLng,
+        acccidentData = new AcccidentData(sgId, date, accidentInfo.GetCITY(), accidentInfo.GetCOUNTRY(), accidentInfo.Getxiangzhen(), latLng,
                 accidentInfo.GetdimingBeiZhu(), accidentInfo.Getspshigu(), accidentInfo.GetspshiguType(), accidentInfo.Getspshigu2(), accidentInfo.GetspshiguType2(),
-                accidentInfo.Getspyanzhongcd(), accidentInfo.Getcarnum(), accidentInfo.GetdriverNums(), accidentInfo.GetFeidriverNums(),accidentInfo.Getssrenshu(),
+                accidentInfo.Getspyanzhongcd(), accidentInfo.Getcarnum(), accidentInfo.GetdriverNums(), accidentInfo.GetFeidriverNums(), accidentInfo.Getssrenshu(),
                 accidentInfo.GetdieNums(), accidentInfo.Getspgongjiao(), accidentInfo.Getspzhaoshity(), accidentInfo.weiX, accidentInfo.GetWeixianbz(),
                 accidentInfo.Getspfromweixianbz(), accidentInfo.getRyouhaiwuzhi());
-        Log.i("data",acccidentData.toString());
+        Log.i("data", acccidentData.toString());
         //插入事故数据
         DBO dbo = new DBO(this);
 
@@ -362,7 +366,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 emInfo.Havepeople(),//是否存在工人
                 emInfo.xianChangZhifa()//现场执法
         );
-        Log.i("data",eMdata.toString());
+        Log.i("data", eMdata.toString());
 
         List<EMdata> eMdatas = new ArrayList<>();
         type = 1;
@@ -372,19 +376,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         List<PelpelData> pelpelDatas = driverInfo.getPeopel1();
         List<PeopelData2> peopelData2s = driverInfo.getPeopel2();
         List<PeopelData3> peopelData3s = driverInfo.getPeopel3();
-        setCarData(carsOrder-2);
-        if(isSAVED){
-            dbo.updateAccidentData(acccidentData,sgId);
-            dbo.updateEMdata(eMdata,sgId);
+        setCarData(carsOrder - 2);
+        if (isSAVED) {
+            dbo.updateAccidentData(acccidentData, sgId);
+            dbo.updateEMdata(eMdata, sgId);
             for (CarData c : carDatas) {
-                dbo.updateCarData(c,sgId,c.getXunhao());
+                dbo.updateCarData(c, sgId, c.getXunhao());
             }
-            for(PelpelData pelpelData : pelpelDatas) {
+            for (PelpelData pelpelData : pelpelDatas) {
                 pelpelData.setNumber(sgId);
                 dbo.updatePeopel1(pelpelData);
             }
 
-            for (PeopelData2 peopelData2 : peopelData2s){
+            for (PeopelData2 peopelData2 : peopelData2s) {
                 peopelData2.setNumber(sgId);
                 dbo.updatePeopel2(peopelData2);
             }
@@ -396,27 +400,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else {
             isSAVED = true;
-            dbo.insertToCollection(new AccidenceCollectionData(sgId,sgId,sgId,sgId,sgId,new java.sql.Date(acccidentData.getRiQI().getTime()),
-                    accidentInfo.GetCITY()+accidentInfo.GetCOUNTRY()+accidentInfo.Getxiangzhen()+accidentInfo.GetdimingBeiZhu(),0));
+            dbo.insertToCollection(new AccidenceCollectionData(sgId, sgId, sgId, sgId, sgId, new java.sql.Date(acccidentData.getRiQI().getTime()),
+                    accidentInfo.GetCITY() + accidentInfo.GetCOUNTRY() + accidentInfo.Getxiangzhen() + accidentInfo.GetdimingBeiZhu(), 0));
             dbo.insertToEMdata(eMdata);
             dbo.insertToAccidentData(acccidentData);
             for (CarData c : carDatas) {
                 dbo.insertToCarData(c);
             }
-            for(PelpelData pelpelData : pelpelDatas) {
-                dbo.insertToPeopel1(pelpelData,sgId);
+            for (PelpelData pelpelData : pelpelDatas) {
+                dbo.insertToPeopel1(pelpelData, sgId);
             }
-            for (PeopelData2 peopelData2 : peopelData2s){
-                dbo.insertToPeopel2(peopelData2,sgId);
+            for (PeopelData2 peopelData2 : peopelData2s) {
+                dbo.insertToPeopel2(peopelData2, sgId);
             }
 
             for (PeopelData3 peopelData3 : peopelData3s) {
-                dbo.insertToPeopel3(peopelData3,sgId);
+                dbo.insertToPeopel3(peopelData3, sgId);
             }
         }
     }
 
-    public void addNewCar(View view){
+    public void addNewCar(View view) {
         //mFrags.set(2,new CarInfo());
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("确定保存？");
@@ -432,31 +436,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 EditText editTextVin = (EditText) MainActivity.this.findViewById(vin);
                 EditText editTextChepaiHao = (EditText) MainActivity.this.findViewById(chepaihao);
                 AccidentInfo accidentInfo = (AccidentInfo) mFrags.get(0);
-               // int cs = Integer.parseInt(accidentInfo.Getcarnum());
+                // int cs = Integer.parseInt(accidentInfo.Getcarnum());
                 String[] str = accidentInfo.Getcarnum().split("[^\\D]");
-                Log.i("cars","carsnum"+str[0]);
-                Log.i("cars",str[0]+"  :  "+carsOrder);
-                try{
+                Log.i("cars", "carsnum" + str[0]);
+                Log.i("cars", str[0] + "  :  " + carsOrder);
+                try {
                     BigInteger cs = trimToNumber(accidentInfo.Getcarnum());
-                    if(carsOrder>cs.intValue()){
-                        Toast.makeText(MainActivity.this,"添加失败，已添加完成所有车辆信息！",Toast.LENGTH_LONG).show();
-                        Log.i("cars",str[0]+"  :  "+carsOrder);
+                    if (carsOrder > cs.intValue()) {
+                        Toast.makeText(MainActivity.this, "添加失败，已添加完成所有车辆信息！", Toast.LENGTH_LONG).show();
+                        Log.i("cars", str[0] + "  :  " + carsOrder);
                         return;
                     }
-                }catch (Exception e){
-                        e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                Toast.makeText(MainActivity.this,"保存成功",Toast.LENGTH_SHORT).show();
+                Toast.makeText(MainActivity.this, "保存成功", Toast.LENGTH_SHORT).show();
 
                 setCarData(-1);//设置车辆
                 BigInteger cs = trimToNumber(accidentInfo.Getcarnum());
-                if(carsOrder == cs.intValue()){
-                    Toast.makeText(MainActivity.this,"已添加完成所有车辆信息！",Toast.LENGTH_LONG).show();
+                if (carsOrder == cs.intValue()) {
+                    Toast.makeText(MainActivity.this, "已添加完成所有车辆信息！", Toast.LENGTH_LONG).show();
                     ++carsOrder;
                     return;
                 }
                 TextView textView = (TextView) findViewById(R.id.carorder);
-                textView.setText("当前车辆序号:"+(++carsOrder));
+                textView.setText("当前车辆序号:" + (++carsOrder));
                 editTextChepaiHao.setText("");
                 editTextVin.setText("");
                 dialog.dismiss();
@@ -471,11 +475,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public void setCarData(int i){
+    public void setCarData(int i) {
 
         try {
             CarInfo carInfo = (CarInfo) mFrags.get(2);
-            CarData carData=new CarData(
+            CarData carData = new CarData(
                     sgId,
                     carInfo.xunhao(),
                     carInfo.vin(),//VIN码
@@ -494,15 +498,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     carInfo.sunhuaschengdu()//损坏程度
             );
             carData.setXunhao(carsOrder);
-            if(i < 0){
+            if (i < 0) {
                 carDatas.add(carData);
-            }else {
-                carDatas.set(i,carData);
+            } else {
+                carDatas.set(i, carData);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     public static BigInteger trimToNumber(String s) {
         int n = s.length();
         char[] a = new char[n];
@@ -521,13 +526,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         BigInteger n = trimToNumber(str);
         System.out.println(n);
     }
-    public List<CarData> getCarData(){
+
+    public List<CarData> getCarData() {
         return carDatas;
     }
 
     public void upLoad(View view) {
         uploadAll(view);
-        Intent intent = new Intent(MainActivity.this,UploadData.class);
+        Intent intent = new Intent(MainActivity.this, UploadData.class);
         startActivity(intent);
     }
 }
