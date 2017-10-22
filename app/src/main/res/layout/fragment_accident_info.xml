@@ -1,4 +1,5 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,8 +16,8 @@
             android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_marginBottom="0dp"
-            android:layout_marginTop="0dp"
             android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
             android:background="@color/bgofdefault"
             android:gravity="center">
 
@@ -111,21 +112,18 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline"
-                    />
+                <ImageView style="@style/halfline" />
 
                 <TextView
-                    android:textColor="@color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="地理位置"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -208,8 +206,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/layoutmargin"
-            android:background="@color/bgofdefault"
-            />
+            android:background="@color/bgofdefault" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -229,9 +227,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline"
-                     />
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -239,13 +235,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="事故类型"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline"
-                    />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -254,11 +247,12 @@
                 android:background="@color/darkGrey" />
         </LinearLayout>
 
-        <LinearLayout style="@style/layoutstyle"
-            android:layout_marginRight="20dp"
-            >
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:layout_marginRight="20dp">
 
-            <LinearLayout style="@style/layoutstyle2"
+            <LinearLayout
+                style="@style/layoutstyle2"
                 android:layout_weight="1">
 
                 <TextView
@@ -266,24 +260,25 @@
                     android:text="严重程度:" />
 
                 <Spinner
-                    android:layout_weight="1"
                     android:id="@+id/sp_shiguchengdu"
                     style="@style/stylespanner"
-                    android:layout_width="200dp"></Spinner>
+                    android:layout_width="200dp"
+                    android:layout_weight="1"></Spinner>
             </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout style="@style/layoutstyle"
-            android:layout_marginRight="20dp"
-            >
+        <LinearLayout
+            style="@style/layoutstyle"
+            android:layout_marginRight="20dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <LinearLayout style="@style/layoutstyle2"
-                    android:layout_weight="1"
-                    >
+                <LinearLayout
+                    style="@style/layoutstyle2"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/textView3"
@@ -291,16 +286,16 @@
                         android:text="事故类型:" />
 
                     <Spinner
-                        android:layout_weight="1"
                         android:id="@+id/shijian"
-                        style="@style/stylespanner">
+                        style="@style/stylespanner"
+                        android:layout_weight="1">
 
                     </Spinner>
 
                     <Spinner
-                        android:layout_weight="1"
                         android:id="@+id/sp_shijian_type"
-                        style="@style/stylespanner">
+                        style="@style/stylespanner"
+                        android:layout_weight="1">
 
                     </Spinner>
 
@@ -346,33 +341,34 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <LinearLayout style="@style/layoutstyle2"
-                    android:layout_weight="1"
+                <LinearLayout
+                    style="@style/layoutstyle2"
                     android:layout_marginRight="20dp"
-                    >
+                    android:layout_weight="1">
 
                     <TextView
                         style="@style/textstyle"
                         android:text="二次事故:" />
 
                     <Spinner
-                        android:layout_weight="1"
                         android:id="@+id/shijian2"
-                        style="@style/stylespanner">
+                        style="@style/stylespanner"
+                        android:layout_weight="1">
 
                     </Spinner>
 
                     <Spinner
-                        android:layout_weight="1"
                         android:id="@+id/sp_shijian_type2"
-                        style="@style/stylespanner">
+                        style="@style/stylespanner"
+                        android:layout_weight="1">
 
                     </Spinner>
+
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:visibility="invisible"
-                        android:text="发生二次事故" />
+                        android:text="发生二次事故"
+                        android:visibility="invisible" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -398,11 +394,12 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/layoutmargin"
-            android:background="@color/bgofdefault"
-            />
+            android:background="@color/bgofdefault" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -424,9 +421,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline"
-                     />
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -434,12 +429,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="人车数量"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -450,9 +443,11 @@
 
         <LinearLayout style="@style/layoutstyle">
 
-            <LinearLayout style="@style/layoutstyle2"
+            <LinearLayout
+                style="@style/layoutstyle2"
                 android:layout_width="match_parent"
                 android:layout_marginRight="10dp">
+
                 <TextView
                     style="@style/textstyle"
                     android:text="涉及车数:" />
@@ -460,18 +455,18 @@
                 <Spinner
                     android:id="@+id/jidongcheshu"
                     style="@style/stylespanner"
-                    android:layout_weight="1"
-                    ></Spinner>
+                    android:layout_weight="1"></Spinner>
 
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
 
-            <LinearLayout style="@style/layoutstyle2"
+            <LinearLayout
+                style="@style/layoutstyle2"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
+
                 <TextView
                     style="@style/textstyle"
                     android:text="驾乘人数:" />
@@ -481,14 +476,13 @@
                     style="@style/myeditstyle"
                     android:layout_width="110dp"
                     android:layout_weight="1"
-                    android:hint="1"
-                    />
+                    android:hint="1" />
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2"
+            <LinearLayout
+                style="@style/layoutstyle2"
                 android:layout_width="wrap_content"
-                android:layout_weight="1"
-                >
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/textstyle"
@@ -498,19 +492,19 @@
 
                 <EditText
                     android:id="@+id/outrenshu"
-                    android:layout_weight="1"
+                    style="@style/myeditstyle"
                     android:layout_marginRight="10dp"
-                    android:hint="0"
-                    style="@style/myeditstyle" />
+                    android:layout_weight="1"
+                    android:hint="0" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
 
 
-            <LinearLayout style="@style/layoutstyle2"
-                android:layout_weight="1"
-                >
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/textView7"
@@ -518,36 +512,36 @@
                     android:text="受伤人数:" />
 
                 <EditText
-                    android:layout_weight="1"
                     android:id="@+id/ssrenshu"
                     style="@style/myeditstyle"
-                    android:hint="0"
-                    android:layout_width="110dp" />
+                    android:layout_width="110dp"
+                    android:layout_weight="1"
+                    android:hint="0" />
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2"
-                android:layout_weight="1"
-                >
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:layout_weight="1">
 
                 <TextView
                     style="@style/textstyle"
                     android:text="死亡人数:" />
 
                 <EditText
-                    android:layout_weight="1"
                     android:id="@+id/swrenshu"
                     style="@style/myeditstyle"
+                    android:layout_width="115dp"
                     android:layout_marginRight="10dp"
-                    android:hint="0"
-                    android:layout_width="115dp" />
+                    android:layout_weight="1"
+                    android:hint="0" />
             </LinearLayout>
         </LinearLayout>
         <!-- 时间信息-->
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/layoutmargin"
-            android:background="@color/bgofdefault"
-            />
+            android:background="@color/bgofdefault" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -569,8 +563,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -578,12 +571,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="其他信息"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline"/>
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -594,49 +585,42 @@
 
         <LinearLayout style="@style/layoutstyle">
 
-            <LinearLayout style="@style/layoutstyle2"
+            <LinearLayout
+                style="@style/layoutstyle2"
                 android:layout_weight="1"
-                android:visibility="visible"
-                >
+                android:visibility="visible">
 
                 <TextView
                     style="@style/textstyle"
                     android:text="大巴用途:" />
 
                 <Spinner
-                    android:layout_weight="1"
                     android:id="@+id/sp_busshuxing"
-                    style="@style/stylespanner">
+                    style="@style/stylespanner"
+                    android:layout_weight="1">
 
                 </Spinner>
             </LinearLayout>
 
-            <LinearLayout style="@style/layoutstyle2"
-                android:layout_weight="1"
-                >
+            <LinearLayout
+                style="@style/layoutstyle2"
+                android:layout_weight="1">
+
                 <TextView
                     style="@style/textstyle"
                     android:text="肇事逃逸:" />
 
                 <Spinner
-                    android:layout_marginRight="10dp"
-                    android:layout_weight="1"
                     android:id="@+id/sp_run"
-                    style="@style/stylespanner">
+                    style="@style/stylespanner"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1">
 
                 </Spinner>
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
-
-            <LinearLayout style="@style/layoutstyle2">
-
-                <CheckBox
-                    android:id="@+id/checkbox_weixianche"
-                    style="@style/textstyle"
-                    android:text="危险品运输车" />
-            </LinearLayout>
 
             <Spinner
                 android:id="@+id/sp_dangers"
@@ -685,9 +669,9 @@
                 style="@style/layoutstyle"
                 android:visibility="visible">
 
-                <LinearLayout style="@style/layoutstyle2"
-                    android:layout_weight="1"
-                    >
+                <LinearLayout
+                    style="@style/layoutstyle2"
+                    android:layout_weight="1">
 
                     <TextView
                         style="@style/textstyle"
@@ -696,9 +680,8 @@
                     <Spinner
                         android:id="@+id/sp_weixianbiaozhi"
                         style="@style/stylespanner"
-                        android:layout_weight="1"
                         android:layout_marginRight="10dp"
-                        >
+                        android:layout_weight="1">
 
                     </Spinner>
                 </LinearLayout>
@@ -733,11 +716,12 @@
             </LinearLayout>
 
         </LinearLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/layoutmargin"
-            android:background="@color/bgofdefault"
-            />
+            android:background="@color/bgofdefault" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -759,8 +743,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline"/>
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -768,12 +751,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="现场照片"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -781,16 +762,17 @@
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout
             style="@style/layoutstyle"
             android:layout_marginLeft="10dp"
 
             >
 
-            <LinearLayout style="@style/layoutstyle2"
-                android:orientation="vertical"
+            <LinearLayout
+                style="@style/layoutstyle2"
                 android:layout_width="100dp"
-                >
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/addphotos"
@@ -799,14 +781,14 @@
                     android:clickable="true"
                     android:onClick="onClick"
                     android:src="@drawable/addphoto" />
+
                 <TextView
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="添加照片"
                     android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
-                    />
+                    android:text="添加照片" />
             </LinearLayout>
 
             <LinearLayout style="@style/layoutstyle2"
@@ -830,11 +812,12 @@
                 </ListView>
             </LinearLayout>
         </LinearLayout>
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="@dimen/layoutmargin"
-            android:background="@color/bgofdefault"
-            />
+            android:background="@color/bgofdefault" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -856,8 +839,7 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -865,12 +847,10 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:text="现场视频"
-                    android:textSize="@dimen/xlTextSize"
                     android:textColor="@color/white"
-                    />
+                    android:textSize="@dimen/xlTextSize" />
 
-                <ImageView
-                    style="@style/halfline" />
+                <ImageView style="@style/halfline" />
             </LinearLayout>
 
             <ImageView
@@ -878,41 +858,50 @@
                 android:layout_height="1dp"
                 android:background="@color/darkGrey" />
         </LinearLayout>
+
         <LinearLayout
             style="@style/layoutstyle"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            >
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/start"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:gravity="center"
+                android:text="录制" />
             <RelativeLayout
+                android:id="@+id/video_layout"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginRight="0dp"
-                >
-            <SurfaceView android:id="@+id/videoView"
-                android:visibility="visible"
-                android:layout_width="match_parent"
-                android:layout_height="500dp">
-            </SurfaceView>
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_centerHorizontal="true"
-                    >
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="录制"
-                    android:id="@+id/start"/>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/start"
-                    android:text="停止"
-                    android:id="@+id/stop"/>
-                </LinearLayout>
+                android:layout_height="200dp"
+                android:background="@android:color/black">
+
+                <com.universalvideoview.UniversalVideoView
+                    android:id="@+id/videoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    app:uvv_autoRotation="true"
+                    app:uvv_fitXY="false" />
+
+                <com.universalvideoview.UniversalMediaController
+                    android:id="@+id/media_controller"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:uvv_scalable="true" />
+
             </RelativeLayout>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout style="@style/layoutstyle2">
+
+        <CheckBox
+            android:id="@+id/checkbox_weixianche"
+            style="@style/textstyle"
+            android:text="危险品运输车" />
     </LinearLayout>
 </FrameLayout>

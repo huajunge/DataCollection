@@ -38,4 +38,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile files('libs/volley.jar')
     compile files('libs/fastjson-1.2.4.jar')
+    compile 'com.linsea:universalvideoview:1.1.0@aar'
 }

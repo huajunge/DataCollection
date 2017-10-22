@@ -1,11 +1,15 @@
 package com.example.tr.datacollection;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Point;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +21,7 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
@@ -43,6 +48,9 @@ import java.util.List;
 import java.util.Map;
 
 public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDragListener, PoiSearch.OnPoiSearchListener, AdapterView.OnItemClickListener, AdapterView.OnItemSelectedListener, AMap.OnCameraChangeListener, AMapLocationListener {
+    private static final String TAG = "MarkerPosition";
+    private static final int REQUEST_PERMISSION_CODE = 1;
+
     private AMap aMap;
     private MapView mapView;
     private LatLng position;
@@ -70,11 +78,63 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marker_position);
-        init();
 //        DBO dbo = new DBO(this);
 //        dbo.clearTest();
+        mapView = (MapView) findViewById(R.id.mapView);
+        aMap = mapView.getMap();
         mapView.onCreate(savedInstanceState);   //必须重写
+        checkPermissions();
+    }
 
+    private void checkPermissions() {
+        Log.i(TAG, "checkPermissions: 2");
+        List<String> permissionList = new ArrayList<>();    //需要申请的权限列表
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {// >= 23
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(Manifest.permission.RECORD_AUDIO);
+            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(Manifest.permission.CAMERA);
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            if (checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(Manifest.permission.READ_CONTACTS);
+            if (checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(Manifest.permission.READ_PHONE_STATE);
+            if (checkSelfPermission(Manifest.permission.RECEIVE_SMS) != PackageManager.PERMISSION_GRANTED)
+                permissionList.add(Manifest.permission.RECEIVE_SMS);
+
+            if (permissionList.size() == 0) {
+                init();
+            } else {//询问请求权限
+                Log.i(TAG, "checkPermissions: " + permissionList);
+                requestPermissions(permissionList.toArray(new String[permissionList.size()]), REQUEST_PERMISSION_CODE);
+            }
+        } else {
+            init();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_PERMISSION_CODE:
+                boolean all = true;
+                if(grantResults.length > 0 ){
+                    for(int result:grantResults)
+                    {
+                        if(result != PackageManager.PERMISSION_GRANTED){
+                            all = false;
+                            break;
+                        }
+                    }
+                }
+                if(!all)
+                    Toast.makeText(this, "未获得权限，功能无法正常使用！", Toast.LENGTH_SHORT).show();
+                else init();
+                break;
+        }
     }
 
     private void moveToLocation(double lat, double lng) {
@@ -89,9 +149,6 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
           spPlaceName = (Spinner) findViewById(R.id.place_name);
           editTextPlaceBeizhu = (EditText) findViewById(R.id.place_beizhu);
 
-
-        mapView = (MapView) findViewById(R.id.mapView);
-        aMap = mapView.getMap();
         mapLocationClient = new AMapLocationClient(MarkerPosition.this);
         mapLocationClientOption = new AMapLocationClientOption();
         //设置定位监听
@@ -309,7 +366,7 @@ public class MarkerPosition extends AppCompatActivity implements AMap.OnMarkerDr
 
     }
     public void analysis(View view){
-        Intent intent = new Intent(MarkerPosition.this,UploadData.class);
+        Intent intent = new Intent(MarkerPosition.this,HistoryFuelConsumptionActivity.class);
         startActivity(intent);
     }
 

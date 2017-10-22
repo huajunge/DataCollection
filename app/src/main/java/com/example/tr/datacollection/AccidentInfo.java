@@ -4,13 +4,11 @@ package com.example.tr.datacollection;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.hardware.Camera;
-import android.media.MediaRecorder;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -19,14 +17,12 @@ import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -52,6 +49,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.example.tr.datacollection.util.MyMultipartRequest;
+import com.universalvideoview.UniversalMediaController;
+import com.universalvideoview.UniversalVideoView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -68,13 +67,13 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
-import static java.lang.Thread.sleep;
+import static com.example.tr.datacollection.R.id.videoView;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccidentInfo extends Fragment implements View.OnClickListener {
+public class AccidentInfo extends Fragment implements View.OnClickListener, UniversalVideoView.VideoViewCallback {
 
     private static final String TAG = "AccidentInfo";
 
@@ -82,6 +81,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
 
     private static final String BASIC_URL = "http://192.168.1.126:8080/lcx/servlet";
     private static final String IMG_URL = "/DriverHeadPhotoUpload";
+    private static final int RESULT_VIDEO_CODE = 5;
 
     String fileNameCamera = "image_header_camera.png";   // 拍照得到的临时文件名
     String fileNameCrop = "image_header_crop.png";   //裁剪后得到的临时文件名
@@ -157,10 +157,10 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
     private Spinner spCaraccident2;
 
     private LinearLayout DANGER;
-    String[] strspShiguType_feipz={"翻车","坠落","火灾","爆炸","淹没","其它非碰撞"};
-    String[] strspShiguType_feigudingc={"机动车","行人","摩托车","电动车","自行车","动物","其它非固定物"};
-    String[] strspShiguType_guding={"防撞墩/桶","护栏","桥梁栏杆","路缘石","隔离墩","信号灯杆","路灯杆","标志牌柱","树木","其它固定物"};
-    private String[] xingqi={"一","二","三","四","五","六","七"};
+    String[] strspShiguType_feipz = {"翻车", "坠落", "火灾", "爆炸", "淹没", "其它非碰撞"};
+    String[] strspShiguType_feigudingc = {"机动车", "行人", "摩托车", "电动车", "自行车", "动物", "其它非固定物"};
+    String[] strspShiguType_guding = {"防撞墩/桶", "护栏", "桥梁栏杆", "路缘石", "隔离墩", "信号灯杆", "路灯杆", "标志牌柱", "树木", "其它固定物"};
+    private String[] xingqi = {"一", "二", "三", "四", "五", "六", "七"};
     private Calendar cal;
     private int year;
     private int month;
@@ -170,13 +170,12 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
 
     //视频录制
     private File myRecAudioFile;
-    private SurfaceView mSurfaceView;
-    private SurfaceHolder mSurfaceHolder;
     private Button buttonStart;
-    private Button buttonStop;
     private File dir;
-    private MediaRecorder recorder;
-    private Camera mCamera;
+    private UniversalMediaController mediaController;
+    private UniversalVideoView mVideoView;
+    private RelativeLayout mVideoLayout;
+
     public AccidentInfo() {
         // Required empty public constructor
     }
@@ -319,19 +318,19 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spshigu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                try{
-                switch (i){
-                    case 0:
-                        spshiguType.setAdapter(new MyAdapter(strspShiguType_feipz, view.getContext()).getAdaper());
-                        break;
-                    case 1:
-                        spshiguType.setAdapter(new MyAdapter(strspShiguType_feigudingc, view.getContext()).getAdaper());
-                        break;
-                    case 2:
-                        spshiguType.setAdapter(new MyAdapter(strspShiguType_guding, view.getContext()).getAdaper());
-                        break;
-                }
-                }catch (Exception e){
+                try {
+                    switch (i) {
+                        case 0:
+                            spshiguType.setAdapter(new MyAdapter(strspShiguType_feipz, view.getContext()).getAdaper());
+                            break;
+                        case 1:
+                            spshiguType.setAdapter(new MyAdapter(strspShiguType_feigudingc, view.getContext()).getAdaper());
+                            break;
+                        case 2:
+                            spshiguType.setAdapter(new MyAdapter(strspShiguType_guding, view.getContext()).getAdaper());
+                            break;
+                    }
+                } catch (Exception e) {
 
                 }
             }
@@ -347,12 +346,12 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spshiguType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-               if(spshigu.getSelectedItemPosition()==1 && (i==0)){
-                  //  LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.pzlx);
+                if (spshigu.getSelectedItemPosition() == 1 && (i == 0)) {
+                    //  LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.pzlx);
                     PZLX.setVisibility(LinearLayout.VISIBLE);
-               }else {
-                   PZLX.setVisibility(LinearLayout.GONE);
-               }
+                } else {
+                    PZLX.setVisibility(LinearLayout.GONE);
+                }
             }
 
             @Override
@@ -361,12 +360,12 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
             }
         });
 
-        spCaraccident =(Spinner) view.findViewById(R.id.sp_caraccident);
-        String[] strspCaraccident={	"追尾碰撞","正面碰撞","侧面碰撞","直角碰撞","刮擦","其它"};
-        spCaraccident.setAdapter(new MyAdapter(strspCaraccident,view.getContext()).getAdaper());
+        spCaraccident = (Spinner) view.findViewById(R.id.sp_caraccident);
+        String[] strspCaraccident = {"追尾碰撞", "正面碰撞", "侧面碰撞", "直角碰撞", "刮擦", "其它"};
+        spCaraccident.setAdapter(new MyAdapter(strspCaraccident, view.getContext()).getAdaper());
 
-        spCaraccident2 =(Spinner) view.findViewById(R.id.sp_caraccident2);
-        spCaraccident2.setAdapter(new MyAdapter(strspCaraccident,view.getContext()).getAdaper());
+        spCaraccident2 = (Spinner) view.findViewById(R.id.sp_caraccident2);
+        spCaraccident2.setAdapter(new MyAdapter(strspCaraccident, view.getContext()).getAdaper());
 //事故二
         spshiguType2 = (Spinner) view.findViewById(R.id.sp_shijian_type2);
         spshiguType2.setAdapter(new MyAdapter(strspShiguType_feipz, view.getContext()).getAdaper());
@@ -375,10 +374,10 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spshiguType2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(spshigu2.getSelectedItemPosition()==1 && (i==0)){
+                if (spshigu2.getSelectedItemPosition() == 1 && (i == 0)) {
                     //  LinearLayout linearLayout = (LinearLayout) view.findViewById(R.id.pzlx);
                     PZLX2.setVisibility(LinearLayout.VISIBLE);
-                }else {
+                } else {
                     PZLX2.setVisibility(LinearLayout.GONE);
                 }
             }
@@ -394,21 +393,21 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spshigu2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-              try{
-                switch (i){
-                    case 0:
-                        spshiguType2.setAdapter(new MyAdapter(strspShiguType_feipz, view.getContext()).getAdaper());
-                        break;
-                    case 1:
-                        spshiguType2.setAdapter(new MyAdapter(strspShiguType_feigudingc, view.getContext()).getAdaper());
-                        break;
-                    case 2:
-                        spshiguType2.setAdapter(new MyAdapter(strspShiguType_guding, view.getContext()).getAdaper());
-                        break;
-                }
-            }catch (Exception e){
+                try {
+                    switch (i) {
+                        case 0:
+                            spshiguType2.setAdapter(new MyAdapter(strspShiguType_feipz, view.getContext()).getAdaper());
+                            break;
+                        case 1:
+                            spshiguType2.setAdapter(new MyAdapter(strspShiguType_feigudingc, view.getContext()).getAdaper());
+                            break;
+                        case 2:
+                            spshiguType2.setAdapter(new MyAdapter(strspShiguType_guding, view.getContext()).getAdaper());
+                            break;
+                    }
+                } catch (Exception e) {
 
-            }
+                }
             }
 
             @Override
@@ -418,14 +417,14 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         });
 //事故严重程度
         spyanzhongcd = (Spinner) view.findViewById(R.id.sp_shiguchengdu);
-        String[] strspyanzhongcd = { "仅财损","轻伤","重伤","死亡","未知"};
+        String[] strspyanzhongcd = {"仅财损", "轻伤", "重伤", "死亡", "未知"};
         spyanzhongcd.setAdapter(new MyAdapter(strspyanzhongcd, view.getContext()).getAdaper());
 
 //事故二级分类
 
 
         spgongjiao = (Spinner) view.findViewById(R.id.sp_busshuxing);
-        String[] strspgongjiao = {"无","出租车","校车","公交","军用","警用","救护","消防车辆","其它"};
+        String[] strspgongjiao = {"无", "出租车", "校车", "公交", "军用", "警用", "救护", "消防车辆", "其它"};
         spgongjiao.setAdapter(new MyAdapter(strspgongjiao, view.getContext()).getAdaper());
 
 //事故严重程度
@@ -438,7 +437,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         spzhaoshity.setAdapter(new MyAdapter2(strspzhaoshity, view.getContext()).getAdaper());
 //危险标识
         spfromweixianbz = (Spinner) view.findViewById(R.id.sp_weixianbiaozhi);
-        String[] strspfromweixianbz = {"无危险有害物识别码","01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
+        String[] strspfromweixianbz = {"无危险有害物识别码", "01 菱形或方形框中间的4位危险有害物识别码", "02 菱形底部的1位分类码"};
         spfromweixianbz.setAdapter(new MyAdapter2(strspfromweixianbz, view.getContext()).getAdaper());
 
         spweixian = (Spinner) view.findViewById(R.id.sp_dangers);
@@ -475,19 +474,13 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
                 R.id.textView1, arrayList);
         Imgs.setAdapter(adapter);
 
-        //视频录制
-        mSurfaceView = (SurfaceView) view.findViewById(R.id.videoView);
-        mSurfaceHolder = mSurfaceView.getHolder();
-        mSurfaceHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        buttonStart=(Button)view.findViewById(R.id.start);
-        buttonStop=(Button)view.findViewById(R.id.stop);
+        buttonStart = (Button) view.findViewById(R.id.start);
         File defaultDir = Environment.getExternalStorageDirectory();
-        String path = defaultDir.getAbsolutePath()+File.separator+"V"+File.separator;//创建文件夹存放视频
+        String path = defaultDir.getAbsolutePath() + File.separator + "V" + File.separator;//创建文件夹存放视频
         dir = new File(path);
-        if(!dir.exists()){
+        if (!dir.exists()) {
             dir.mkdir();
         }
-        recorder = new MediaRecorder();
 
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -495,98 +488,69 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
                 recorder();
             }
         });
+        mVideoLayout = (RelativeLayout) view.findViewById(R.id.video_layout);
+        mediaController = (UniversalMediaController) view.findViewById(R.id.media_controller);
+        mVideoView = (UniversalVideoView) view.findViewById(videoView);
+        mVideoView.setMediaController(mediaController);
+        mVideoView.setVideoViewCallback(this);
 
-        buttonStop.setOnClickListener(new View.OnClickListener() {
+        setVideoAreaSize();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mVideoView != null)
+            mVideoView.setFocusable(false);
+    }
+
+    private int cachedHeight;
+
+    /**
+     * 置视频区域大小
+     */
+    private void setVideoAreaSize() {
+        mVideoLayout.post(new Runnable() {
             @Override
-            public void onClick(View v) {
-                showProcessing("保存视频中...");
-                Thread th = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            sleep(2000);
-                            dismissProcessing();
-                            dismissProgressDialog();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                th.start();
-                recorder.stop();
-                recorder.reset();
-                recorder.release();
-                recorder=null;
-               // mCamera.
-                mCamera.lock();
-                mCamera.release();
-                mCamera =null;
-                buttonStop.setClickable(false);
+            public void run() {
+                int width = mVideoLayout.getWidth();
+                cachedHeight = (int) (width * 9f / 16f);
+                //cachedHeight = (int) (width * 405f / 720f);
+//                cachedHeight = (int) (width * 3f / 4f);
+//                cachedHeight = (int) (width * 9f / 16f);
+                ViewGroup.LayoutParams videoLayoutParams = mVideoLayout.getLayoutParams();
+                videoLayoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                videoLayoutParams.height = cachedHeight;
+                mVideoLayout.setLayoutParams(videoLayoutParams);
             }
         });
     }
+
     public void recorder() {
+        Calendar calendar = Calendar.getInstance();
+        String s = "" + calendar.get(Calendar.YEAR) + (calendar.get(Calendar.MONTH) + 1) + calendar.get(Calendar.DAY_OF_MONTH)
+                + calendar.get(Calendar.HOUR_OF_DAY) + calendar.get(Calendar.MINUTE) + calendar.get(Calendar.SECOND);
+        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+        intent.addCategory(Intent.CATEGORY_DEFAULT);
+        File file = null;
         try {
-         //   int CammeraIndex=FindBackCamera();//
-          //  Toast.makeText(getContext(), "OK", Toast.LENGTH_SHORT).show();
-            showProcessing("正在打开摄像头...");
-            Thread th = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        sleep(2000);
-                        dismissProcessing();
-                        dismissProgressDialog();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-            th.start();
-            mCamera=Camera.open();
-          //  mCamera.reconnect();
-            mCamera.setDisplayOrientation(90);
-            mCamera.unlock();
-            recorder.setCamera(mCamera);
-            myRecAudioFile = File.createTempFile("video", ".3gp",dir);//创建临时文件
-            recorder.setOrientationHint(90);
-            recorder.setPreviewDisplay(mSurfaceHolder.getSurface());//预览
-            recorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);//视频源
-            recorder.setAudioSource(MediaRecorder.AudioSource.MIC); //录音源为麦克风
-            recorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);//输出格式为3gp
-            WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
-            recorder.setVideoSize(600,wm.getDefaultDisplay().getWidth()-20);//视频尺寸
-            recorder.setVideoFrameRate(15);//视频帧频率
-            recorder.setVideoEncoder(MediaRecorder.VideoEncoder.H263);//视频编码
-            recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);//音频编码
-            recorder.setMaxDuration(10000);//最大期限
-            recorder.setOutputFile(myRecAudioFile.getAbsolutePath());//保存路径
-
-            recorder.prepare();
-            //关闭点击事件
-            buttonStart.setClickable(false);
-            try{
-                recorder.start();
-            }catch (Exception e){
-                //System.out.println(e.toString());
-                Log.i("info",dir.getPath());
-                Log.i("info",e.toString());
-            }
-
+            file = new File(Environment.getExternalStorageDirectory().getCanonicalFile() + "/myvideo" + s + ".mp4");
         } catch (IOException e) {
             e.printStackTrace();
-        }catch (Exception e){
-            //System.out.println(e.toString());
-            Log.i("info",dir.getPath());
-            Log.i("info",e.toString());
         }
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file));
+        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); // set the video image quality to high
+        startActivityForResult(intent, RESULT_VIDEO_CODE);
     }
+
+
     public void dismissProcessing() {
         if (processDialog != null && processDialog.isShowing()) {
             processDialog.dismiss();
             processDialog = null;
         }
     }
+
     public void showProcessing(String hintText) {
         if (processDialog == null) {
             processDialog = new ProgressDialog(getContext());
@@ -595,9 +559,10 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         processDialog.setCancelable(true);
         processDialog.show();
     }
+
     @Override
     public void onClick(View v) {
-        if ( DEBUG) {
+        if (DEBUG) {
             switch (v.getId()) {
                 case R.id.addphotos:
                     AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
@@ -614,7 +579,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
                                         intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri);
                                         startActivityForResult(intent, FROM_CROP);
                                     } else {
-                                        Toast.makeText(getActivity().getApplicationContext(), "没有存储卡！", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getActivity().getApplicationContext(), "没有存储卡，无法拍摄！", Toast.LENGTH_SHORT).show();
                                     }
                                     break;
                                 case 1://相册选取
@@ -659,7 +624,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
                     ImageView icon = (ImageView) coupon_home_ad_item
                             .findViewById(R.id.img);// 拿个这行的icon 就可以设置图片
                     icon.setImageBitmap(photo);
-                 //   icon.setImageDrawable(getResources().getDrawable(R.drawable.addphoto));
+                    //   icon.setImageDrawable(getResources().getDrawable(R.drawable.addphoto));
                     header_ll.addView(coupon_home_ad_item);
                     ArrayAdapter adapter = new ArrayAdapter(getContext(), R.layout.item,
                             R.id.textView1, arrayList);
@@ -674,7 +639,15 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
                     });
                     //上传头像
                     Log.i(TAG, "onActivityResult: finalUri.getPath() " + finalUri.getPath());
-               //     uploadImg(finalUri.getPath());
+                    //     uploadImg(finalUri.getPath());
+                    break;
+                case RESULT_VIDEO_CODE:
+                    if (data != null) {
+                        if (data.getData() != null) {
+                            mVideoView.setVideoURI(data.getData());
+                            mVideoView.requestFocus();
+                        }
+                    }
                     break;
             }
         }
@@ -719,6 +692,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         }
         return bitmap;
     }
+
     private void uploadImg(String filePath) {
         List<Part> partList = new ArrayList<>();
         //partList.add(new StringPart("driPhone", "15520452757"));
@@ -756,6 +730,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         }, partList.toArray(new Part[partList.size()]));
         requestQueue.add(myMultipartRequest);
     }
+
     private boolean hasSdCard() {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
             return true;
@@ -778,96 +753,114 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         }
     }
 
-    public   String GetTime(){
+    public String GetTime() {
         return Time.getText().toString();
     }
-    public   String GetTimeHours(){
+
+    public String GetTimeHours() {
         return TimeHours.getText().toString();
     }
 
-    public String GetCITY(){
+    public String GetCITY() {
         return CITY.getText().toString();
     }
-    public   String GetCOUNTRY(){
+
+    public String GetCOUNTRY() {
         return COUNTRY.getText().toString();
     }
-    public   String Getxiangzhen(){
+
+    public String Getxiangzhen() {
         return xiangzhen.getText().toString();
     }
-    public   String Getjingweidu(){
+
+    public String Getjingweidu() {
         return jingweidu.getText().toString();
     }
-    public   String GetdimingBeiZhu(){
+
+    public String GetdimingBeiZhu() {
         return dimingBeiZhu.getText().toString();
     }
-    public   String Getspyanzhongcd(){
+
+    public String Getspyanzhongcd() {
         return spyanzhongcd.getSelectedItem().toString();
     }
 
-    public   String Getspgongjiao(){
+    public String Getspgongjiao() {
         return spgongjiao.getSelectedItem().toString();
     }
-    public   String Getspzhaoshity(){
+
+    public String Getspzhaoshity() {
         return spzhaoshity.getSelectedItem().toString();
     }
-    public   String Getspweixian(){
+
+    public String Getspweixian() {
         return spweixian.getSelectedItem().toString();
     }
-    public   String Getspshigu(){
+
+    public String Getspshigu() {
         return spshigu.getSelectedItem().toString();
     }
-    public   String GetspshiguType(){
+
+    public String GetspshiguType() {
         return spshiguType.getSelectedItem().toString();
     }
 
-    public   String Getspshigu2(){
+    public String Getspshigu2() {
         return spshigu2.getSelectedItem().toString();
     }//事故2
-    public   String GetspshiguType2(){
+
+    public String GetspshiguType2() {
         return spshiguType2.getSelectedItem().toString();
     }
-    public   String Getspfromweixianbz(){
+
+    public String Getspfromweixianbz() {
         return spfromweixianbz.getSelectedItem().toString();
     }
 
-    public   String GetdriverNums(){
+    public String GetdriverNums() {
         return driverNums.getText().toString();
     }
-    public   String Getssrenshu(){
+
+    public String Getssrenshu() {
         return ssrenshu.getText().toString();
     }
-    public   String GetdieNums(){
+
+    public String GetdieNums() {
         return dieNums.getText().toString();
     }
-    public   String Getcarnum(){
+
+    public String Getcarnum() {
         return carnum.getSelectedItem().toString();
     }
 
-    public   String GetCheckBoxShifu2(){
+    public String GetCheckBoxShifu2() {
         return CheckBoxShifu2.getText().toString();
     }
-    public   String GetCheckBoxWeixina(){
+
+    public String GetCheckBoxWeixina() {
         return CheckBoxWeixina.getText().toString();
     }//危险车
 
-    public   String GetWeixianbz(){
-        try{
+    public String GetWeixianbz() {
+        try {
             RadioButton radioButton = (RadioButton) getView().findViewById(Weixianbz.getCheckedRadioButtonId());
             return radioButton.getText().toString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return "无";
         }
 
     }
-    public   String GetWXbiaozhi(){
-     //   RadioButton radioButton = getView().findViewById(WXbiaozhi.getCheckedRadioButtonId());
+
+    public String GetWXbiaozhi() {
+        //   RadioButton radioButton = getView().findViewById(WXbiaozhi.getCheckedRadioButtonId());
         return WXbiaozhi.getResources().toString();
     }
 
-    public   String GetYES(){
+    public String GetYES() {
         return YES.getText().toString();
     }
-    public   String GetNO(){
+
+    public String GetNO() {
         return NO.getText().toString();
     }
 
@@ -892,7 +885,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         try {
             radioButton = (RadioButton) getView().findViewById(Ryouhaiwuzhi.getCheckedRadioButtonId());
             return radioButton.getText().toString();
-        }catch (Exception e){
+        } catch (Exception e) {
             return "否";
         }
     }
@@ -901,4 +894,50 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
         Ryouhaiwuzhi = ryouhaiwuzhi;
     }
 
+    @Override
+    public void onScaleChange(boolean isFullscreen) {
+
+    }
+
+    private int mSeekPosition;
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mVideoView != null && mVideoView.isPlaying()) {
+            mSeekPosition = mVideoView.getCurrentPosition();
+            Log.d(TAG, "onPause mSeekPosition=" + mSeekPosition);
+            mVideoView.pause();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (mVideoView != null) {
+            mVideoView.closePlayer();
+            mVideoView = null;
+        }
+    }
+
+    @Override
+    public void onPause(MediaPlayer mediaPlayer) {
+
+    }
+
+
+    @Override
+    public void onStart(MediaPlayer mediaPlayer) {
+
+    }
+
+    @Override
+    public void onBufferingStart(MediaPlayer mediaPlayer) {
+
+    }
+
+    @Override
+    public void onBufferingEnd(MediaPlayer mediaPlayer) {
+
+    }
 }
