@@ -257,11 +257,10 @@ public class AccidentInfo extends Fragment implements View.OnClickListener {
             dimingBeiZhu = (EditText) view.findViewById(R.id.dimingbz);
             dimingBeiZhu.setText(intent.getStringExtra("beizhu").toString());
             jingweidu = (TextView) view.findViewById(R.id.text_jinweidu);
-            jingweidu.setText(intent.getDoubleExtra("lng", 0.0f) + " , " + intent.getDoubleExtra("lat", 0.0f));
+            jingweidu.setText(intent.getDoubleExtra("lng", 0.0f) + "," + intent.getDoubleExtra("lat", 0.0f));
         } catch (Exception e) {
             Log.i("city", e.toString());
         }
-
 
         SHIGU2 = (LinearLayout) view.findViewById(R.id.shigu2);
         DANGER = (LinearLayout) view.findViewById(R.id.dangers);

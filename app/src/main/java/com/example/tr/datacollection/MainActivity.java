@@ -166,9 +166,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initId() {
-        Date date= new Date(System.currentTimeMillis());
-        SimpleDateFormat sf =new SimpleDateFormat("yyyyMMddhhmmss");
-        sgId = "SG"+sf.format(date);
+        Intent intent = getIntent();
+        String sid = intent.getStringExtra("shigunumber");
+        try {
+            if(sid == null||sid.isEmpty()){
+                Date date= new Date(System.currentTimeMillis());
+                SimpleDateFormat sf =new SimpleDateFormat("yyyyMMddhhmmss");
+                sgId = "SG"+sf.format(date);
+            }else {
+                sgId = sid;
+            }
+        } catch (Exception e){
+            Date date= new Date(System.currentTimeMillis());
+            SimpleDateFormat sf =new SimpleDateFormat("yyyyMMddhhmmss");
+            sgId = "SG"+sf.format(date);
+        }
+        Log.i("sgid","sgId:"+sgId);
     }
 
     public void selectFragment(int position){
@@ -321,6 +334,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         final Date date = accidentInfo.getCal().getTime();
         //经纬度
         String[] latlngs = accidentInfo.Getjingweidu().split(",");
+        Log.i("httptest","Getjingweidu"+accidentInfo.Getjingweidu());
+        Log.i("httptest","latlngs[1]"+latlngs[1]);
+        Log.i("httptest","latlngs[0]"+latlngs[0]);
         LatLng latLng = new LatLng(Double.valueOf(latlngs[1]),Double.valueOf(latlngs[0]));
 
         acccidentData= new AcccidentData(sgId,date, accidentInfo.GetCITY(),accidentInfo.GetCOUNTRY(), accidentInfo.Getxiangzhen(), latLng,
