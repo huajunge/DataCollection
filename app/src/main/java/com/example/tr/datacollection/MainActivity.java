@@ -40,6 +40,7 @@ import static com.example.tr.datacollection.R.id.chepaihao;
 import static com.example.tr.datacollection.R.id.vin;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String TAG = "MainActivity";
 
     private ImageView frg1;
     private ImageView frg2;
@@ -87,6 +88,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Thread.setDefaultUncaughtExceptionHandler(new Thread.UncaughtExceptionHandler() {
+            @Override
+            public void uncaughtException(Thread thread, Throwable throwable) {
+                Log.e(TAG, "uncaughtException: ", throwable);
+            }
+        });
         init();
         Log.i("TEST","进入");
 

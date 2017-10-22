@@ -621,7 +621,13 @@
         </LinearLayout>
 
         <LinearLayout style="@style/layoutstyle">
+            <LinearLayout style="@style/layoutstyle2">
 
+                <CheckBox
+                    android:id="@+id/checkbox_weixianche"
+                    style="@style/textstyle"
+                    android:text="危险品运输车" />
+            </LinearLayout>
             <Spinner
                 android:id="@+id/sp_dangers"
                 style="@style/stylespanner"
@@ -821,7 +827,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
+            android:layout_marginBottom="10dp"
             android:background="@color/titlecolor"
             android:orientation="vertical">
 
@@ -849,7 +855,6 @@
                     android:text="现场视频"
                     android:textColor="@color/white"
                     android:textSize="@dimen/xlTextSize" />
-
                 <ImageView style="@style/halfline" />
             </LinearLayout>
 
@@ -872,11 +877,11 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
                 android:gravity="center"
-                android:text="录制" />
+                android:text="开始录制" />
             <RelativeLayout
                 android:id="@+id/video_layout"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 android:background="@android:color/black">
 
                 <com.universalvideoview.UniversalVideoView
@@ -885,7 +890,7 @@
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     app:uvv_autoRotation="true"
-                    app:uvv_fitXY="false" />
+                    app:uvv_fitXY="true" />
 
                 <com.universalvideoview.UniversalMediaController
                     android:id="@+id/media_controller"
@@ -897,11 +902,5 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout style="@style/layoutstyle2">
 
-        <CheckBox
-            android:id="@+id/checkbox_weixianche"
-            style="@style/textstyle"
-            android:text="危险品运输车" />
-    </LinearLayout>
 </FrameLayout>

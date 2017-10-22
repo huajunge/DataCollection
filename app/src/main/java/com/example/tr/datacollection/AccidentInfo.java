@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -481,7 +482,7 @@ public class AccidentInfo extends Fragment implements View.OnClickListener, Univ
         if (!dir.exists()) {
             dir.mkdir();
         }
-
+       // recorder();
         buttonStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -535,10 +536,24 @@ public class AccidentInfo extends Fragment implements View.OnClickListener, Univ
         File file = null;
         try {
             file = new File(Environment.getExternalStorageDirectory().getCanonicalFile() + "/myvideo" + s + ".mp4");
+            Log.i(TAG, "recorder: "+file.getAbsolutePath());
         } catch (IOException e) {
+            Log.i(TAG, "IOException: "+e.getMessage());
             e.printStackTrace();
         }
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file));
+        Uri imgUri = null;
+        //Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);    //调用相机
+        imgUri = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), file.getAbsolutePath()));
+        //指定照片保存路径，image_header_camera.png是一个临时文件,数据最终保存到imgUri中
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file));
+        }else {
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, imgUri);
+        }
+
+
+       // intent.putExtra(MediaStore.EXTRA_OUTPUT, FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file));
+        Log.i(TAG, "MediaStore.EXTRA_OUTPUT: "+FileProvider.getUriForFile(getActivity(), getActivity().getApplicationContext().getPackageName() + ".provider", file));
         intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); // set the video image quality to high
         startActivityForResult(intent, RESULT_VIDEO_CODE);
     }
@@ -601,6 +616,10 @@ public class AccidentInfo extends Fragment implements View.OnClickListener, Univ
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        Log.i(TAG, "onActivityResult: "+resultCode);
+        if(data != null)
+            Log.i(TAG, "onActivityResult: "+data.getData());
+        else Log.i(TAG, "onActivityResult: data == null");
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case FROM_CROP:
